@@ -1,6 +1,7 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { Container } from "@/components/layout"
 import { Button } from "@/components/ui/button"
@@ -15,6 +16,48 @@ import {
   staggerContainer,
   defaultViewport,
 } from "@/lib/animations"
+
+// Mini lamp effect for accordion items
+function AccordionLampEffect() {
+  return (
+    <div className="absolute inset-x-0 -top-px overflow-visible pointer-events-none">
+      {/* Main glow line at top - aligned left with padding for border radius */}
+      <motion.div
+        initial={{ opacity: 0, scaleX: 0 }}
+        animate={{ opacity: 1, scaleX: 1 }}
+        exit={{ opacity: 0, scaleX: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        style={{ transformOrigin: "left center" }}
+        className="absolute left-6 top-0 h-px w-2/3 bg-gradient-to-r from-orange-400 via-orange-400/50 to-transparent"
+      />
+      {/* Bright left-aligned glow */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.5 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        className="absolute -top-1 left-20 h-2 w-32 bg-orange-400 blur-md rounded-full"
+      />
+      {/* Wider soft glow - aligned left */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.6 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+        className="absolute -top-6 left-12 h-12 w-64 bg-orange-500/30 blur-2xl rounded-full"
+      />
+      {/* Downward light cone - aligned left */}
+      <motion.div
+        initial={{ opacity: 0, scaleY: 0 }}
+        animate={{ opacity: 0.15, scaleY: 1 }}
+        exit={{ opacity: 0, scaleY: 0 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        style={{ transformOrigin: "top center" }}
+        className="absolute top-0 left-12 w-48 h-24 bg-gradient-to-b from-orange-400/40 via-orange-400/10 to-transparent"
+      />
+    </div>
+  )
+}
 
 const faqs = [
   {
@@ -55,6 +98,8 @@ const faqs = [
 ]
 
 export function FAQSection() {
+  const [openItem, setOpenItem] = useState<string | undefined>(undefined)
+
   return (
     <section className="py-20 md:py-28">
       <Container>
@@ -67,13 +112,23 @@ export function FAQSection() {
         >
           {/* Accordion */}
           <motion.div variants={fadeInUp}>
-            <Accordion type="single" collapsible className="space-y-3">
+            <Accordion
+              type="single"
+              collapsible
+              className="space-y-3"
+              value={openItem}
+              onValueChange={setOpenItem}
+            >
               {faqs.map((faq, index) => (
                 <AccordionItem
                   key={index}
                   value={`item-${index}`}
-                  className="rounded-xl border border-border/50 bg-card/30 px-6 data-[state=open]:bg-card/50"
+                  className="relative rounded-xl border border-border/50 bg-card/30 px-6 data-[state=open]:bg-card/50 data-[state=open]:border-orange-500/30 transition-colors duration-300"
                 >
+                  {/* Lamp effect - only shown on open item */}
+                  <AnimatePresence>
+                    {openItem === `item-${index}` && <AccordionLampEffect />}
+                  </AnimatePresence>
                   <AccordionTrigger className="text-left text-base font-medium hover:no-underline py-5">
                     {faq.question}
                   </AccordionTrigger>

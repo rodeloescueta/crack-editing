@@ -77,13 +77,70 @@
 
 ---
 
+## 7. What You Get Section - Glowing Effect
+- [x] 7.1 Install glowing-effect: `npx shadcn@latest add @aceternity/glowing-effect`
+- [x] 7.2 Create `components/ui/glowing-card.tsx` wrapper component
+- [x] 7.3 Update `components/sections/what-you-get.tsx` to use GlowingCard
+- [x] 7.4 Implement bento grid layout (4 columns: 2 stacked + 2 tall)
+- [x] 7.5 Configure glowing border effect with mouse-tracking animation
+- [x] 7.6 Test responsive layout on tablet/mobile viewports
+
+## 8. FAQ Section - Lamp Effect
+- [x] 8.1 Install lamp: `npx shadcn@latest add @aceternity/lamp`
+- [x] 8.2 Create AccordionLampEffect component in `components/sections/faq.tsx`
+- [x] 8.3 Track accordion open state with useState
+- [x] 8.4 Show lamp effect only on toggled/expanded accordion item
+- [x] 8.5 Configure orange color scheme to match brand
+- [x] 8.6 Align lamp effect to left (matching header position)
+- [x] 8.7 Add padding to prevent lamp exceeding border radius
+
+---
+
+## Completion Notes (Phase 4.2 - Additional Effects)
+
+### Components Installed
+- `components/ui/glowing-effect.tsx` - Mouse-tracking glowing border effect
+- `components/ui/lamp.tsx` - Spotlight lamp effect (reference only, custom implementation used)
+
+### What You Get Section Changes
+- Created `components/ui/glowing-card.tsx` wrapper with GlowingEffect
+- Implemented 4-column bento grid layout:
+  - Columns 1 & 3: Two stacked cards (3 cols wide each)
+  - Columns 2 & 4: Tall cards spanning 2 rows (3 cols wide each)
+- Grid areas use CSS grid-area for precise positioning
+- Glowing effect configured with `spread={40}`, `proximity={64}`, `borderWidth={3}`
+
+### FAQ Section Changes
+- Created custom `AccordionLampEffect` component with:
+  - Orange glow line at top (`from-orange-400 via-orange-400/50 to-transparent`)
+  - Bright center glow (`bg-orange-400 blur-md`)
+  - Soft wide glow (`bg-orange-500/30 blur-2xl`)
+  - Downward light cone effect
+- Used controlled Accordion with `value` and `onValueChange` to track open state
+- AnimatePresence for smooth enter/exit animations
+- Left-aligned with `left-6` padding to stay inside border radius
+
+### Grid Layout (What You Get)
+```
+Desktop (xl): 4 equal columns, 2 rows
+┌─────────┬───────┬─────────┬───────┐
+│ Hooks   │       │Framework│       │
+│ (3 col) │ Keeps │ (3 col) │Updates│
+├─────────┤Watch  ├─────────┤(tall) │
+│ Edits   │(tall) │Practice │       │
+│ (3 col) │       │ (3 col) │       │
+└─────────┴───────┴─────────┴───────┘
+```
+
+---
+
 ## Deferred Tasks (Phase 4.1)
 These tasks are deferred for a future iteration:
 
 - Scroll-triggered section animations (fade-in, slide-up)
 - Animated number counters for stats
 - Brand logo marquee
-- Enhanced card hover effects
+- ~~Enhanced card hover effects~~ (Completed with glowing effect)
 - Scroll progress indicator
 - Button hover animations
 - Hero parallax effect

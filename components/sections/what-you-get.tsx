@@ -11,11 +11,10 @@ import {
 } from "lucide-react"
 import { Container } from "@/components/layout"
 import { GradientText } from "@/components/ui/gradient-text"
-import { FeatureCard } from "@/components/ui/feature-card"
+import { GlowingCard } from "@/components/ui/glowing-card"
 import {
   fadeInUp,
   staggerContainer,
-  staggerContainerSlow,
   defaultViewport,
 } from "@/lib/animations"
 
@@ -25,36 +24,48 @@ const features = [
     title: "Proven Hook Strategies",
     description:
       "Learn what makes someone stop scrolling and keep watching. Design openings intentionally.",
+    // Column 1, Row 1
+    area: "md:[grid-area:1/1/2/7] xl:[grid-area:1/1/2/4]",
   },
   {
     icon: Eye,
     title: "The Reasons People Keep Watching",
     description:
       "Understand why certain edits feel satisfying. Master pacing, emotion, and timing.",
+    // Column 2 - TALL, spans 2 rows
+    area: "md:[grid-area:1/7/2/13] xl:[grid-area:1/4/3/7]",
   },
   {
     icon: LayoutGrid,
     title: "The Full Framework",
     description:
       "A simple system you can use on any video to guide your editing decisions.",
+    // Column 3, Row 1
+    area: "md:[grid-area:2/1/3/7] xl:[grid-area:1/7/2/10]",
   },
   {
     icon: Video,
     title: "Real Edits, Step by Step",
     description:
       "Watch real videos get edited from start to finish with real-time decisions.",
+    // Column 1, Row 2
+    area: "md:[grid-area:2/7/3/13] xl:[grid-area:2/1/3/4]",
   },
   {
     icon: Wrench,
     title: "Practice Tools & Examples",
     description:
       "Apply what you're learning to your own projects right away.",
+    // Column 3, Row 2
+    area: "md:[grid-area:3/1/4/7] xl:[grid-area:2/7/3/10]",
   },
   {
     icon: RefreshCw,
     title: "Ongoing Updates",
     description:
       "As platforms change, the course is updated to reflect what still works.",
+    // Column 4 - TALL, spans 2 rows
+    area: "md:[grid-area:3/7/4/13] xl:[grid-area:1/10/3/13]",
   },
 ]
 
@@ -79,20 +90,18 @@ export function WhatYouGetSection() {
             </p>
           </motion.div>
 
-          {/* Features Grid */}
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12"
-            variants={staggerContainerSlow}
-            initial="hidden"
-            whileInView="visible"
-            viewport={defaultViewport}
-          >
+          {/* Features Grid with Glowing Effect - Bento Layout */}
+          <ul className="grid grid-cols-1 gap-4 md:grid-cols-12 md:grid-rows-3 lg:gap-4 xl:grid-rows-2">
             {features.map((feature) => (
-              <motion.div key={feature.title} variants={fadeInUp}>
-                <FeatureCard {...feature} />
-              </motion.div>
+              <GlowingCard
+                key={feature.title}
+                icon={feature.icon}
+                title={feature.title}
+                description={feature.description}
+                className={feature.area}
+              />
             ))}
-          </motion.div>
+          </ul>
         </motion.div>
       </Container>
     </section>
