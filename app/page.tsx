@@ -4,6 +4,11 @@ import {
   ProblemSolutionSection,
   CourseModulesSection,
   ForMeSection,
+  WhatYouGetSection,
+  CreatorsSection,
+  PricingSection,
+  FAQSection,
+  Footer,
 } from "@/components/sections"
 
 export default function Page() {
@@ -14,6 +19,11 @@ export default function Page() {
       <ProblemSolutionSection />
       <CourseModulesSection />
       <ForMeSection />
+      <WhatYouGetSection />
+      <CreatorsSection />
+      <PricingSection />
+      <FAQSection />
+      <Footer />
     </main>
   )
 }
