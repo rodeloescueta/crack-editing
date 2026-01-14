@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { type LucideIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { cardHover } from "@/lib/animations"
+import { cardHoverLift } from "@/lib/animations"
 
 interface FeatureCardProps {
   icon: LucideIcon
@@ -24,7 +24,7 @@ export function FeatureCard({
         "flex flex-col items-center text-center p-6",
         className
       )}
-      variants={cardHover}
+      variants={cardHoverLift}
       initial="rest"
       whileHover="hover"
     >

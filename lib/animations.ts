@@ -126,6 +126,38 @@ export const cardHover = {
   },
 }
 
+// Enhanced card hover with glow (for module cards)
+export const cardHoverGlow = {
+  rest: {
+    scale: 1,
+    boxShadow: "0 0 0 rgba(139, 92, 246, 0)",
+  },
+  hover: {
+    scale: 1.02,
+    boxShadow: "0 10px 40px rgba(139, 92, 246, 0.15)",
+    transition: {
+      duration: 0.2,
+      ease: "easeOut",
+    },
+  },
+}
+
+// Lift effect for feature cards
+export const cardHoverLift = {
+  rest: {
+    y: 0,
+    boxShadow: "0 0 0 rgba(0, 0, 0, 0)",
+  },
+  hover: {
+    y: -6,
+    boxShadow: "0 20px 40px rgba(0, 0, 0, 0.2)",
+    transition: {
+      duration: 0.25,
+      ease: "easeOut",
+    },
+  },
+}
+
 // Button hover effect
 export const buttonHover = {
   rest: {

@@ -5,6 +5,33 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* Aceternity UI: Background Ripple Effect animation */
+  --animate-cell-ripple: cell-ripple var(--duration, 200ms) ease-out none var(--delay, 0ms);
+
+  @keyframes cell-ripple {
+    0% {
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 0.8;
+    }
+    100% {
+      opacity: 0.4;
+    }
+  }
+
+  /* Marquee infinite scroll animation */
+  --animate-marquee: marquee 30s linear infinite;
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);

@@ -6,6 +6,8 @@ import { Container } from "@/components/layout"
 import { Badge } from "@/components/ui/badge"
 import { GradientText } from "@/components/ui/gradient-text"
 import { StatCard } from "@/components/ui/stat-card"
+import { SparklesCore } from "@/components/ui/sparkles"
+import { Marquee } from "@/components/ui/marquee"
 import {
   fadeInUp,
   slideInLeft,
@@ -44,7 +46,7 @@ export function CreatorsSection() {
         >
           {/* Main Content */}
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-16">
-            {/* Left: Logo */}
+            {/* Left: Logo with Sparkles */}
             <motion.div
               className="flex justify-center lg:justify-start"
               variants={slideInLeft}
@@ -52,9 +54,22 @@ export function CreatorsSection() {
               <div className="relative">
                 {/* Glow Effect */}
                 <div className="absolute inset-0 bg-accent/20 rounded-full blur-[80px]" />
-                {/* Logo Circle */}
-                <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full border-2 border-accent/30 flex items-center justify-center bg-background/50">
-                  <div className="text-center">
+                {/* Logo Circle with Sparkles */}
+                <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full border-2 border-accent/30 flex items-center justify-center bg-background/50 overflow-hidden">
+                  {/* Aceternity UI: Sparkles Effect */}
+                  <div className="absolute inset-0 z-0">
+                    <SparklesCore
+                      id="creators-sparkles"
+                      background="transparent"
+                      minSize={0.4}
+                      maxSize={1.2}
+                      particleDensity={80}
+                      particleColor="#8B5CF6"
+                      className="w-full h-full"
+                    />
+                  </div>
+                  {/* Logo Text - above sparkles */}
+                  <div className="text-center relative z-10">
                     <div className="text-2xl md:text-3xl font-bold text-accent tracking-wider">
                       LIMITLESS
                     </div>
@@ -108,20 +123,25 @@ export function CreatorsSection() {
             ))}
           </motion.div>
 
-          {/* Brand Logos */}
+          {/* Brand Logos - Marquee */}
           <motion.div variants={fadeInUp}>
             <p className="text-center text-sm text-muted-foreground uppercase tracking-wider mb-6">
               Our clients are doing brand deals with:
             </p>
-            <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
-              {brands.map((brand) => (
-                <span
-                  key={brand}
-                  className="text-muted-foreground/60 font-medium hover:text-muted-foreground transition-colors"
-                >
-                  {brand}
-                </span>
-              ))}
+            <div className="relative overflow-hidden py-2">
+              {/* Gradient fade edges */}
+              <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+              <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+              <Marquee pauseOnHover duration={25}>
+                {brands.map((brand) => (
+                  <span
+                    key={brand}
+                    className="text-muted-foreground/60 font-medium hover:text-muted-foreground transition-colors whitespace-nowrap px-4"
+                  >
+                    {brand}
+                  </span>
+                ))}
+              </Marquee>
             </div>
           </motion.div>
 

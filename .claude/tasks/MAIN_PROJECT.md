@@ -198,12 +198,36 @@ Replicate the "crack editing" course landing page (originally built with Lovable
 - Footer with links, email, copyright, address
 - Playwright MCP tested: Desktop (1440px), Tablet (768px), Mobile (375px)
 
-### Phase 4: Animations & Polish
-- [ ] Add Framer Motion scroll animations
-- [ ] Implement carousel interactions
-- [ ] Add hover effects and micro-interactions
-- [ ] Number counter animations
-- [ ] Performance optimization
+### Phase 4: Animations & Polish (MVP) ✅ COMPLETED
+- [x] Install Aceternity UI components (background-ripple-effect, sparkles)
+- [x] Add Background Ripple Effect to Hero section
+- [x] Add Sparkles effect to Creators section (LIMITLESS.INC logo)
+- [x] Test on desktop and mobile viewports
+
+**Completion Notes:**
+- Installed Aceternity UI via shadcn CLI
+- Hero section: Interactive grid background that ripples on hover/click
+- Creators section: Purple sparkle particles (#8B5CF6) around logo
+- Added CSS keyframes for cell-ripple animation
+- Playwright MCP tested: Desktop (1440px), Mobile (375px)
+
+### Phase 4.1: Additional Animations ✅ COMPLETED
+- [x] Animated number counters (15+, 3B+, 10+, 100+)
+- [x] Brand logo marquee (infinite scroll)
+- [x] Scroll progress indicator (gradient bar at top)
+- [x] Enhanced card hover effects (glow, lift)
+
+**Completion Notes:**
+- Created `lib/hooks/use-count-up.ts` for animated counting
+- Created `components/ui/animated-counter.tsx` component
+- Created `components/ui/marquee.tsx` with pause-on-hover
+- Created `components/ui/scroll-progress.tsx` with Framer Motion
+- Added `cardHoverGlow` and `cardHoverLift` animation variants
+- Updated StatCard, ModuleCard, FeatureCard with new animations
+- Added marquee keyframes to globals.css
+
+**Deferred to Phase 4.2:**
+- Scroll-triggered section animations (fade-in, slide-up)
 
 ### Phase 5: Responsive & Testing
 - [ ] Mobile responsive design (mobile-first approach)
@@ -417,7 +441,7 @@ public/images/
 
 ## Status
 
-**Current Phase**: Phase 3 Complete / Ready for Phase 4 (Animations & Polish)
+**Current Phase**: Phase 4.1 Complete / Ready for Phase 5 (Testing)
 **Last Updated**: 2026-01-14
 
 ---

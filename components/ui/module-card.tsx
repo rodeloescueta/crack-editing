@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { type LucideIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { cardHover } from "@/lib/animations"
+import { cardHoverGlow } from "@/lib/animations"
 
 interface ModuleCardProps {
   moduleNumber: number
@@ -29,7 +29,7 @@ export function ModuleCard({
         "hover:border-accent/50 transition-colors duration-300",
         className
       )}
-      variants={cardHover}
+      variants={cardHoverGlow}
       initial="rest"
       whileHover="hover"
     >

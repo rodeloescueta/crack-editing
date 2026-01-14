@@ -10,20 +10,24 @@ import {
   FAQSection,
   Footer,
 } from "@/components/sections"
+import { ScrollProgress } from "@/components/ui/scroll-progress"
 
 export default function Page() {
   return (
-    <main>
-      <HeroSection />
-      <TransformationCarousel />
-      <ProblemSolutionSection />
-      <CourseModulesSection />
-      <ForMeSection />
-      <WhatYouGetSection />
-      <CreatorsSection />
-      <PricingSection />
-      <FAQSection />
-      <Footer />
-    </main>
+    <>
+      <ScrollProgress />
+      <main>
+        <HeroSection />
+        <TransformationCarousel />
+        <ProblemSolutionSection />
+        <CourseModulesSection />
+        <ForMeSection />
+        <WhatYouGetSection />
+        <CreatorsSection />
+        <PricingSection />
+        <FAQSection />
+        <Footer />
+      </main>
+    </>
   )
 }

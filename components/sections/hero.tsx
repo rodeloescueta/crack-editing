@@ -6,6 +6,7 @@ import { Container } from "@/components/layout"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { GradientText } from "@/components/ui/gradient-text"
+import { BackgroundRippleEffect } from "@/components/ui/background-ripple-effect"
 import {
   fadeInUp,
   fadeInDown,
@@ -22,11 +23,16 @@ const trustIndicators = [
 export function HeroSection() {
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-      {/* Background gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background/80" />
+      {/* Aceternity UI: Background Ripple Effect */}
+      <div className="absolute inset-0 z-0">
+        <BackgroundRippleEffect rows={11} cols={30} cellSize={48} />
+      </div>
+
+      {/* Background gradient overlay - sits above ripple */}
+      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-background/40 via-background/60 to-background" />
 
       {/* Subtle purple glow effect */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-accent/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-accent/10 rounded-full blur-[120px] pointer-events-none z-[2]" />
 
       <Container className="relative z-10">
         <motion.div
