@@ -168,11 +168,18 @@ Replicate the "crack editing" course landing page (originally built with Lovable
 - Hero section fully responsive at all breakpoints
 - Playwright MCP tested: Desktop (1440px), Tablet (768px), Mobile (375px)
 
-### Phase 2: Core Sections
-- [ ] Before/After Transformation Carousel
-- [ ] Problem vs Solution cards
-- [ ] Course Modules grid
-- [ ] Is This For Me section
+### Phase 2: Core Sections ✅ COMPLETED
+- [x] Before/After Transformation Carousel
+- [x] Problem vs Solution cards
+- [x] Course Modules grid
+- [x] Is This For Me section
+
+**Completion Notes:**
+- Created 3 reusable UI components (comparison-card, module-card, video-card)
+- Transformation carousel with smooth Framer Motion transitions
+- Carousel navigation via arrows (desktop) and dots (all viewports)
+- Responsive grids: 3 cols → 2 cols → 1 col
+- Playwright MCP tested: Desktop (1440px), Tablet (768px), Mobile (375px)
 
 ### Phase 3: Supporting Sections
 - [ ] What You Get features grid
@@ -400,7 +407,7 @@ public/images/
 
 ## Status
 
-**Current Phase**: Phase 1 Complete / Ready for Phase 2
+**Current Phase**: Phase 2 Complete / Ready for Phase 3
 **Last Updated**: 2026-01-14
 
 ---

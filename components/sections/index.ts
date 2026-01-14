@@ -1,1 +1,5 @@
 export { HeroSection } from "./hero"
+export { TransformationCarousel } from "./transformation-carousel"
+export { ProblemSolutionSection } from "./problem-solution"
+export { CourseModulesSection } from "./course-modules"
+export { ForMeSection } from "./for-me"
