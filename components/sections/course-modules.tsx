@@ -8,15 +8,15 @@ import {
   LayoutGrid,
   PlayCircle,
   Clapperboard,
+  type LucideIcon,
 } from "lucide-react"
 import { Container } from "@/components/layout"
 import { Button } from "@/components/ui/button"
 import { GradientText } from "@/components/ui/gradient-text"
-import { ModuleCard } from "@/components/ui/module-card"
+import { StickyScroll } from "@/components/ui/sticky-scroll-reveal"
 import {
   fadeInUp,
   staggerContainer,
-  staggerContainerSlow,
   defaultViewport,
 } from "@/lib/animations"
 import { ArrowRight } from "lucide-react"
@@ -33,6 +33,7 @@ const modules = [
       "Hook psychology deep dive",
     ],
     icon: Eye,
+    gradient: "linear-gradient(to bottom right, #8B5CF6, #6366F1)", // purple to indigo
   },
   {
     moduleNumber: 2,
@@ -45,6 +46,7 @@ const modules = [
       "Audio-visual sync techniques",
     ],
     icon: Sparkles,
+    gradient: "linear-gradient(to bottom right, #F97316, #EAB308)", // orange to yellow
   },
   {
     moduleNumber: 3,
@@ -57,6 +59,7 @@ const modules = [
       "Content-type adaptations",
     ],
     icon: Users,
+    gradient: "linear-gradient(to bottom right, #EC4899, #8B5CF6)", // pink to purple
   },
   {
     moduleNumber: 4,
@@ -69,6 +72,7 @@ const modules = [
       "Stacking for maximum impact",
     ],
     icon: LayoutGrid,
+    gradient: "linear-gradient(to bottom right, #06B6D4, #10B981)", // cyan to emerald
   },
   {
     moduleNumber: 5,
@@ -81,6 +85,7 @@ const modules = [
       "Patterns you can replicate",
     ],
     icon: PlayCircle,
+    gradient: "linear-gradient(to bottom right, #F59E0B, #F97316)", // amber to orange
   },
   {
     moduleNumber: 6,
@@ -93,8 +98,46 @@ const modules = [
       "Before and after reveals",
     ],
     icon: Clapperboard,
+    gradient: "linear-gradient(to bottom right, #8B5CF6, #EC4899)", // purple to pink
   },
 ]
+
+// Module content card for the sticky scroll
+function ModuleContentCard({
+  moduleNumber,
+  icon: Icon,
+  gradient,
+}: {
+  moduleNumber: number
+  icon: LucideIcon
+  gradient: string
+}) {
+  return (
+    <div
+      className="flex h-full w-full items-center justify-center rounded-md"
+      style={{ background: gradient }}
+    >
+      <div className="text-center text-white">
+        <Icon className="mx-auto mb-4 h-16 w-16 opacity-90" />
+        <div className="text-sm font-medium opacity-80">MODULE</div>
+        <div className="text-6xl font-bold">{moduleNumber}</div>
+      </div>
+    </div>
+  )
+}
+
+// Transform modules data for StickyScroll component
+const stickyContent = modules.map((module) => ({
+  title: module.title,
+  description: `${module.description}\n\n• ${module.bullets.join("\n• ")}`,
+  content: (
+    <ModuleContentCard
+      moduleNumber={module.moduleNumber}
+      icon={module.icon}
+      gradient={module.gradient}
+    />
+  ),
+}))
 
 export function CourseModulesSection() {
   return (
@@ -118,19 +161,12 @@ export function CourseModulesSection() {
             </p>
           </motion.div>
 
-          {/* Modules Grid */}
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-            variants={staggerContainerSlow}
-            initial="hidden"
-            whileInView="visible"
-            viewport={defaultViewport}
-          >
-            {modules.map((module) => (
-              <motion.div key={module.moduleNumber} variants={fadeInUp}>
-                <ModuleCard {...module} />
-              </motion.div>
-            ))}
+          {/* Sticky Scroll Modules */}
+          <motion.div variants={fadeInUp}>
+            <StickyScroll
+              content={stickyContent}
+              contentClassName="rounded-xl"
+            />
           </motion.div>
 
           {/* CTA */}
