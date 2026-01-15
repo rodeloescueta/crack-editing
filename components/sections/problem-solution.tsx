@@ -3,6 +3,13 @@
 import { motion } from "framer-motion"
 import { Container } from "@/components/layout"
 import { ComparisonCard } from "@/components/ui/comparison-card"
+// Toggle between versions for comparison:
+// - IcebergReveal: Original version
+// - IcebergRevealA: Option A - Enhanced separate SVGs
+// - IcebergRevealC: Option C - Single connected SVG
+// import { IcebergRevealA as IcebergReveal } from "@/components/ui/iceberg-reveal-a"
+import { IcebergRevealC as IcebergReveal } from "@/components/ui/iceberg-reveal-c"
+// import { IcebergReveal } from "@/components/ui/iceberg-reveal"
 import {
   fadeInUp,
   slideInLeft,
@@ -38,7 +45,7 @@ export function ProblemSolutionSection() {
           viewport={defaultViewport}
         >
           {/* Headline */}
-          <motion.div className="text-center mb-12" variants={fadeInUp}>
+          <motion.div className="text-center mb-8" variants={fadeInUp}>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 max-w-3xl mx-auto">
               most viral videos look simple.{" "}
               <span className="text-muted-foreground">
@@ -46,7 +53,17 @@ export function ProblemSolutionSection() {
               </span>
             </h2>
           </motion.div>
+        </motion.div>
 
+        {/* Iceberg Visualization - Full width parallax */}
+        <IcebergReveal className="my-8 -mx-4 md:-mx-8 lg:-mx-16" />
+
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+        >
           {/* Cards Container */}
           <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
             {/* Problem Card */}
