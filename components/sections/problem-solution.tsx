@@ -55,8 +55,8 @@ export function ProblemSolutionSection() {
           </motion.div>
         </motion.div>
 
-        {/* Iceberg Visualization - Full width parallax */}
-        <IcebergReveal className="my-8 -mx-4 md:-mx-8 lg:-mx-16" />
+        {/* Iceberg Visualization - Full viewport width */}
+        <IcebergReveal className="my-8 w-screen relative left-1/2 -translate-x-1/2" />
 
         <motion.div
           variants={staggerContainer}

@@ -7,6 +7,7 @@ import { Container } from "@/components/layout"
 import { Button } from "@/components/ui/button"
 import { GradientText } from "@/components/ui/gradient-text"
 import { VideoCard } from "@/components/ui/video-card"
+import { ContainerScroll } from "@/components/ui/container-scroll-animation"
 import {
   fadeInUp,
   staggerContainer,
@@ -27,25 +28,25 @@ const transformations: Transformation[] = [
     id: "1",
     creatorName: "Nikki",
     handle: "@bignikbh",
-    before: { views: "500", label: "Generic edit" },
-    after: { views: "1.1M", label: "Crack Edited™" },
-    growthStats: "2,200x growth in views",
+    before: { views: "~500 views", label: "Generic edit" },
+    after: { views: "1.1M views", label: "Crack Edited™" },
+    growthStats: "Grew from 6,322 to 1,000,000+ followers using crack editing™",
   },
   {
     id: "2",
-    creatorName: "Warren",
-    handle: "@nontoxicdad",
-    before: { views: "1.2K", label: "Generic edit" },
-    after: { views: "3.5M", label: "Crack Edited™" },
-    growthStats: "2,916x growth in views",
+    creatorName: "Kathy",
+    handle: "@kathyprounis",
+    before: { views: "~1K views", label: "Generic edit" },
+    after: { views: "482K views", label: "Crack Edited™" },
+    growthStats: "Scaled to 100,000+ followers in just 7 months",
   },
   {
     id: "3",
-    creatorName: "Sarah",
-    handle: "@sarahcreates",
-    before: { views: "800", label: "Generic edit" },
-    after: { views: "2.8M", label: "Crack Edited™" },
-    growthStats: "3,500x growth in views",
+    creatorName: "Warren",
+    handle: "@nontoxicdad",
+    before: { views: "~10K views", label: "Generic edit" },
+    after: { views: "22M+ views", label: "Crack Edited™" },
+    growthStats: "Built 1.1M+ followers over 2 years with the system",
   },
 ]
 
@@ -82,37 +83,40 @@ export function TransformationCarousel() {
   const currentTransformation = transformations[currentIndex]
 
   return (
-    <section className="py-20 md:py-28 overflow-hidden">
+    <section className="py-20 md:py-28 overflow-hidden bg-card/30">
       <Container>
-        <motion.div
-          className="text-center mb-12"
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={defaultViewport}
+        <ContainerScroll
+          titleComponent={
+            <motion.div
+              className="text-center mb-8"
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={defaultViewport}
+            >
+              {/* Headline */}
+              <motion.h2
+                className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
+                variants={fadeInUp}
+              >
+                can you go from{" "}
+                <GradientText variant="orange">THIS</GradientText> to{" "}
+                <GradientText variant="orange">THIS</GradientText>?
+              </motion.h2>
+
+              {/* Subtext */}
+              <motion.p
+                className="text-muted-foreground text-lg max-w-2xl mx-auto"
+                variants={fadeInUp}
+              >
+                Real transformations from creators who learned the crack editing
+                system.
+              </motion.p>
+            </motion.div>
+          }
         >
-          {/* Headline */}
-          <motion.h2
-            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
-            variants={fadeInUp}
-          >
-            can you go from{" "}
-            <GradientText variant="orange">THIS</GradientText> to{" "}
-            <GradientText variant="orange">THIS</GradientText>?
-          </motion.h2>
-
-          {/* Subtext */}
-          <motion.p
-            className="text-muted-foreground text-lg max-w-2xl mx-auto"
-            variants={fadeInUp}
-          >
-            Real transformations from creators who learned the crack editing
-            system.
-          </motion.p>
-        </motion.div>
-
-        {/* Carousel Container */}
-        <div className="relative max-w-4xl mx-auto">
+          {/* Carousel Container */}
+          <div className="relative max-w-5xl mx-auto" style={{ transformStyle: "preserve-3d" }}>
           {/* Navigation Arrows - Desktop */}
           <button
             onClick={() => paginate(-1)}
@@ -142,20 +146,20 @@ export function TransformationCarousel() {
               className="bg-card/30 backdrop-blur-sm rounded-2xl border border-border/50 p-6 md:p-8"
             >
               {/* Creator Info */}
-              <div className="text-center mb-6">
-                <h3 className="text-xl font-bold text-foreground">
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-bold text-foreground">
                   {currentTransformation.creatorName}
                 </h3>
-                <p className="text-muted-foreground">
+                <p className="text-primary font-medium">
                   {currentTransformation.handle}
                 </p>
               </div>
 
               {/* Before/After Cards */}
-              <div className="flex items-center justify-center gap-4 md:gap-8 mb-6">
+              <div className="flex items-center justify-center gap-6 md:gap-10 mb-8">
                 {/* Before Card */}
                 <div className="flex flex-col items-center">
-                  <span className="text-sm font-medium text-red-400 mb-2">
+                  <span className="px-4 py-1.5 rounded-full bg-red-500/20 text-red-400 text-sm font-semibold mb-3">
                     BEFORE
                   </span>
                   <VideoCard
@@ -166,13 +170,13 @@ export function TransformationCarousel() {
                 </div>
 
                 {/* Arrow */}
-                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary/20">
-                  <ArrowRight className="w-5 h-5 text-primary" />
+                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary">
+                  <ArrowRight className="w-6 h-6 text-black" />
                 </div>
 
                 {/* After Card */}
                 <div className="flex flex-col items-center">
-                  <span className="text-sm font-medium text-accent mb-2">
+                  <span className="px-4 py-1.5 rounded-full bg-accent/20 text-accent text-sm font-semibold mb-3">
                     AFTER
                   </span>
                   <VideoCard
@@ -184,8 +188,8 @@ export function TransformationCarousel() {
               </div>
 
               {/* Growth Stats */}
-              <div className="text-center">
-                <p className="text-lg font-semibold text-primary">
+              <div className="text-center border-t border-border/30 pt-6">
+                <p className="text-muted-foreground">
                   {currentTransformation.growthStats}
                 </p>
               </div>
@@ -225,7 +229,8 @@ export function TransformationCarousel() {
               <ChevronRight className="w-6 h-6" />
             </button>
           </div>
-        </div>
+          </div>
+        </ContainerScroll>
 
         {/* CTA */}
         <motion.div

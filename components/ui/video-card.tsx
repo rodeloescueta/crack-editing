@@ -16,73 +16,74 @@ export function VideoCard({ type, label, views, className }: VideoCardProps) {
   return (
     <div
       className={cn(
-        "relative rounded-xl overflow-hidden aspect-[9/16] min-w-[140px] max-w-[180px]",
+        "relative rounded-xl overflow-hidden aspect-[9/16] w-[200px] sm:w-[240px] md:w-[280px]",
         "border-2",
         isBefore
-          ? "border-red-500/50 bg-red-500/5"
-          : "border-accent/50 bg-accent/5",
+          ? "border-red-500/50 bg-gradient-to-b from-red-500/10 to-red-900/20"
+          : "border-accent/50 bg-gradient-to-b from-accent/10 to-accent/20",
         className
       )}
     >
-      {/* Video Placeholder */}
-      <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-b from-transparent to-black/50">
+      {/* Dashed Progress Indicator at Top */}
+      <div className="absolute top-3 left-3 right-3 flex gap-1">
+        {[...Array(8)].map((_, i) => (
+          <div
+            key={i}
+            className={cn(
+              "h-[3px] flex-1 rounded-full",
+              isBefore ? "bg-red-500/40" : "bg-accent/40"
+            )}
+          />
+        ))}
+      </div>
+
+      {/* Video Placeholder - Play Button */}
+      <div className="absolute inset-0 flex items-center justify-center">
         <div
           className={cn(
-            "w-12 h-12 rounded-full flex items-center justify-center",
-            isBefore ? "bg-red-500/20" : "bg-accent/20"
+            "w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center",
+            isBefore ? "bg-red-500" : "bg-accent"
           )}
         >
           <Play
             className={cn(
-              "w-5 h-5 ml-1",
-              isBefore ? "text-red-400" : "text-accent"
+              "w-7 h-7 md:w-8 md:h-8 ml-1",
+              "text-black"
             )}
+            fill="currentColor"
           />
         </div>
       </div>
 
-      {/* Label Badge */}
-      <div className="absolute top-3 left-3">
-        <span
+      {/* Bottom Section - Progress Bar, Label, Views */}
+      <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent pt-8">
+        {/* Progress Bar */}
+        <div className="w-full h-1 rounded-full bg-gray-700 mb-2 overflow-hidden">
+          <div
+            className={cn(
+              "h-full rounded-full",
+              isBefore
+                ? "w-1/4 bg-red-500"
+                : "w-full bg-gradient-to-r from-accent via-purple-400 to-accent"
+            )}
+          />
+        </div>
+
+        {/* Label */}
+        <p className="text-sm text-gray-300 mb-1">{label}</p>
+
+        {/* Views */}
+        <p
           className={cn(
-            "px-2 py-1 rounded-md text-xs font-medium",
-            isBefore
-              ? "bg-red-500/20 text-red-400"
-              : "bg-accent/20 text-accent"
+            "text-lg font-bold",
+            isBefore ? "text-red-400" : "text-accent"
           )}
         >
-          {label}
-        </span>
+          {views}
+        </p>
       </div>
 
-      {/* Views Counter */}
-      <div className="absolute bottom-3 left-3 right-3">
-        <div className="flex items-center gap-1">
-          <svg
-            className={cn(
-              "w-4 h-4",
-              isBefore ? "text-red-400" : "text-accent"
-            )}
-            fill="currentColor"
-            viewBox="0 0 20 20"
-          >
-            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
-            <path
-              fillRule="evenodd"
-              d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
-              clipRule="evenodd"
-            />
-          </svg>
-          <span
-            className={cn(
-              "text-sm font-semibold",
-              isBefore ? "text-red-400" : "text-accent"
-            )}
-          >
-            {views}
-          </span>
-        </div>
-      </div>
+      {/* Label Badge - BEFORE/AFTER is now handled outside in parent */}
     </div>
   )
 }

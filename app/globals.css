@@ -10,13 +10,16 @@
 
   @keyframes cell-ripple {
     0% {
-      opacity: 0.4;
+      opacity: 0.3;
+      transform: scale(1);
     }
     50% {
-      opacity: 0.8;
+      opacity: 1;
+      transform: scale(1.05);
     }
     100% {
-      opacity: 0.4;
+      opacity: 0.3;
+      transform: scale(1);
     }
   }
 
@@ -176,6 +179,30 @@
   * {
     @apply border-border outline-ring/50;
   }
+
+  /* Scrollbar styling */
+  html {
+    overflow-y: scroll;
+  }
+
+  /* Custom scrollbar styling for dark theme */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: oklch(0.3 0.02 265);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(0.4 0.02 265);
+  }
+
   body {
     @apply bg-background text-foreground antialiased;
   }

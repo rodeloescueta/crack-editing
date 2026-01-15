@@ -269,7 +269,7 @@ export function IcebergRevealC({ className }: IcebergRevealProps) {
         className="absolute inset-0 z-30 pointer-events-none hidden md:block"
         style={{ y: labelsY }}
       >
-        <motion.div className="absolute left-[12%] top-[42%]" style={{ opacity: label1Opacity }}>
+        <motion.div className="absolute left-[22%] top-[42%]" style={{ opacity: label1Opacity }}>
           <div className="text-right">
             <div className="text-base font-bold text-cyan-400">ATTENTION SCIENCE</div>
             <div className="text-xs text-slate-400 max-w-[180px]">
@@ -278,7 +278,7 @@ export function IcebergRevealC({ className }: IcebergRevealProps) {
           </div>
         </motion.div>
 
-        <motion.div className="absolute left-[10%] top-[58%]" style={{ opacity: label3Opacity }}>
+        <motion.div className="absolute left-[20%] top-[58%]" style={{ opacity: label3Opacity }}>
           <div className="text-right">
             <div className="text-base font-bold text-cyan-400">STORY STRUCTURE</div>
             <div className="text-xs text-slate-400 max-w-[180px]">
@@ -287,7 +287,7 @@ export function IcebergRevealC({ className }: IcebergRevealProps) {
           </div>
         </motion.div>
 
-        <motion.div className="absolute right-[12%] top-[47%]" style={{ opacity: label2Opacity }}>
+        <motion.div className="absolute right-[22%] top-[47%]" style={{ opacity: label2Opacity }}>
           <div className="text-left">
             <div className="text-base font-bold text-cyan-400">EMOTIONAL PACING</div>
             <div className="text-xs text-slate-400 max-w-[180px]">
@@ -296,7 +296,7 @@ export function IcebergRevealC({ className }: IcebergRevealProps) {
           </div>
         </motion.div>
 
-        <motion.div className="absolute right-[10%] top-[63%]" style={{ opacity: label4Opacity }}>
+        <motion.div className="absolute right-[20%] top-[63%]" style={{ opacity: label4Opacity }}>
           <div className="text-left">
             <div className="text-base font-bold text-cyan-400">SENSORY CUES</div>
             <div className="text-xs text-slate-400 max-w-[180px]">
@@ -318,7 +318,7 @@ export function IcebergRevealC({ className }: IcebergRevealProps) {
         className="absolute inset-x-0 bottom-0 z-30 pointer-events-none md:hidden px-4 pb-4"
         style={{ opacity: label1Opacity }}
       >
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-x-3 gap-y-4">
           <motion.div style={{ opacity: label1Opacity }}>
             <div className="text-center p-2 bg-slate-900/60 rounded-lg backdrop-blur-sm border border-cyan-900/30">
               <div className="text-xs font-bold text-cyan-400">ATTENTION SCIENCE</div>

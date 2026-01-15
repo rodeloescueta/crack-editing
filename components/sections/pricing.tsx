@@ -26,7 +26,7 @@ const features = [
 
 export function PricingSection() {
   return (
-    <section className="py-20 md:py-28 bg-gradient-to-b from-card/20 to-background">
+    <section className="py-20 md:py-28 bg-card/30">
       <Container>
         <motion.div
           variants={staggerContainer}

@@ -29,14 +29,14 @@ export function HeroSection() {
       </div>
 
       {/* Background gradient overlay - sits above ripple */}
-      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-background/40 via-background/60 to-background" />
+      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-background/40 via-background/60 to-background pointer-events-none" />
 
       {/* Subtle purple glow effect */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-accent/10 rounded-full blur-[120px] pointer-events-none z-[2]" />
 
-      <Container className="relative z-10">
+      <Container className="relative z-10 pointer-events-none">
         <motion.div
-          className="flex flex-col items-center text-center max-w-4xl mx-auto"
+          className="flex flex-col items-center text-center max-w-4xl mx-auto pointer-events-auto"
           variants={staggerContainer}
           initial="hidden"
           animate="visible"
