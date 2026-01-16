@@ -22,7 +22,7 @@ const trustIndicators = [
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-[oklch(0.12_0.04_250)] via-[oklch(0.14_0.05_255)] to-[oklch(0.16_0.06_260)]">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-[oklch(0.12_0.04_250)] via-[oklch(0.14_0.05_255)] to-[oklch(0.16_0.06_260)]">
       {/* Aceternity UI: Background Ripple Effect */}
       <div className="absolute inset-0 z-0">
         <BackgroundRippleEffect rows={11} cols={30} cellSize={48} />
