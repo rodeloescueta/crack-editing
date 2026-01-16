@@ -173,6 +173,10 @@
   /* Custom: Purple gradient stops */
   --gradient-purple-from: oklch(0.60 0.25 290);
   --gradient-purple-to: oklch(0.50 0.22 310);
+
+  /* Section alternating backgrounds */
+  --section-dark: oklch(0.10 0.025 265);
+  --section-light: oklch(0.22 0.04 280);
 }
 
 @layer base {
@@ -241,5 +245,14 @@
 
   .text-small {
     @apply text-sm text-muted-foreground;
+  }
+
+  /* Section background utilities */
+  .section-dark {
+    background-color: var(--section-dark);
+  }
+
+  .section-light {
+    background-color: var(--section-light);
   }
 }

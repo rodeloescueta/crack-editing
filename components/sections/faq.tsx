@@ -101,7 +101,7 @@ export function FAQSection() {
   const [openItem, setOpenItem] = useState<string | undefined>(undefined)
 
   return (
-    <section className="py-20 md:py-28">
+    <section className="py-20 md:py-28 section-dark">
       <Container>
         <motion.div
           variants={staggerContainer}

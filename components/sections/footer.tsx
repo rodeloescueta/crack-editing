@@ -8,7 +8,7 @@ const footerLinks = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-border/30 py-12">
+    <footer className="border-t border-border/30 py-12 section-dark">
       <Container>
         <div className="flex flex-col items-center text-center space-y-6">
           {/* Navigation Links */}

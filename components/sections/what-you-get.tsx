@@ -71,7 +71,7 @@ const features = [
 
 export function WhatYouGetSection() {
   return (
-    <section className="py-20 md:py-28 bg-card/30">
+    <section className="py-20 md:py-28 section-dark">
       <Container>
         <motion.div
           variants={staggerContainer}

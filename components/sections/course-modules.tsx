@@ -141,7 +141,7 @@ const stickyContent = modules.map((module) => ({
 
 export function CourseModulesSection() {
   return (
-    <section className="py-20 md:py-28 bg-card/30">
+    <section className="py-20 md:py-28 section-light">
       <Container>
         <motion.div
           variants={staggerContainer}

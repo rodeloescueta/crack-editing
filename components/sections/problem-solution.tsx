@@ -36,7 +36,7 @@ const solutionItems = [
 
 export function ProblemSolutionSection() {
   return (
-    <section className="py-20 md:py-28 bg-gradient-to-b from-background to-card/20">
+    <section className="py-20 md:py-28 section-dark">
       <Container>
         <motion.div
           variants={staggerContainer}

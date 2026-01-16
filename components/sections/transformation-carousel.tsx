@@ -83,7 +83,7 @@ export function TransformationCarousel() {
   const currentTransformation = transformations[currentIndex]
 
   return (
-    <section className="py-20 md:py-28 overflow-hidden bg-card/30">
+    <section className="py-20 md:py-28 overflow-hidden section-light">
       <Container>
         <ContainerScroll
           titleComponent={
@@ -96,7 +96,7 @@ export function TransformationCarousel() {
             >
               {/* Headline */}
               <motion.h2
-                className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
+                className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-[oklch(0.25_0.02_260)]"
                 variants={fadeInUp}
               >
                 can you go from{" "}
@@ -106,7 +106,7 @@ export function TransformationCarousel() {
 
               {/* Subtext */}
               <motion.p
-                className="text-muted-foreground text-lg max-w-2xl mx-auto"
+                className="text-[oklch(0.45_0.02_260)] text-lg max-w-2xl mx-auto"
                 variants={fadeInUp}
               >
                 Real transformations from creators who learned the crack editing
@@ -143,7 +143,7 @@ export function TransformationCarousel() {
               animate="center"
               exit="exit"
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="bg-card/30 backdrop-blur-sm rounded-2xl border border-border/50 p-6 md:p-8"
+              className="bg-[oklch(0.18_0.03_265)] backdrop-blur-sm rounded-2xl border border-white/10 p-6 md:p-8"
             >
               {/* Creator Info */}
               <div className="text-center mb-8">
@@ -156,7 +156,7 @@ export function TransformationCarousel() {
               </div>
 
               {/* Before/After Cards */}
-              <div className="flex items-center justify-center gap-6 md:gap-10 mb-8">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 md:gap-10 mb-8">
                 {/* Before Card */}
                 <div className="flex flex-col items-center">
                   <span className="px-4 py-1.5 rounded-full bg-red-500/20 text-red-400 text-sm font-semibold mb-3">
@@ -169,9 +169,9 @@ export function TransformationCarousel() {
                   />
                 </div>
 
-                {/* Arrow */}
-                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary">
-                  <ArrowRight className="w-6 h-6 text-black" />
+                {/* Arrow - rotates on mobile */}
+                <div className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary">
+                  <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-black rotate-90 sm:rotate-0" />
                 </div>
 
                 {/* After Card */}

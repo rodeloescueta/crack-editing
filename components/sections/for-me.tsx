@@ -30,7 +30,7 @@ const forYouItems = [
 
 export function ForMeSection() {
   return (
-    <section className="py-20 md:py-28 bg-gradient-to-b from-card/20 to-background">
+    <section className="py-20 md:py-28 section-dark">
       <Container>
         <motion.div
           variants={staggerContainer}
