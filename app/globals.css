@@ -176,7 +176,7 @@
 
   /* Section alternating backgrounds */
   --section-dark: oklch(0.10 0.025 265);
-  --section-light: oklch(0.22 0.04 280);
+  --section-light: oklch(0.92 0.02 260);
 }
 
 @layer base {
