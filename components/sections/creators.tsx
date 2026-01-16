@@ -8,6 +8,7 @@ import { GradientText } from "@/components/ui/gradient-text"
 import { StatCard } from "@/components/ui/stat-card"
 import { SparklesCore } from "@/components/ui/sparkles"
 import { Marquee } from "@/components/ui/marquee"
+import { PinContainer } from "@/components/ui/3d-pin"
 import {
   fadeInUp,
   slideInLeft,
@@ -36,7 +37,7 @@ const brands = [
 
 export function CreatorsSection() {
   return (
-    <section className="py-20 md:py-28">
+    <section className="py-20 md:py-28 section-dark">
       <Container>
         <motion.div
           variants={staggerContainer}
@@ -46,38 +47,42 @@ export function CreatorsSection() {
         >
           {/* Main Content */}
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-16">
-            {/* Left: Logo with Sparkles */}
+            {/* Left: Logo with 3D Pin Effect */}
             <motion.div
-              className="flex justify-center lg:justify-start"
+              className="flex justify-center"
               variants={slideInLeft}
             >
-              <div className="relative">
-                {/* Glow Effect */}
-                <div className="absolute inset-0 bg-accent/20 rounded-full blur-[80px]" />
-                {/* Logo Circle with Sparkles */}
-                <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full border-2 border-accent/30 flex items-center justify-center bg-background/50 overflow-hidden">
-                  {/* Aceternity UI: Sparkles Effect */}
-                  <div className="absolute inset-0 z-0">
-                    <SparklesCore
-                      id="creators-sparkles"
-                      background="transparent"
-                      minSize={0.4}
-                      maxSize={1.2}
-                      particleDensity={80}
-                      particleColor="#8B5CF6"
-                      className="w-full h-full"
-                    />
-                  </div>
-                  {/* Logo Text - above sparkles */}
-                  <div className="text-center relative z-10">
-                    <div className="text-2xl md:text-3xl font-bold text-accent tracking-wider">
-                      LIMITLESS
+              <div className="h-[28rem] w-full flex items-center justify-center">
+                <PinContainer
+                  title="limitless.inc"
+                  href="https://limitless.inc"
+                  containerClassName="flex items-center justify-center"
+                >
+                  {/* Logo Circle with Sparkles */}
+                  <div className="relative w-52 h-52 md:w-64 md:h-64 rounded-full border-2 border-accent/30 flex items-center justify-center bg-background/80 overflow-hidden">
+                    {/* Aceternity UI: Sparkles Effect */}
+                    <div className="absolute inset-0 z-0">
+                      <SparklesCore
+                        id="creators-sparkles"
+                        background="transparent"
+                        minSize={0.4}
+                        maxSize={1.2}
+                        particleDensity={80}
+                        particleColor="#8B5CF6"
+                        className="w-full h-full"
+                      />
                     </div>
-                    <div className="text-sm text-muted-foreground tracking-widest">
-                      .INC
+                    {/* Logo Text - above sparkles */}
+                    <div className="text-center relative z-10">
+                      <div className="text-2xl md:text-3xl font-bold text-accent tracking-wider">
+                        LIMITLESS
+                      </div>
+                      <div className="text-sm text-muted-foreground tracking-widest">
+                        .INC
+                      </div>
                     </div>
                   </div>
-                </div>
+                </PinContainer>
               </div>
             </motion.div>
 
