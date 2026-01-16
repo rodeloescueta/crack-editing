@@ -111,7 +111,7 @@ export const slideInRight: Variants = {
 }
 
 // For hover effects on cards
-export const cardHover = {
+export const cardHover: Variants = {
   rest: {
     scale: 1,
     y: 0,
@@ -121,13 +121,13 @@ export const cardHover = {
     y: -4,
     transition: {
       duration: 0.2,
-      ease: "easeOut",
+      ease: [0, 0, 0.2, 1], // easeOut equivalent
     },
   },
 }
 
 // Enhanced card hover with glow (for module cards)
-export const cardHoverGlow = {
+export const cardHoverGlow: Variants = {
   rest: {
     scale: 1,
     boxShadow: "0 0 0 rgba(139, 92, 246, 0)",
@@ -137,13 +137,13 @@ export const cardHoverGlow = {
     boxShadow: "0 10px 40px rgba(139, 92, 246, 0.15)",
     transition: {
       duration: 0.2,
-      ease: "easeOut",
+      ease: [0, 0, 0.2, 1],
     },
   },
 }
 
 // Lift effect for feature cards
-export const cardHoverLift = {
+export const cardHoverLift: Variants = {
   rest: {
     y: 0,
     boxShadow: "0 0 0 rgba(0, 0, 0, 0)",
@@ -153,13 +153,13 @@ export const cardHoverLift = {
     boxShadow: "0 20px 40px rgba(0, 0, 0, 0.2)",
     transition: {
       duration: 0.25,
-      ease: "easeOut",
+      ease: [0, 0, 0.2, 1],
     },
   },
 }
 
 // Button hover effect
-export const buttonHover = {
+export const buttonHover: Variants = {
   rest: {
     scale: 1,
   },
@@ -167,7 +167,7 @@ export const buttonHover = {
     scale: 1.02,
     transition: {
       duration: 0.15,
-      ease: "easeOut",
+      ease: [0, 0, 0.2, 1],
     },
   },
   tap: {
