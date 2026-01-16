@@ -69,13 +69,17 @@ export function PricingSection() {
 
                 {/* Price */}
                 <CardItem translateZ={60} className="w-full text-center mb-8">
-                  <div className="text-5xl md:text-6xl font-bold text-foreground mb-2">
+                  <div className="text-5xl md:text-6xl font-bold text-foreground mb-3">
                     $297
                   </div>
-                  <p className="text-muted-foreground">
-                    or 3 payments of{" "}
-                    <span className="text-foreground font-semibold">$99</span>
-                  </p>
+                  {/* Payment Plan Option - Highlighted */}
+                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30">
+                    <span className="text-muted-foreground text-sm">or</span>
+                    <span className="text-primary font-bold text-lg">3 × $99</span>
+                    <span className="text-xs text-muted-foreground bg-primary/20 px-2 py-0.5 rounded-full">
+                      payment plan
+                    </span>
+                  </div>
                 </CardItem>
 
                 {/* Features */}
@@ -96,7 +100,7 @@ export function PricingSection() {
                 <CardItem translateZ={70} className="w-full text-center">
                   <Button
                     size="lg"
-                    className="w-full sm:w-auto min-h-[52px] px-10 text-base font-semibold"
+                    className="w-full sm:w-auto min-h-[52px] px-10 text-base font-semibold cta-pulse"
                   >
                     enroll in crack editing™
                     <ArrowRight className="ml-2 h-5 w-5" />

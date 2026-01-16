@@ -2,6 +2,7 @@
 
 import { useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
+import { ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 interface IcebergRevealProps {
@@ -50,6 +51,9 @@ export function IcebergRevealC({ className }: IcebergRevealProps) {
   const label3Opacity = useTransform(scrollYProgress, [0.3, 0.45], [0, 1])
   const label4Opacity = useTransform(scrollYProgress, [0.35, 0.5], [0, 1])
   const label5Opacity = useTransform(scrollYProgress, [0.4, 0.55], [0, 1])
+
+  // Scroll indicator - fades out as user starts scrolling
+  const scrollIndicatorOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0])
 
   return (
     <div
@@ -269,46 +273,106 @@ export function IcebergRevealC({ className }: IcebergRevealProps) {
         className="absolute inset-0 z-30 pointer-events-none hidden md:block"
         style={{ y: labelsY }}
       >
-        <motion.div className="absolute left-[22%] top-[42%]" style={{ opacity: label1Opacity }}>
-          <div className="text-right">
-            <div className="text-base font-bold text-cyan-400">ATTENTION SCIENCE</div>
-            <div className="text-xs text-slate-400 max-w-[180px]">
+        <motion.div
+          className="absolute left-[22%] top-[42%]"
+          style={{ opacity: label1Opacity }}
+          initial={{ scale: 0.8, filter: "blur(4px)" }}
+          whileInView={{ scale: 1, filter: "blur(0px)" }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+        >
+          <div className="text-right drop-shadow-lg relative">
+            <motion.div
+              className="absolute inset-0 bg-cyan-400/20 blur-xl rounded-lg"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: [0, 1, 0] }}
+              transition={{ duration: 1.5, ease: "easeOut" }}
+            />
+            <div className="text-base font-bold text-cyan-300 relative" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}>ATTENTION SCIENCE</div>
+            <div className="text-sm text-slate-200/90 max-w-[180px] relative" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.9)' }}>
               Using motion, contrast, & sound to guide the eye
             </div>
           </div>
         </motion.div>
 
-        <motion.div className="absolute left-[20%] top-[58%]" style={{ opacity: label3Opacity }}>
-          <div className="text-right">
-            <div className="text-base font-bold text-cyan-400">STORY STRUCTURE</div>
-            <div className="text-xs text-slate-400 max-w-[180px]">
+        <motion.div
+          className="absolute left-[20%] top-[58%]"
+          style={{ opacity: label3Opacity }}
+          initial={{ scale: 0.8, filter: "blur(4px)" }}
+          whileInView={{ scale: 1, filter: "blur(0px)" }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+        >
+          <div className="text-right drop-shadow-lg relative">
+            <motion.div
+              className="absolute inset-0 bg-cyan-400/20 blur-xl rounded-lg"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: [0, 1, 0] }}
+              transition={{ duration: 1.5, ease: "easeOut" }}
+            />
+            <div className="text-base font-bold text-cyan-300 relative" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}>STORY STRUCTURE</div>
+            <div className="text-sm text-slate-200/90 max-w-[180px] relative" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.9)' }}>
               Clear hook, tension, payoff
             </div>
           </div>
         </motion.div>
 
-        <motion.div className="absolute right-[22%] top-[47%]" style={{ opacity: label2Opacity }}>
-          <div className="text-left">
-            <div className="text-base font-bold text-cyan-400">EMOTIONAL PACING</div>
-            <div className="text-xs text-slate-400 max-w-[180px]">
+        <motion.div
+          className="absolute right-[22%] top-[47%]"
+          style={{ opacity: label2Opacity }}
+          initial={{ scale: 0.8, filter: "blur(4px)" }}
+          whileInView={{ scale: 1, filter: "blur(0px)" }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+        >
+          <div className="text-left drop-shadow-lg relative">
+            <motion.div
+              className="absolute inset-0 bg-cyan-400/20 blur-xl rounded-lg"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: [0, 1, 0] }}
+              transition={{ duration: 1.5, ease: "easeOut" }}
+            />
+            <div className="text-base font-bold text-cyan-300 relative" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}>EMOTIONAL PACING</div>
+            <div className="text-sm text-slate-200/90 max-w-[180px] relative" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.9)' }}>
               Building tension, releasing it, creating the arc
             </div>
           </div>
         </motion.div>
 
-        <motion.div className="absolute right-[20%] top-[63%]" style={{ opacity: label4Opacity }}>
-          <div className="text-left">
-            <div className="text-base font-bold text-cyan-400">SENSORY CUES</div>
-            <div className="text-xs text-slate-400 max-w-[180px]">
+        <motion.div
+          className="absolute right-[20%] top-[63%]"
+          style={{ opacity: label4Opacity }}
+          initial={{ scale: 0.8, filter: "blur(4px)" }}
+          whileInView={{ scale: 1, filter: "blur(0px)" }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+        >
+          <div className="text-left drop-shadow-lg relative">
+            <motion.div
+              className="absolute inset-0 bg-cyan-400/20 blur-xl rounded-lg"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: [0, 1, 0] }}
+              transition={{ duration: 1.5, ease: "easeOut" }}
+            />
+            <div className="text-base font-bold text-cyan-300 relative" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}>SENSORY CUES</div>
+            <div className="text-sm text-slate-200/90 max-w-[180px] relative" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.9)' }}>
               Intentional sound design, color grading
             </div>
           </div>
         </motion.div>
 
-        <motion.div className="absolute left-1/2 -translate-x-1/2 top-[78%]" style={{ opacity: label5Opacity }}>
-          <div className="text-center">
-            <div className="text-base font-bold text-cyan-400">TASTE & DESIGN</div>
-            <div className="text-xs text-slate-400">Typography, visual identity, polish</div>
+        <motion.div
+          className="absolute left-1/2 -translate-x-1/2 top-[78%]"
+          style={{ opacity: label5Opacity }}
+          initial={{ scale: 0.8, filter: "blur(4px)" }}
+          whileInView={{ scale: 1, filter: "blur(0px)" }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+        >
+          <div className="text-center drop-shadow-lg relative">
+            <motion.div
+              className="absolute inset-0 bg-cyan-400/20 blur-xl rounded-lg"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: [0, 1, 0] }}
+              transition={{ duration: 1.5, ease: "easeOut" }}
+            />
+            <div className="text-base font-bold text-cyan-300 relative" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}>TASTE & DESIGN</div>
+            <div className="text-sm text-slate-200/90 relative" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.9)' }}>Typography, visual identity, polish</div>
           </div>
         </motion.div>
       </motion.div>
@@ -318,35 +382,35 @@ export function IcebergRevealC({ className }: IcebergRevealProps) {
         className="absolute inset-x-0 bottom-0 z-30 pointer-events-none md:hidden px-4 pb-4"
         style={{ opacity: label1Opacity }}
       >
-        <div className="grid grid-cols-2 gap-x-3 gap-y-4">
+        <div className="grid grid-cols-2 gap-x-3 gap-y-3">
           <motion.div style={{ opacity: label1Opacity }}>
-            <div className="text-center p-2 bg-slate-900/60 rounded-lg backdrop-blur-sm border border-cyan-900/30">
-              <div className="text-xs font-bold text-cyan-400">ATTENTION SCIENCE</div>
-              <div className="text-[10px] text-slate-400 mt-0.5">Motion & contrast</div>
+            <div className="text-center p-2.5 bg-slate-900/80 rounded-lg backdrop-blur-sm border border-cyan-500/30">
+              <div className="text-sm font-bold text-cyan-300">ATTENTION SCIENCE</div>
+              <div className="text-xs text-slate-200/80 mt-0.5">Motion & contrast</div>
             </div>
           </motion.div>
           <motion.div style={{ opacity: label2Opacity }}>
-            <div className="text-center p-2 bg-slate-900/60 rounded-lg backdrop-blur-sm border border-cyan-900/30">
-              <div className="text-xs font-bold text-cyan-400">EMOTIONAL PACING</div>
-              <div className="text-[10px] text-slate-400 mt-0.5">Tension & release</div>
+            <div className="text-center p-2.5 bg-slate-900/80 rounded-lg backdrop-blur-sm border border-cyan-500/30">
+              <div className="text-sm font-bold text-cyan-300">EMOTIONAL PACING</div>
+              <div className="text-xs text-slate-200/80 mt-0.5">Tension & release</div>
             </div>
           </motion.div>
           <motion.div style={{ opacity: label3Opacity }}>
-            <div className="text-center p-2 bg-slate-900/60 rounded-lg backdrop-blur-sm border border-cyan-900/30">
-              <div className="text-xs font-bold text-cyan-400">STORY STRUCTURE</div>
-              <div className="text-[10px] text-slate-400 mt-0.5">Hook & payoff</div>
+            <div className="text-center p-2.5 bg-slate-900/80 rounded-lg backdrop-blur-sm border border-cyan-500/30">
+              <div className="text-sm font-bold text-cyan-300">STORY STRUCTURE</div>
+              <div className="text-xs text-slate-200/80 mt-0.5">Hook & payoff</div>
             </div>
           </motion.div>
           <motion.div style={{ opacity: label4Opacity }}>
-            <div className="text-center p-2 bg-slate-900/60 rounded-lg backdrop-blur-sm border border-cyan-900/30">
-              <div className="text-xs font-bold text-cyan-400">SENSORY CUES</div>
-              <div className="text-[10px] text-slate-400 mt-0.5">Sound & color</div>
+            <div className="text-center p-2.5 bg-slate-900/80 rounded-lg backdrop-blur-sm border border-cyan-500/30">
+              <div className="text-sm font-bold text-cyan-300">SENSORY CUES</div>
+              <div className="text-xs text-slate-200/80 mt-0.5">Sound & color</div>
             </div>
           </motion.div>
           <motion.div className="col-span-2" style={{ opacity: label5Opacity }}>
-            <div className="text-center p-2 bg-slate-900/60 rounded-lg backdrop-blur-sm border border-cyan-900/30">
-              <div className="text-xs font-bold text-cyan-400">TASTE & DESIGN</div>
-              <div className="text-[10px] text-slate-400 mt-0.5">Typography & polish</div>
+            <div className="text-center p-2.5 bg-slate-900/80 rounded-lg backdrop-blur-sm border border-cyan-500/30">
+              <div className="text-sm font-bold text-cyan-300">TASTE & DESIGN</div>
+              <div className="text-xs text-slate-200/80 mt-0.5">Typography & polish</div>
             </div>
           </motion.div>
         </div>
@@ -387,6 +451,22 @@ export function IcebergRevealC({ className }: IcebergRevealProps) {
           />
         ))}
       </div>
+
+      {/* Scroll Indicator */}
+      <motion.div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-40 flex flex-col items-center gap-2 pointer-events-none"
+        style={{ opacity: scrollIndicatorOpacity }}
+      >
+        <span className="text-sm text-cyan-300/80 font-medium tracking-wide">
+          Scroll to explore
+        </span>
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <ChevronDown className="w-6 h-6 text-cyan-400/70" />
+        </motion.div>
+      </motion.div>
     </div>
   )
 }

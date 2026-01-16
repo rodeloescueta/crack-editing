@@ -13,6 +13,40 @@ interface ComparisonCardProps {
   className?: string
 }
 
+// Animation variants for staggered checkmarks
+const containerVariants = {
+  hidden: { opacity: 1 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, x: -10 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.3 },
+  },
+}
+
+const iconVariants = {
+  hidden: { scale: 0, rotate: -180 },
+  visible: {
+    scale: 1,
+    rotate: 0,
+    transition: {
+      type: "spring" as const,
+      stiffness: 500,
+      damping: 15,
+    },
+  },
+}
+
 export function ComparisonCard({
   type,
   title,
@@ -26,10 +60,10 @@ export function ComparisonCard({
   return (
     <motion.div
       className={cn(
-        "rounded-2xl border p-6 md:p-8 bg-card/50 backdrop-blur-sm",
+        "rounded-2xl border p-6 md:p-8 bg-card/50 backdrop-blur-sm transition-all duration-300",
         isPositive
-          ? "border-green-500/30 hover:border-green-500/50"
-          : "border-red-500/30 hover:border-red-500/50",
+          ? "border-green-500/30 hover:border-green-500/50 hover:shadow-[0_0_30px_rgba(34,197,94,0.15)]"
+          : "border-red-500/30 hover:border-red-500/50 hover:shadow-[0_0_30px_rgba(239,68,68,0.15)]",
         className
       )}
       variants={cardHover}
@@ -58,10 +92,24 @@ export function ComparisonCard({
       </div>
 
       {/* Items List */}
-      <ul className="space-y-3">
+      <motion.ul
+        className="space-y-3"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-50px" }}
+      >
         {items.map((item, index) => (
-          <li key={index} className="flex items-start gap-3">
-            <div
+          <motion.li
+            key={index}
+            variants={itemVariants}
+            className={cn(
+              "flex items-start gap-3 p-2 -mx-2 rounded-lg transition-colors duration-200",
+              isPositive ? "hover:bg-green-500/5" : "hover:bg-red-500/5"
+            )}
+          >
+            <motion.div
+              variants={iconVariants}
               className={cn(
                 "flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-0.5",
                 isPositive ? "bg-green-500/20" : "bg-red-500/20"
@@ -73,13 +121,13 @@ export function ComparisonCard({
                   isPositive ? "text-green-500" : "text-red-500"
                 )}
               />
-            </div>
+            </motion.div>
             <span className="text-sm text-muted-foreground leading-relaxed">
               {item}
             </span>
-          </li>
+          </motion.li>
         ))}
-      </ul>
+      </motion.ul>
     </motion.div>
   )
 }

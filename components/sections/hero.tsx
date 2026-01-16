@@ -34,6 +34,54 @@ export function HeroSection() {
       {/* Subtle blue glow effect */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-[oklch(0.45_0.15_250)]/20 rounded-full blur-[150px] pointer-events-none z-[2]" />
 
+      {/* Floating particles */}
+      <div className="absolute inset-0 z-[3] overflow-hidden pointer-events-none">
+        {/* Large slow-moving orbs */}
+        <motion.div
+          className="absolute w-64 h-64 rounded-full bg-primary/5 blur-3xl"
+          style={{ top: "10%", left: "10%" }}
+          animate={{
+            x: [0, 50, 0],
+            y: [0, 30, 0],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute w-48 h-48 rounded-full bg-accent/5 blur-3xl"
+          style={{ top: "60%", right: "15%" }}
+          animate={{
+            x: [0, -40, 0],
+            y: [0, -50, 0],
+            scale: [1, 1.15, 1],
+          }}
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        {/* Small floating dots */}
+        {[...Array(8)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1.5 h-1.5 rounded-full bg-primary/30"
+            style={{
+              top: `${15 + (i * 10)}%`,
+              left: `${10 + (i * 11)}%`,
+            }}
+            animate={{
+              y: [0, -30 - (i * 5), 0],
+              opacity: [0.2, 0.6, 0.2],
+              scale: [1, 1.5, 1],
+            }}
+            transition={{
+              duration: 4 + i * 0.5,
+              repeat: Infinity,
+              delay: i * 0.3,
+              ease: "easeInOut",
+            }}
+          />
+        ))}
+      </div>
+
       <Container className="relative z-10 pointer-events-none">
         <motion.div
           className="flex flex-col items-center text-center max-w-4xl mx-auto pointer-events-auto"
@@ -90,7 +138,7 @@ export function HeroSection() {
           >
             <Button
               size="lg"
-              className="min-h-[48px] px-8 text-base font-semibold"
+              className="min-h-[48px] px-8 text-base font-semibold cta-pulse"
             >
               enroll in crack editing™
               <ArrowRight className="ml-2 h-5 w-5" />

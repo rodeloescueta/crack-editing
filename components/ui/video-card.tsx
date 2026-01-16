@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { Play } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -7,10 +8,11 @@ interface VideoCardProps {
   type: "before" | "after"
   label: string
   views: string
+  thumbnail?: string
   className?: string
 }
 
-export function VideoCard({ type, label, views, className }: VideoCardProps) {
+export function VideoCard({ type, label, views, thumbnail, className }: VideoCardProps) {
   const isBefore = type === "before"
 
   return (
@@ -24,24 +26,41 @@ export function VideoCard({ type, label, views, className }: VideoCardProps) {
         className
       )}
     >
+      {/* Background Thumbnail Image */}
+      {thumbnail && (
+        <Image
+          src={thumbnail}
+          alt={`${type} video thumbnail`}
+          fill
+          className="object-cover"
+          sizes="(max-width: 640px) 200px, (max-width: 768px) 240px, 280px"
+        />
+      )}
+
+      {/* Overlay for better contrast */}
+      <div className={cn(
+        "absolute inset-0",
+        thumbnail ? "bg-black/30" : ""
+      )} />
+
       {/* Dashed Progress Indicator at Top */}
-      <div className="absolute top-3 left-3 right-3 flex gap-1">
+      <div className="absolute top-3 left-3 right-3 flex gap-1 z-10">
         {[...Array(8)].map((_, i) => (
           <div
             key={i}
             className={cn(
               "h-[3px] flex-1 rounded-full",
-              isBefore ? "bg-red-500/40" : "bg-accent/40"
+              isBefore ? "bg-red-500/60" : "bg-accent/60"
             )}
           />
         ))}
       </div>
 
       {/* Video Placeholder - Play Button */}
-      <div className="absolute inset-0 flex items-center justify-center">
+      <div className="absolute inset-0 flex items-center justify-center z-10">
         <div
           className={cn(
-            "w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center",
+            "w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center shadow-lg",
             isBefore ? "bg-red-500" : "bg-accent"
           )}
         >
@@ -56,7 +75,7 @@ export function VideoCard({ type, label, views, className }: VideoCardProps) {
       </div>
 
       {/* Bottom Section - Progress Bar, Label, Views */}
-      <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent pt-8">
+      <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/90 to-transparent pt-8 z-10">
         {/* Progress Bar */}
         <div className="w-full h-1 rounded-full bg-gray-700 mb-2 overflow-hidden">
           <div

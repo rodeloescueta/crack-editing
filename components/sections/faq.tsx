@@ -11,6 +11,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import { GradientText } from "@/components/ui/gradient-text"
 import {
   fadeInUp,
   staggerContainer,
@@ -110,6 +111,17 @@ export function FAQSection() {
           viewport={defaultViewport}
           className="max-w-3xl mx-auto"
         >
+          {/* Section Header */}
+          <motion.div className="text-center mb-12" variants={fadeInUp}>
+            <h2 className="text-headline mb-4">
+              frequently asked{" "}
+              <GradientText variant="orange">questions</GradientText>
+            </h2>
+            <p className="text-subtitle max-w-2xl mx-auto">
+              Everything you need to know about crack editing™ before you enroll.
+            </p>
+          </motion.div>
+
           {/* Accordion */}
           <motion.div variants={fadeInUp}>
             <Accordion
@@ -118,6 +130,7 @@ export function FAQSection() {
               className="space-y-3"
               value={openItem}
               onValueChange={setOpenItem}
+              aria-label="Frequently asked questions about crack editing™"
             >
               {faqs.map((faq, index) => (
                 <AccordionItem

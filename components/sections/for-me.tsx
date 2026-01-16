@@ -1,13 +1,11 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { X, Check, CircleOff, CircleCheck } from "lucide-react"
 import { Container } from "@/components/layout"
 import { GradientText } from "@/components/ui/gradient-text"
-import { ComparisonCard } from "@/components/ui/comparison-card"
 import {
   fadeInUp,
-  slideInLeft,
-  slideInRight,
   staggerContainer,
   defaultViewport,
 } from "@/lib/animations"
@@ -27,6 +25,15 @@ const forYouItems = [
   "You create content for social media and want better results",
   "You're coachable and open to new approaches",
 ]
+
+const listItemVariants = {
+  hidden: { opacity: 0, x: -20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    x: 0,
+    transition: { delay: i * 0.1, duration: 0.3 },
+  }),
+}
 
 export function ForMeSection() {
   return (
@@ -50,43 +57,88 @@ export function ForMeSection() {
             </p>
           </motion.div>
 
-          {/* Cards Container */}
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
-            {/* Not For You Card */}
-            <motion.div variants={slideInLeft}>
-              <ComparisonCard
-                type="negative"
-                title="It's NOT for you if..."
-                subtitle="This course won't help you if:"
-                items={notForYouItems}
-              />
-            </motion.div>
-
-            {/* For You Card */}
-            <motion.div variants={slideInRight}>
-              <ComparisonCard
-                type="positive"
-                title="It's FOR you if..."
-                subtitle="You'll love this course if:"
-                items={forYouItems}
-              />
-            </motion.div>
-          </div>
-
-          {/* Footer Message */}
+          {/* Unified Checklist Card */}
           <motion.div
-            className="text-center mt-12"
+            className="max-w-4xl mx-auto rounded-3xl bg-gradient-to-br from-card/80 via-card/60 to-card/40 backdrop-blur-lg border border-border/30 p-8 md:p-12"
             variants={fadeInUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={defaultViewport}
           >
-            <p className="text-xl md:text-2xl font-semibold text-foreground">
-              If you checked more boxes on the right,{" "}
-              <span className="text-primary">
-                this course was made for you.
-              </span>
-            </p>
+            <div className="grid md:grid-cols-2 gap-10 md:gap-16">
+              {/* NOT For You Column */}
+              <div>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="flex items-center justify-center w-10 h-10 rounded-full bg-red-500/20">
+                    <CircleOff className="w-5 h-5 text-red-400" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-foreground">Skip this if...</h3>
+                    <p className="text-sm text-muted-foreground">Not for you if:</p>
+                  </div>
+                </div>
+                <ul className="space-y-4">
+                  {notForYouItems.map((item, index) => (
+                    <motion.li
+                      key={index}
+                      custom={index}
+                      variants={listItemVariants}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true }}
+                      className="flex items-start gap-3 group"
+                    >
+                      <div className="flex-shrink-0 w-6 h-6 rounded-md border border-red-500/30 bg-red-500/10 flex items-center justify-center mt-0.5 transition-colors group-hover:bg-red-500/20">
+                        <X className="w-3.5 h-3.5 text-red-400" />
+                      </div>
+                      <span className="text-sm text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors">
+                        {item}
+                      </span>
+                    </motion.li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* FOR You Column */}
+              <div>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="flex items-center justify-center w-10 h-10 rounded-full bg-green-500/20">
+                    <CircleCheck className="w-5 h-5 text-green-400" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-foreground">Perfect for you if...</h3>
+                    <p className="text-sm text-muted-foreground">Made for you if:</p>
+                  </div>
+                </div>
+                <ul className="space-y-4">
+                  {forYouItems.map((item, index) => (
+                    <motion.li
+                      key={index}
+                      custom={index}
+                      variants={listItemVariants}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true }}
+                      className="flex items-start gap-3 group"
+                    >
+                      <div className="flex-shrink-0 w-6 h-6 rounded-md border border-green-500/30 bg-green-500/10 flex items-center justify-center mt-0.5 transition-colors group-hover:bg-green-500/20">
+                        <Check className="w-3.5 h-3.5 text-green-400" />
+                      </div>
+                      <span className="text-sm text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors">
+                        {item}
+                      </span>
+                    </motion.li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div className="mt-10 pt-8 border-t border-border/30">
+              <p className="text-center text-lg md:text-xl font-semibold text-foreground">
+                See yourself on the right?{" "}
+                <span className="text-primary">
+                  This course was made for you.
+                </span>
+              </p>
+            </div>
           </motion.div>
         </motion.div>
       </Container>

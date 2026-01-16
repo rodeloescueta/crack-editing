@@ -18,8 +18,8 @@ interface Transformation {
   id: string
   creatorName: string
   handle: string
-  before: { views: string; label: string }
-  after: { views: string; label: string }
+  before: { views: string; label: string; thumbnail: string }
+  after: { views: string; label: string; thumbnail: string }
   growthStats: string
 }
 
@@ -28,24 +28,24 @@ const transformations: Transformation[] = [
     id: "1",
     creatorName: "Nikki",
     handle: "@bignikbh",
-    before: { views: "~500 views", label: "Generic edit" },
-    after: { views: "1.1M views", label: "Crack Edited™" },
+    before: { views: "~500 views", label: "Generic edit", thumbnail: "/images/testimonials/video-thumbnail-1.jpg" },
+    after: { views: "1.1M views", label: "Crack Edited™", thumbnail: "/images/testimonials/video-thumbnail-2.jpg" },
     growthStats: "Grew from 6,322 to 1,000,000+ followers using crack editing™",
   },
   {
     id: "2",
     creatorName: "Kathy",
     handle: "@kathyprounis",
-    before: { views: "~1K views", label: "Generic edit" },
-    after: { views: "482K views", label: "Crack Edited™" },
+    before: { views: "~1K views", label: "Generic edit", thumbnail: "/images/testimonials/video-thumbnail-3.jpg" },
+    after: { views: "482K views", label: "Crack Edited™", thumbnail: "/images/testimonials/video-thumbnail-4.jpg" },
     growthStats: "Scaled to 100,000+ followers in just 7 months",
   },
   {
     id: "3",
     creatorName: "Warren",
     handle: "@nontoxicdad",
-    before: { views: "~10K views", label: "Generic edit" },
-    after: { views: "22M+ views", label: "Crack Edited™" },
+    before: { views: "~10K views", label: "Generic edit", thumbnail: "/images/testimonials/video-thumbnail-1.jpg" },
+    after: { views: "22M+ views", label: "Crack Edited™", thumbnail: "/images/testimonials/video-thumbnail-3.jpg" },
     growthStats: "Built 1.1M+ followers over 2 years with the system",
   },
 ]
@@ -116,7 +116,13 @@ export function TransformationCarousel() {
           }
         >
           {/* Carousel Container */}
-          <div className="relative max-w-5xl mx-auto" style={{ transformStyle: "preserve-3d" }}>
+          <div
+            className="relative max-w-5xl mx-auto"
+            style={{ transformStyle: "preserve-3d" }}
+            role="region"
+            aria-roledescription="carousel"
+            aria-label="Creator transformation stories"
+          >
           {/* Navigation Arrows - Desktop */}
           <button
             onClick={() => paginate(-1)}
@@ -144,9 +150,12 @@ export function TransformationCarousel() {
               exit="exit"
               transition={{ duration: 0.3, ease: "easeInOut" }}
               className="bg-[oklch(0.18_0.03_265)] backdrop-blur-sm rounded-2xl border border-white/10 p-6 md:p-8"
+              role="group"
+              aria-roledescription="slide"
+              aria-label={`${currentIndex + 1} of ${transformations.length}: ${currentTransformation.creatorName}'s transformation`}
             >
               {/* Creator Info */}
-              <div className="text-center mb-8">
+              <div className="text-center mb-8" aria-live="polite">
                 <h3 className="text-2xl font-bold text-foreground">
                   {currentTransformation.creatorName}
                 </h3>
@@ -166,6 +175,7 @@ export function TransformationCarousel() {
                     type="before"
                     label={currentTransformation.before.label}
                     views={currentTransformation.before.views}
+                    thumbnail={currentTransformation.before.thumbnail}
                   />
                 </div>
 
@@ -183,6 +193,7 @@ export function TransformationCarousel() {
                     type="after"
                     label={currentTransformation.after.label}
                     views={currentTransformation.after.views}
+                    thumbnail={currentTransformation.after.thumbnail}
                   />
                 </div>
               </div>
@@ -197,20 +208,25 @@ export function TransformationCarousel() {
           </AnimatePresence>
 
           {/* Dots Navigation */}
-          <div className="flex justify-center gap-2 mt-6">
+          <div className="flex justify-center gap-3 mt-6">
             {transformations.map((_, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                className={`h-3 rounded-full transition-all duration-300 ease-out ${
                   index === currentIndex
-                    ? "bg-primary w-8"
-                    : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                    ? "bg-primary w-10 shadow-[0_0_10px_oklch(0.75_0.18_55/0.5)]"
+                    : "bg-muted-foreground/30 hover:bg-muted-foreground/50 w-3 hover:scale-110"
                 }`}
                 aria-label={`Go to transformation ${index + 1}`}
               />
             ))}
           </div>
+
+          {/* Swipe Hint - Mobile Only */}
+          <p className="text-center text-muted-foreground/60 text-xs mt-3 sm:hidden">
+            Swipe or tap dots to navigate
+          </p>
 
           {/* Mobile Navigation */}
           <div className="flex justify-center gap-4 mt-4 sm:hidden">
