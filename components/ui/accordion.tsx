@@ -4,7 +4,7 @@ import * as React from "react"
 import { Accordion as AccordionPrimitive } from "radix-ui"
 
 import { cn } from "@/lib/utils"
-import { ChevronDownIcon, ChevronUpIcon } from "lucide-react"
+import { ChevronDownIcon } from "lucide-react"
 
 function Accordion({
   className,
@@ -38,7 +38,7 @@ function AccordionTrigger({
   ...props
 }: React.ComponentProps<typeof AccordionPrimitive.Trigger>) {
   return (
-    <AccordionPrimitive.Header className="flex">
+    <AccordionPrimitive.Header className="flex items-center">
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
@@ -47,11 +47,11 @@ function AccordionTrigger({
         )}
         {...props}
       >
-        {children}
-        <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 group-hover/accordion-trigger:bg-primary/20 transition-colors">
-          <ChevronDownIcon data-slot="accordion-trigger-icon" className="pointer-events-none shrink-0 transition-transform duration-200 group-aria-expanded/accordion-trigger:hidden" />
-          <ChevronUpIcon data-slot="accordion-trigger-icon" className="pointer-events-none hidden shrink-0 transition-transform duration-200 group-aria-expanded/accordion-trigger:inline" />
-        </div>
+        <span className="flex-1">{children}</span>
+        <ChevronDownIcon
+          data-slot="accordion-trigger-icon"
+          className="pointer-events-none shrink-0 size-5 ml-4 text-primary transition-transform duration-300 group-aria-expanded/accordion-trigger:rotate-180"
+        />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
   )
