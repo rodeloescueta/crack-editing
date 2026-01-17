@@ -44,13 +44,13 @@ export function PricingSection() {
             viewport={defaultViewport}
             className="max-w-3xl mx-auto"
           >
-            {/* Header */}
+            {/* Header - using dark text for light background */}
             <motion.div className="text-center mb-12" variants={fadeInUp}>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-[oklch(0.25_0.02_260)]">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-[oklch(0.20_0.02_240)]">
                 turn a small investment into a skill{" "}
                 <GradientText variant="orange">you can use for years</GradientText>
               </h2>
-              <p className="text-[oklch(0.45_0.02_260)] text-lg max-w-2xl mx-auto">
+              <p className="text-[oklch(0.45_0.02_240)] text-lg max-w-2xl mx-auto">
                 Editors who make better decisions get paid more. Win better clients,
                 charge higher rates, and keep work longer because your videos
                 actually perform.
@@ -109,13 +109,13 @@ export function PricingSection() {
               </CardBody>
             </CardContainer>
 
-            {/* Value Footer */}
+            {/* Value Footer - dark text for light background */}
             <motion.p
-              className="text-center text-[oklch(0.45_0.02_260)] mt-8"
+              className="text-center text-[oklch(0.45_0.02_240)] mt-8"
               variants={fadeInUp}
             >
               If crack editing™ helps you land even{" "}
-              <span className="text-[oklch(0.25_0.02_260)] font-semibold">one better client</span>
+              <span className="text-[oklch(0.20_0.02_240)] font-semibold">one better client</span>
               , one higher-paying project, or one ongoing retainer—it pays for
               itself many times over.
             </motion.p>

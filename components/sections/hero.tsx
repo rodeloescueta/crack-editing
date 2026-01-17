@@ -22,17 +22,17 @@ const trustIndicators = [
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-[oklch(0.12_0.04_250)] via-[oklch(0.14_0.05_255)] to-[oklch(0.16_0.06_260)]">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-[oklch(0.96_0.015_210)] via-[oklch(0.94_0.02_210)] to-[oklch(0.92_0.025_210)]">
       {/* Aceternity UI: Background Ripple Effect */}
       <div className="absolute inset-0 z-0">
         <BackgroundRippleEffect rows={11} cols={30} cellSize={48} />
       </div>
 
       {/* Background gradient overlay - sits above ripple */}
-      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-transparent via-transparent to-black/20 pointer-events-none" />
+      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-transparent via-transparent to-[oklch(0.90_0.02_210)]/20 pointer-events-none" />
 
-      {/* Subtle blue glow effect */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-[oklch(0.45_0.15_250)]/20 rounded-full blur-[150px] pointer-events-none z-[2]" />
+      {/* Subtle blue glow effect - lighter for ice-blue theme */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-[oklch(0.80_0.08_210)]/30 rounded-full blur-[150px] pointer-events-none z-[2]" />
 
       {/* Floating particles */}
       <div className="absolute inset-0 z-[3] overflow-hidden pointer-events-none">

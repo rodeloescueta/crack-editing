@@ -149,13 +149,13 @@ export function CourseModulesSection() {
           whileInView="visible"
           viewport={defaultViewport}
         >
-          {/* Header */}
+          {/* Header - dark text for light section */}
           <motion.div className="text-center mb-12" variants={fadeInUp}>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-[oklch(0.20_0.02_240)]">
               what&apos;s inside{" "}
               <GradientText variant="purple">crack editing™</GradientText>
             </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            <p className="text-[oklch(0.45_0.02_240)] text-lg max-w-2xl mx-auto">
               A 5-hour self-paced training program that teaches you the complete
               system for creating addictive content.
             </p>

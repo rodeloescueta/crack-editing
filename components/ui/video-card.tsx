@@ -77,7 +77,7 @@ export function VideoCard({ type, label, views, thumbnail, className }: VideoCar
       {/* Bottom Section - Progress Bar, Label, Views */}
       <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/90 to-transparent pt-8 z-10">
         {/* Progress Bar */}
-        <div className="w-full h-1 rounded-full bg-gray-700 mb-2 overflow-hidden">
+        <div className="w-full h-1 rounded-full bg-[oklch(0.50_0.02_210)] mb-2 overflow-hidden">
           <div
             className={cn(
               "h-full rounded-full",
@@ -89,7 +89,7 @@ export function VideoCard({ type, label, views, thumbnail, className }: VideoCar
         </div>
 
         {/* Label */}
-        <p className="text-sm text-gray-300 mb-1">{label}</p>
+        <p className="text-sm text-[oklch(0.85_0.02_210)] mb-1">{label}</p>
 
         {/* Views */}
         <p

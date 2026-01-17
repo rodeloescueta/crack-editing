@@ -94,9 +94,9 @@ export function TransformationCarousel() {
               whileInView="visible"
               viewport={defaultViewport}
             >
-              {/* Headline */}
+              {/* Headline - dark text for light section */}
               <motion.h2
-                className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-[oklch(0.25_0.02_260)]"
+                className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-[oklch(0.20_0.02_240)]"
                 variants={fadeInUp}
               >
                 can you go from{" "}
@@ -104,9 +104,9 @@ export function TransformationCarousel() {
                 <GradientText variant="orange">THIS</GradientText>?
               </motion.h2>
 
-              {/* Subtext */}
+              {/* Subtext - dark text for light section */}
               <motion.p
-                className="text-[oklch(0.45_0.02_260)] text-lg max-w-2xl mx-auto"
+                className="text-[oklch(0.45_0.02_240)] text-lg max-w-2xl mx-auto"
                 variants={fadeInUp}
               >
                 Real transformations from creators who learned the crack editing
@@ -149,7 +149,7 @@ export function TransformationCarousel() {
               animate="center"
               exit="exit"
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="bg-[oklch(0.18_0.03_265)] backdrop-blur-sm rounded-2xl border border-white/10 p-6 md:p-8"
+              className="bg-card backdrop-blur-sm rounded-2xl border border-border p-6 md:p-8"
               role="group"
               aria-roledescription="slide"
               aria-label={`${currentIndex + 1} of ${transformations.length}: ${currentTransformation.creatorName}'s transformation`}

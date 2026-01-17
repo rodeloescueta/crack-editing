@@ -26,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`dark ${figtree.variable} overflow-x-hidden`}>
+    <html lang="en" className={`${figtree.variable} overflow-x-hidden`}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen overflow-x-hidden`}
       >
