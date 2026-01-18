@@ -59,19 +59,19 @@ export function ForMeSection() {
 
           {/* Unified Checklist Card */}
           <motion.div
-            className="max-w-4xl mx-auto rounded-3xl bg-gradient-to-br from-card/80 via-card/60 to-card/40 backdrop-blur-lg border border-border/30 p-8 md:p-12"
+            className="max-w-6xl mx-auto rounded-3xl bg-gradient-to-br from-card/80 via-card/60 to-card/40 backdrop-blur-lg border border-border/30 p-10 md:p-14"
             variants={fadeInUp}
           >
-            <div className="grid md:grid-cols-2 gap-10 md:gap-16">
+            <div className="grid md:grid-cols-2 gap-12 md:gap-20">
               {/* NOT For You Column */}
               <div>
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="flex items-center justify-center w-10 h-10 rounded-full bg-red-500/20">
-                    <CircleOff className="w-5 h-5 text-red-400" />
+                  <div className="flex items-center justify-center w-12 h-12 rounded-full bg-red-500/20">
+                    <CircleOff className="w-6 h-6 text-red-400" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-foreground">Skip this if...</h3>
-                    <p className="text-sm text-muted-foreground">Not for you if:</p>
+                    <h3 className="text-xl font-bold text-foreground">Skip this if...</h3>
+                    <p className="text-base text-muted-foreground">Not for you if:</p>
                   </div>
                 </div>
                 <ul className="space-y-4">
@@ -86,9 +86,9 @@ export function ForMeSection() {
                       className="flex items-start gap-3 group"
                     >
                       <div className="flex-shrink-0 w-6 h-6 rounded-md border border-red-500/30 bg-red-500/10 flex items-center justify-center mt-0.5 transition-colors group-hover:bg-red-500/20">
-                        <X className="w-3.5 h-3.5 text-red-400" />
+                        <X className="w-4 h-4 text-red-400" />
                       </div>
-                      <span className="text-sm text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors">
+                      <span className="text-base text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors">
                         {item}
                       </span>
                     </motion.li>
@@ -99,12 +99,12 @@ export function ForMeSection() {
               {/* FOR You Column */}
               <div>
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="flex items-center justify-center w-10 h-10 rounded-full bg-green-500/20">
-                    <CircleCheck className="w-5 h-5 text-green-400" />
+                  <div className="flex items-center justify-center w-12 h-12 rounded-full bg-green-500/20">
+                    <CircleCheck className="w-6 h-6 text-green-400" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-foreground">Perfect for you if...</h3>
-                    <p className="text-sm text-muted-foreground">Made for you if:</p>
+                    <h3 className="text-xl font-bold text-foreground">Perfect for you if...</h3>
+                    <p className="text-base text-muted-foreground">Made for you if:</p>
                   </div>
                 </div>
                 <ul className="space-y-4">
@@ -119,9 +119,9 @@ export function ForMeSection() {
                       className="flex items-start gap-3 group"
                     >
                       <div className="flex-shrink-0 w-6 h-6 rounded-md border border-green-500/30 bg-green-500/10 flex items-center justify-center mt-0.5 transition-colors group-hover:bg-green-500/20">
-                        <Check className="w-3.5 h-3.5 text-green-400" />
+                        <Check className="w-4 h-4 text-green-400" />
                       </div>
-                      <span className="text-sm text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors">
+                      <span className="text-base text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors">
                         {item}
                       </span>
                     </motion.li>
