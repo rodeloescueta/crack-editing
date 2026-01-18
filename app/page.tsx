@@ -24,15 +24,15 @@ export default function Page() {
         {/* LIGHT: Transformation Carousel (no divider - direct transition) */}
         <TransformationCarousel />
 
-        {/* Divider: Light to Dark */}
+        {/* Divider: Light to Iceberg Dark */}
         <SectionDivider
           fromColor="var(--section-light)"
-          toColor="var(--section-dark)"
+          toColor="#0a1628"
           variant="curve"
           height={100}
         />
 
-        {/* DARK: Problem vs Solution */}
+        {/* DARK: Problem vs Solution (iceberg gradient) */}
         <ProblemSolutionSection />
 
         {/* LIGHT: Course Modules (no divider - direct transition) */}

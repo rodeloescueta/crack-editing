@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { Container } from "@/components/layout"
 import { ComparisonCard } from "@/components/ui/comparison-card"
+import { Highlight } from "@/components/ui/hero-highlight"
 // Toggle between versions for comparison:
 // - IcebergReveal: Original version
 // - IcebergRevealA: Option A - Enhanced separate SVGs
@@ -36,7 +37,7 @@ const solutionItems = [
 
 export function ProblemSolutionSection() {
   return (
-    <section className="py-20 md:py-28 section-dark">
+    <section className="py-20 md:py-28 bg-gradient-to-b from-[#0a1628] via-[#0c2445] to-[#051525]">
       <Container>
         <motion.div
           variants={staggerContainer}
@@ -46,11 +47,9 @@ export function ProblemSolutionSection() {
         >
           {/* Headline */}
           <motion.div className="text-center mb-8" variants={fadeInUp}>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 max-w-3xl mx-auto">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 max-w-3xl mx-auto text-white">
               most viral videos look simple.{" "}
-              <span className="text-muted-foreground">
-                the real work happens underneath.
-              </span>
+              <Highlight>the real work happens underneath.</Highlight>
             </h2>
           </motion.div>
         </motion.div>
@@ -65,7 +64,7 @@ export function ProblemSolutionSection() {
           viewport={defaultViewport}
         >
           {/* Cards Container */}
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-10 md:gap-16 max-w-7xl mx-auto px-4">
             {/* Problem Card */}
             <motion.div variants={slideInLeft}>
               <ComparisonCard

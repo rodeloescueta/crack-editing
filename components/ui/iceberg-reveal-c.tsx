@@ -72,8 +72,7 @@ export function IcebergRevealC({ className }: IcebergRevealProps) {
       role="img"
       aria-label="Iceberg visualization showing viral video complexity"
     >
-      {/* Background gradient - deep ocean */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0a1628] via-[#0c2445] to-[#051525]" />
+      {/* Background inherited from parent section */}
 
       {/* Single connected iceberg SVG */}
       <motion.div

@@ -60,7 +60,7 @@ export function ComparisonCard({
   return (
     <motion.div
       className={cn(
-        "rounded-2xl border p-6 md:p-8 bg-card/50 backdrop-blur-sm transition-all duration-300",
+        "rounded-2xl border p-8 md:p-10 bg-white/90 backdrop-blur-sm transition-all duration-300",
         isPositive
           ? "border-green-500/30 hover:border-green-500/50 hover:shadow-[0_0_30px_rgba(34,197,94,0.15)]"
           : "border-red-500/30 hover:border-red-500/50 hover:shadow-[0_0_30px_rgba(239,68,68,0.15)]",
@@ -86,14 +86,14 @@ export function ComparisonCard({
           />
         </div>
         <div>
-          <h3 className="text-lg font-bold text-foreground">{title}</h3>
-          <p className="text-sm text-muted-foreground">{subtitle}</p>
+          <h3 className="text-xl font-bold text-slate-900">{title}</h3>
+          <p className="text-base text-slate-500">{subtitle}</p>
         </div>
       </div>
 
       {/* Items List */}
       <motion.ul
-        className="space-y-3"
+        className="space-y-4"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -122,7 +122,7 @@ export function ComparisonCard({
                 )}
               />
             </motion.div>
-            <span className="text-sm text-muted-foreground leading-relaxed">
+            <span className="text-base text-slate-700 leading-relaxed">
               {item}
             </span>
           </motion.li>
