@@ -41,19 +41,18 @@ export function Marquee({
   return (
     <div
       className={cn(
-        "group relative flex overflow-hidden",
-        pauseOnHover && "[--pause-on-hover:paused]",
+        "group relative flex overflow-hidden [--gap:2rem]",
         className
       )}
     >
       <div
         className={cn(
-          "flex shrink-0 animate-marquee items-center gap-8",
-          "group-hover:[animation-play-state:var(--pause-on-hover,running)]",
-          reverse && "[animation-direction:reverse]"
+          "flex shrink-0 items-center gap-[var(--gap)]",
+          pauseOnHover && "group-hover:[animation-play-state:paused]"
         )}
         style={{
-          animationDuration: `${duration}s`,
+          animation: `marquee ${duration}s linear infinite`,
+          animationDirection: reverse ? "reverse" : "normal",
         }}
       >
         {children}
@@ -61,12 +60,12 @@ export function Marquee({
       </div>
       <div
         className={cn(
-          "flex shrink-0 animate-marquee items-center gap-8",
-          "group-hover:[animation-play-state:var(--pause-on-hover,running)]",
-          reverse && "[animation-direction:reverse]"
+          "flex shrink-0 items-center gap-[var(--gap)]",
+          pauseOnHover && "group-hover:[animation-play-state:paused]"
         )}
         style={{
-          animationDuration: `${duration}s`,
+          animation: `marquee ${duration}s linear infinite`,
+          animationDirection: reverse ? "reverse" : "normal",
         }}
         aria-hidden="true"
       >

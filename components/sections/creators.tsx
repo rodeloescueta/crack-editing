@@ -8,6 +8,7 @@ import { GradientText } from "@/components/ui/gradient-text"
 import { StatCard } from "@/components/ui/stat-card"
 import { SparklesCore } from "@/components/ui/sparkles"
 import { Marquee } from "@/components/ui/marquee"
+import { brandItems, LimitlessLogo } from "@/components/ui/brand-logos"
 import { PinContainer } from "@/components/ui/3d-pin"
 import {
   fadeInUp,
@@ -24,16 +25,6 @@ const stats = [
   { value: "100+", label: "Brand Deals", attribution: "Secured" },
 ]
 
-const brands = [
-  "Google",
-  "MailChimp",
-  "Adobe",
-  "HSN",
-  "Absolut Vodka",
-  "Intuit",
-  "Bravo",
-  "Core Power",
-]
 
 export function CreatorsSection() {
   return (
@@ -52,14 +43,14 @@ export function CreatorsSection() {
               className="flex justify-center"
               variants={slideInLeft}
             >
-              <div className="h-[28rem] w-full flex items-center justify-center">
+              <div className="h-[32rem] w-full flex items-center justify-center">
                 <PinContainer
                   title="limitless.inc"
                   href="https://limitless.inc"
                   containerClassName="flex items-center justify-center"
                 >
-                  {/* Logo Circle with Sparkles */}
-                  <div className="relative w-52 h-52 md:w-64 md:h-64 rounded-full border-2 border-accent/30 flex items-center justify-center bg-background/80 overflow-hidden">
+                  {/* TLC Fingerprint Logo with Sparkles */}
+                  <div className="relative w-64 h-80 md:w-80 md:h-96 flex items-center justify-center overflow-hidden">
                     {/* Aceternity UI: Sparkles Effect */}
                     <div className="absolute inset-0 z-0">
                       <SparklesCore
@@ -72,14 +63,9 @@ export function CreatorsSection() {
                         className="w-full h-full"
                       />
                     </div>
-                    {/* Logo Text - above sparkles */}
-                    <div className="text-center relative z-10">
-                      <div className="text-2xl md:text-3xl font-bold text-accent tracking-wider">
-                        LIMITLESS
-                      </div>
-                      <div className="text-sm text-muted-foreground tracking-widest">
-                        .INC
-                      </div>
+                    {/* TLC Fingerprint Logo */}
+                    <div className="relative z-10">
+                      <LimitlessLogo className="w-64 h-80 md:w-80 md:h-96" />
                     </div>
                   </div>
                 </PinContainer>
@@ -138,13 +124,13 @@ export function CreatorsSection() {
               <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
               <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
               <Marquee pauseOnHover duration={25}>
-                {brands.map((brand) => (
-                  <span
-                    key={brand}
-                    className="text-muted-foreground/60 font-medium hover:text-muted-foreground transition-colors whitespace-nowrap px-4"
+                {brandItems.map((brand) => (
+                  <div
+                    key={brand.name}
+                    className="flex items-center justify-center px-6 md:px-8 text-muted-foreground/50 hover:text-muted-foreground transition-colors"
                   >
-                    {brand}
-                  </span>
+                    {brand.logo}
+                  </div>
                 ))}
               </Marquee>
             </div>
