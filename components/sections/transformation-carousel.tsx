@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import Image from "next/image"
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 import { Container } from "@/components/layout"
 import { Button } from "@/components/ui/button"
@@ -18,6 +19,7 @@ interface Transformation {
   id: string
   creatorName: string
   handle: string
+  avatar: string
   before: { views: string; label: string; thumbnail: string }
   after: { views: string; label: string; thumbnail: string }
   growthStats: string
@@ -28,6 +30,7 @@ const transformations: Transformation[] = [
     id: "1",
     creatorName: "Nikki",
     handle: "@bignikbh",
+    avatar: "/images/avatars/nikki.svg",
     before: { views: "~500 views", label: "Generic edit", thumbnail: "/images/testimonials/video-thumbnail-1.jpg" },
     after: { views: "1.1M views", label: "Crack Edited™", thumbnail: "/images/testimonials/video-thumbnail-2.jpg" },
     growthStats: "Grew from 6,322 to 1,000,000+ followers using crack editing™",
@@ -36,6 +39,7 @@ const transformations: Transformation[] = [
     id: "2",
     creatorName: "Kathy",
     handle: "@kathyprounis",
+    avatar: "/images/avatars/kathy.svg",
     before: { views: "~1K views", label: "Generic edit", thumbnail: "/images/testimonials/video-thumbnail-3.jpg" },
     after: { views: "482K views", label: "Crack Edited™", thumbnail: "/images/testimonials/video-thumbnail-4.jpg" },
     growthStats: "Scaled to 100,000+ followers in just 7 months",
@@ -44,6 +48,7 @@ const transformations: Transformation[] = [
     id: "3",
     creatorName: "Warren",
     handle: "@nontoxicdad",
+    avatar: "/images/avatars/warren.svg",
     before: { views: "~10K views", label: "Generic edit", thumbnail: "/images/testimonials/video-thumbnail-1.jpg" },
     after: { views: "22M+ views", label: "Crack Edited™", thumbnail: "/images/testimonials/video-thumbnail-3.jpg" },
     growthStats: "Built 1.1M+ followers over 2 years with the system",
@@ -126,17 +131,17 @@ export function TransformationCarousel() {
           {/* Navigation Arrows - Desktop */}
           <button
             onClick={() => paginate(-1)}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 z-10 w-10 h-10 md:w-12 md:h-12 rounded-full bg-card/80 border border-border/50 flex items-center justify-center hover:bg-card transition-colors hidden sm:flex"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 md:-translate-x-20 z-10 w-12 h-12 md:w-14 md:h-14 rounded-full bg-card border border-border/50 flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-110 hover:bg-card/90 transition-all duration-200 hidden sm:flex"
             aria-label="Previous transformation"
           >
-            <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
+            <ChevronLeft className="w-6 h-6 md:w-7 md:h-7 text-foreground" />
           </button>
           <button
             onClick={() => paginate(1)}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 z-10 w-10 h-10 md:w-12 md:h-12 rounded-full bg-card/80 border border-border/50 flex items-center justify-center hover:bg-card transition-colors hidden sm:flex"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 md:translate-x-20 z-10 w-12 h-12 md:w-14 md:h-14 rounded-full bg-card border border-border/50 flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-110 hover:bg-card/90 transition-all duration-200 hidden sm:flex"
             aria-label="Next transformation"
           >
-            <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
+            <ChevronRight className="w-6 h-6 md:w-7 md:h-7 text-foreground" />
           </button>
 
           {/* Carousel Content */}
@@ -154,16 +159,6 @@ export function TransformationCarousel() {
               aria-roledescription="slide"
               aria-label={`${currentIndex + 1} of ${transformations.length}: ${currentTransformation.creatorName}'s transformation`}
             >
-              {/* Creator Info */}
-              <div className="text-center mb-8" aria-live="polite">
-                <h3 className="text-2xl font-bold text-foreground">
-                  {currentTransformation.creatorName}
-                </h3>
-                <p className="text-primary font-medium">
-                  {currentTransformation.handle}
-                </p>
-              </div>
-
               {/* Before/After Cards */}
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 md:gap-10 mb-8">
                 {/* Before Card */}
@@ -207,42 +202,73 @@ export function TransformationCarousel() {
             </motion.div>
           </AnimatePresence>
 
-          {/* Dots Navigation */}
-          <div className="flex justify-center gap-3 mt-6">
-            {transformations.map((_, index) => (
+          {/* Profile Navigation */}
+          <div className="flex justify-center items-end gap-6 sm:gap-8 mt-6">
+            {transformations.map((transformation, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`h-3 rounded-full transition-all duration-300 ease-out ${
+                className={`flex flex-col items-center gap-2 transition-all duration-300 ease-out ${
                   index === currentIndex
-                    ? "bg-primary w-10 shadow-[0_0_10px_oklch(0.75_0.18_55/0.5)]"
-                    : "bg-muted-foreground/30 hover:bg-muted-foreground/50 w-3 hover:scale-110"
+                    ? "opacity-100"
+                    : "opacity-50 hover:opacity-70"
                 }`}
-                aria-label={`Go to transformation ${index + 1}`}
-              />
+                aria-label={`Go to ${transformation.creatorName}'s transformation`}
+              >
+                <div
+                  className={`relative rounded-full overflow-hidden transition-all duration-300 ease-out ${
+                    index === currentIndex
+                      ? "w-12 h-12 ring-2 ring-primary ring-offset-2 ring-offset-card shadow-[0_0_15px_oklch(0.75_0.18_55/0.4)]"
+                      : "w-9 h-9 hover:scale-105"
+                  }`}
+                >
+                  <Image
+                    src={transformation.avatar}
+                    alt={transformation.creatorName}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="text-center">
+                  <p className={`font-semibold leading-tight transition-all duration-300 ${
+                    index === currentIndex
+                      ? "text-foreground text-sm"
+                      : "text-muted-foreground text-xs"
+                  }`}>
+                    {transformation.creatorName}
+                  </p>
+                  <p className={`leading-tight transition-all duration-300 ${
+                    index === currentIndex
+                      ? "text-primary text-xs"
+                      : "text-muted-foreground/70 text-[10px]"
+                  }`}>
+                    {transformation.handle}
+                  </p>
+                </div>
+              </button>
             ))}
           </div>
 
           {/* Swipe Hint - Mobile Only */}
           <p className="text-center text-muted-foreground/60 text-xs mt-3 sm:hidden">
-            Swipe or tap dots to navigate
+            Tap a profile to view their transformation
           </p>
 
           {/* Mobile Navigation */}
-          <div className="flex justify-center gap-4 mt-4 sm:hidden">
+          <div className="flex justify-center gap-6 mt-4 sm:hidden">
             <button
               onClick={() => paginate(-1)}
-              className="w-12 h-12 rounded-full bg-card/80 border border-border/50 flex items-center justify-center"
+              className="w-14 h-14 rounded-full bg-card border border-border/50 flex items-center justify-center shadow-lg active:scale-95 transition-all duration-200"
               aria-label="Previous transformation"
             >
-              <ChevronLeft className="w-6 h-6" />
+              <ChevronLeft className="w-7 h-7 text-foreground" />
             </button>
             <button
               onClick={() => paginate(1)}
-              className="w-12 h-12 rounded-full bg-card/80 border border-border/50 flex items-center justify-center"
+              className="w-14 h-14 rounded-full bg-card border border-border/50 flex items-center justify-center shadow-lg active:scale-95 transition-all duration-200"
               aria-label="Next transformation"
             >
-              <ChevronRight className="w-6 h-6" />
+              <ChevronRight className="w-7 h-7 text-foreground" />
             </button>
           </div>
           </div>
