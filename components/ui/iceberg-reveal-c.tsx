@@ -52,6 +52,13 @@ export function IcebergRevealC({ className }: IcebergRevealProps) {
   const label4Opacity = useTransform(scrollYProgress, [0.35, 0.5], [0, 1])
   const label5Opacity = useTransform(scrollYProgress, [0.4, 0.55], [0, 1])
 
+  // Connector line opacities - appear with labels (slight delay)
+  const line1Opacity = useTransform(scrollYProgress, [0.25, 0.4], [0, 1])
+  const line2Opacity = useTransform(scrollYProgress, [0.30, 0.45], [0, 1])
+  const line3Opacity = useTransform(scrollYProgress, [0.35, 0.5], [0, 1])
+  const line4Opacity = useTransform(scrollYProgress, [0.40, 0.55], [0, 1])
+  const line5Opacity = useTransform(scrollYProgress, [0.45, 0.6], [0, 1])
+
   // Scroll indicator - fades out as user starts scrolling
   const scrollIndicatorOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0])
 
@@ -268,6 +275,106 @@ export function IcebergRevealC({ className }: IcebergRevealProps) {
         </svg>
       </motion.div>
 
+      {/* Connector Lines Layer - Desktop (CSS-based) */}
+      <div className="absolute inset-0 z-20 pointer-events-none hidden md:block">
+        {/* Line 1: ATTENTION SCIENCE → Iceberg (upper-left) */}
+        <motion.div
+          className="absolute"
+          style={{
+            left: '33%',
+            top: '40%',
+            width: '14%',
+            height: '2px',
+            background: 'linear-gradient(90deg, rgba(34,211,238,0.7), rgba(34,211,238,0.2))',
+            transformOrigin: 'left center',
+            transform: 'rotate(-8deg)',
+            opacity: line1Opacity,
+          }}
+        >
+          <div
+            className="absolute right-0 top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-cyan-400"
+            style={{ boxShadow: '0 0 10px rgba(34,211,238,0.9)' }}
+          />
+        </motion.div>
+
+        {/* Line 2: EMOTIONAL PACING → Iceberg (upper-right) */}
+        <motion.div
+          className="absolute"
+          style={{
+            right: '33%',
+            top: '44%',
+            width: '14%',
+            height: '2px',
+            background: 'linear-gradient(270deg, rgba(34,211,238,0.7), rgba(34,211,238,0.2))',
+            transformOrigin: 'right center',
+            transform: 'rotate(8deg)',
+            opacity: line2Opacity,
+          }}
+        >
+          <div
+            className="absolute left-0 top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-cyan-400"
+            style={{ boxShadow: '0 0 10px rgba(34,211,238,0.9)' }}
+          />
+        </motion.div>
+
+        {/* Line 3: STORY STRUCTURE → Iceberg (mid-left) */}
+        <motion.div
+          className="absolute"
+          style={{
+            left: '31%',
+            top: '56%',
+            width: '16%',
+            height: '2px',
+            background: 'linear-gradient(90deg, rgba(34,211,238,0.7), rgba(34,211,238,0.2))',
+            transformOrigin: 'left center',
+            transform: 'rotate(-5deg)',
+            opacity: line3Opacity,
+          }}
+        >
+          <div
+            className="absolute right-0 top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-cyan-400"
+            style={{ boxShadow: '0 0 10px rgba(34,211,238,0.9)' }}
+          />
+        </motion.div>
+
+        {/* Line 4: SENSORY CUES → Iceberg (mid-right) */}
+        <motion.div
+          className="absolute"
+          style={{
+            right: '31%',
+            top: '60%',
+            width: '16%',
+            height: '2px',
+            background: 'linear-gradient(270deg, rgba(34,211,238,0.7), rgba(34,211,238,0.2))',
+            transformOrigin: 'right center',
+            transform: 'rotate(5deg)',
+            opacity: line4Opacity,
+          }}
+        >
+          <div
+            className="absolute left-0 top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-cyan-400"
+            style={{ boxShadow: '0 0 10px rgba(34,211,238,0.9)' }}
+          />
+        </motion.div>
+
+        {/* Line 5: TASTE & DESIGN → Iceberg (bottom) */}
+        <motion.div
+          className="absolute left-1/2 -translate-x-1/2"
+          style={{
+            top: '66%',
+            width: '2px',
+            height: '8%',
+            background: 'linear-gradient(0deg, rgba(34,211,238,0.7), rgba(34,211,238,0.2))',
+            opacity: line5Opacity,
+          }}
+        >
+          <div
+            className="absolute top-0 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-cyan-400"
+            style={{ boxShadow: '0 0 10px rgba(34,211,238,0.9)' }}
+          />
+        </motion.div>
+      </div>
+
       {/* Labels layer - Desktop */}
       <motion.div
         className="absolute inset-0 z-30 pointer-events-none hidden md:block"
@@ -377,44 +484,59 @@ export function IcebergRevealC({ className }: IcebergRevealProps) {
         </motion.div>
       </motion.div>
 
-      {/* Labels layer - Mobile */}
-      <motion.div
-        className="absolute inset-x-0 bottom-0 z-30 pointer-events-none md:hidden px-4 pb-4"
-        style={{ opacity: label1Opacity }}
-      >
-        <div className="grid grid-cols-2 gap-x-3 gap-y-3">
-          <motion.div style={{ opacity: label1Opacity }}>
-            <div className="text-center p-2.5 bg-slate-900/80 rounded-lg backdrop-blur-sm border border-cyan-500/30">
-              <div className="text-sm font-bold text-cyan-300">ATTENTION SCIENCE</div>
-              <div className="text-xs text-slate-200/80 mt-0.5">Motion & contrast</div>
-            </div>
-          </motion.div>
-          <motion.div style={{ opacity: label2Opacity }}>
-            <div className="text-center p-2.5 bg-slate-900/80 rounded-lg backdrop-blur-sm border border-cyan-500/30">
-              <div className="text-sm font-bold text-cyan-300">EMOTIONAL PACING</div>
-              <div className="text-xs text-slate-200/80 mt-0.5">Tension & release</div>
-            </div>
-          </motion.div>
-          <motion.div style={{ opacity: label3Opacity }}>
-            <div className="text-center p-2.5 bg-slate-900/80 rounded-lg backdrop-blur-sm border border-cyan-500/30">
-              <div className="text-sm font-bold text-cyan-300">STORY STRUCTURE</div>
-              <div className="text-xs text-slate-200/80 mt-0.5">Hook & payoff</div>
-            </div>
-          </motion.div>
-          <motion.div style={{ opacity: label4Opacity }}>
-            <div className="text-center p-2.5 bg-slate-900/80 rounded-lg backdrop-blur-sm border border-cyan-500/30">
-              <div className="text-sm font-bold text-cyan-300">SENSORY CUES</div>
-              <div className="text-xs text-slate-200/80 mt-0.5">Sound & color</div>
-            </div>
-          </motion.div>
-          <motion.div className="col-span-2" style={{ opacity: label5Opacity }}>
-            <div className="text-center p-2.5 bg-slate-900/80 rounded-lg backdrop-blur-sm border border-cyan-500/30">
-              <div className="text-sm font-bold text-cyan-300">TASTE & DESIGN</div>
-              <div className="text-xs text-slate-200/80 mt-0.5">Typography & polish</div>
-            </div>
-          </motion.div>
-        </div>
-      </motion.div>
+      {/* Labels layer - Mobile - Positioned around iceberg */}
+      <div className="absolute inset-0 z-30 pointer-events-none md:hidden">
+        {/* Top row - beside the tip */}
+        <motion.div
+          className="absolute left-3 top-[38%]"
+          style={{ opacity: label1Opacity }}
+        >
+          <div className="text-center p-2 bg-slate-900/80 rounded-lg backdrop-blur-sm border border-cyan-500/30 max-w-[120px]">
+            <div className="text-xs font-bold text-cyan-300">ATTENTION SCIENCE</div>
+            <div className="text-[10px] text-slate-200/80 mt-0.5">Motion & contrast</div>
+          </div>
+        </motion.div>
+        <motion.div
+          className="absolute right-3 top-[38%]"
+          style={{ opacity: label2Opacity }}
+        >
+          <div className="text-center p-2 bg-slate-900/80 rounded-lg backdrop-blur-sm border border-cyan-500/30 max-w-[120px]">
+            <div className="text-xs font-bold text-cyan-300">EMOTIONAL PACING</div>
+            <div className="text-[10px] text-slate-200/80 mt-0.5">Tension & release</div>
+          </div>
+        </motion.div>
+
+        {/* Middle row */}
+        <motion.div
+          className="absolute left-3 top-[54%]"
+          style={{ opacity: label3Opacity }}
+        >
+          <div className="text-center p-2 bg-slate-900/80 rounded-lg backdrop-blur-sm border border-cyan-500/30 max-w-[120px]">
+            <div className="text-xs font-bold text-cyan-300">STORY STRUCTURE</div>
+            <div className="text-[10px] text-slate-200/80 mt-0.5">Hook & payoff</div>
+          </div>
+        </motion.div>
+        <motion.div
+          className="absolute right-3 top-[54%]"
+          style={{ opacity: label4Opacity }}
+        >
+          <div className="text-center p-2 bg-slate-900/80 rounded-lg backdrop-blur-sm border border-cyan-500/30 max-w-[120px]">
+            <div className="text-xs font-bold text-cyan-300">SENSORY CUES</div>
+            <div className="text-[10px] text-slate-200/80 mt-0.5">Sound & color</div>
+          </div>
+        </motion.div>
+
+        {/* Bottom - centered */}
+        <motion.div
+          className="absolute left-1/2 -translate-x-1/2 top-[70%]"
+          style={{ opacity: label5Opacity }}
+        >
+          <div className="text-center p-2 bg-slate-900/80 rounded-lg backdrop-blur-sm border border-cyan-500/30">
+            <div className="text-xs font-bold text-cyan-300">TASTE & DESIGN</div>
+            <div className="text-[10px] text-slate-200/80 mt-0.5">Typography & polish</div>
+          </div>
+        </motion.div>
+      </div>
 
       {/* "VIRAL VIDEO" label - prominent, overlaps with iceberg */}
       <div className="absolute top-[12%] left-1/2 -translate-x-1/2 text-center z-40">
