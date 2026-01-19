@@ -6,9 +6,9 @@ import { Container } from "@/components/layout"
 import { Button } from "@/components/ui/button"
 
 const footerLinks = [
-  { label: "Privacy Policy", href: "#" },
-  { label: "Fulfillment Policy", href: "#" },
-  { label: "Careers", href: "#" },
+  { label: "Privacy Policy", href: "https://edu.limitless.inc/privacy" },
+  { label: "Fulfillment Policy", href: "https://www.limitless.inc/fulfillment-policy" },
+  { label: "Careers", href: "https://jobs.limitless.inc/" },
 ]
 
 const socialLinks = [
