@@ -49,15 +49,21 @@ export function Footer() {
   }
 
   return (
-    <footer className="border-t border-border/30 py-12 section-dark">
+    <footer className="border-t border-white/10 py-16 bg-[#0a0a1a]">
       <Container>
         <div className="flex flex-col items-center text-center space-y-8">
+          {/* Social Proof */}
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30">
+            <span className="text-primary font-semibold text-sm">500+ editors</span>
+            <span className="text-white/70 text-sm">have joined the community</span>
+          </div>
+
           {/* Newsletter Signup */}
           <div className="w-full max-w-md">
-            <h3 className="text-lg font-semibold text-foreground mb-2">
+            <h3 className="text-lg font-semibold text-white mb-2">
               Stay in the loop
             </h3>
-            <p className="text-sm text-muted-foreground mb-4">
+            <p className="text-sm text-white/60 mb-4">
               Get editing tips and updates straight to your inbox.
             </p>
             {isSubmitted ? (
@@ -72,7 +78,7 @@ export function Footer() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
-                  className="flex-1 px-4 py-2.5 rounded-lg bg-muted/50 border border-border/50 text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all"
+                  className="flex-1 px-4 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white text-sm placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all"
                   required
                 />
                 <Button
@@ -91,7 +97,7 @@ export function Footer() {
             )}
           </div>
 
-          {/* Social Media Links */}
+          {/* Social Media Links - Larger with enhanced hover */}
           <div className="flex items-center gap-4">
             {socialLinks.map((social) => (
               <a
@@ -99,20 +105,20 @@ export function Footer() {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-muted/50 border border-border/50 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 hover:bg-primary/10 transition-all duration-200"
+                className="w-12 h-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white/60 hover:text-primary hover:border-primary hover:bg-primary/20 hover:scale-110 transition-all duration-200"
                 aria-label={social.label}
               >
-                <social.icon className="w-5 h-5" />
+                <social.icon className="w-6 h-6" />
               </a>
             ))}
             <a
               href="https://tiktok.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-10 h-10 rounded-full bg-muted/50 border border-border/50 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 hover:bg-primary/10 transition-all duration-200"
+              className="w-12 h-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white/60 hover:text-primary hover:border-primary hover:bg-primary/20 hover:scale-110 transition-all duration-200"
               aria-label="TikTok"
             >
-              <TikTokIcon className="w-5 h-5" />
+              <TikTokIcon className="w-6 h-6" />
             </a>
           </div>
 
@@ -122,7 +128,7 @@ export function Footer() {
               <a
                 key={link.label}
                 href={link.href}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                className="text-sm text-white/60 hover:text-white transition-colors"
               >
                 {link.label}
               </a>
@@ -130,7 +136,7 @@ export function Footer() {
           </nav>
 
           {/* Support Email */}
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-white/60">
             Need support? Email:{" "}
             <a
               href="mailto:hello@limitless.inc"
@@ -146,14 +152,14 @@ export function Footer() {
               <span className="text-primary-foreground font-bold text-sm">CE</span>
             </div>
             <span className="text-lg font-bold tracking-tight">
-              <span className="text-foreground">crack</span>
+              <span className="text-white">crack</span>
               <span className="text-primary">editing</span>
-              <span className="text-foreground">™</span>
+              <span className="text-white">™</span>
             </span>
           </div>
 
           {/* Company Info */}
-          <div className="text-sm text-muted-foreground space-y-1">
+          <div className="text-sm text-white/50 space-y-1">
             <p>©2026 The Limitless Company</p>
             <p>6600 Sunset Blvd, Los Angeles CA 90028</p>
           </div>
