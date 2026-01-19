@@ -7,12 +7,20 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { GradientText } from "@/components/ui/gradient-text"
 import { BackgroundRippleEffect } from "@/components/ui/background-ripple-effect"
+import { FlipWords } from "@/components/ui/flip-words"
 import {
   fadeInUp,
   fadeInDown,
   staggerContainer,
   defaultViewport,
 } from "@/lib/animations"
+
+const heroFlipWords = [
+  "highly addictive",
+  "scroll-stopping",
+  "unforgettable",
+  "irresistible",
+]
 
 const trustIndicators = [
   "5-hour self-paced course",
@@ -113,7 +121,7 @@ export function HeroSection() {
               videos
             </GradientText>
             <br />
-            highly addictive{" "}
+            <FlipWords words={heroFlipWords} className="text-foreground" />{" "}
             <span className="inline-block" role="img" aria-label="eyes">
               👀
             </span>
