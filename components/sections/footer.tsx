@@ -51,28 +51,70 @@ export function Footer() {
   return (
     <footer className="border-t border-white/10 py-16 bg-[#0a0a1a]">
       <Container>
-        <div className="flex flex-col items-center text-center space-y-8">
-          {/* Social Proof */}
+        {/* Social Proof - Centered at top */}
+        <div className="flex justify-center mb-12">
           <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30">
             <span className="text-primary font-semibold text-sm">500+ editors</span>
             <span className="text-white/70 text-sm">have joined the community</span>
           </div>
+        </div>
 
-          {/* Newsletter Signup */}
-          <div className="w-full max-w-md">
-            <h3 className="text-lg font-semibold text-white mb-2">
-              Stay in the loop
-            </h3>
-            <p className="text-sm text-white/60 mb-4">
-              Get editing tips and updates straight to your inbox.
+        {/* Main Footer Grid - 3 columns on desktop */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 mb-12">
+          {/* Left Column - Logo & Company Info */}
+          <div className="flex flex-col items-center md:items-start">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center">
+                <span className="text-primary-foreground font-bold text-base">CE</span>
+              </div>
+              <span className="text-xl font-bold tracking-tight">
+                <span className="text-white">crack</span>
+                <span className="text-primary">editing</span>
+                <span className="text-white">™</span>
+              </span>
+            </div>
+            <p className="text-sm text-white/50 text-center md:text-left">
+              A psychology-driven editing system for attention, emotion, and retention.
+            </p>
+          </div>
+
+          {/* Center Column - Links */}
+          <div className="flex flex-col items-center">
+            <h4 className="text-white font-semibold mb-4">Quick Links</h4>
+            <nav className="flex flex-col items-center gap-2">
+              {footerLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="text-sm text-white/60 hover:text-white transition-colors"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+            <p className="text-sm text-white/60 mt-4">
+              <a
+                href="mailto:hello@limitless.inc"
+                className="text-primary hover:underline"
+              >
+                hello@limitless.inc
+              </a>
+            </p>
+          </div>
+
+          {/* Right Column - Newsletter & Social */}
+          <div className="flex flex-col items-center md:items-end">
+            <h4 className="text-white font-semibold mb-2">Stay in the loop</h4>
+            <p className="text-sm text-white/60 mb-4 text-center md:text-right">
+              Get editing tips and updates.
             </p>
             {isSubmitted ? (
-              <div className="flex items-center justify-center gap-2 text-green-400 py-3">
+              <div className="flex items-center gap-2 text-green-400 py-3">
                 <CheckCircle className="w-5 h-5" />
                 <span className="text-sm font-medium">Thanks for subscribing!</span>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="flex gap-2">
+              <form onSubmit={handleSubmit} className="flex gap-2 w-full max-w-xs">
                 <input
                   type="email"
                   value={email}
@@ -95,74 +137,38 @@ export function Footer() {
                 </Button>
               </form>
             )}
-          </div>
 
-          {/* Social Media Links - Larger with enhanced hover */}
-          <div className="flex items-center gap-4">
-            {socialLinks.map((social) => (
+            {/* Social Icons */}
+            <div className="flex items-center gap-3 mt-6">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white/60 hover:text-primary hover:border-primary hover:bg-primary/20 hover:scale-110 transition-all duration-200"
+                  aria-label={social.label}
+                >
+                  <social.icon className="w-5 h-5" />
+                </a>
+              ))}
               <a
-                key={social.label}
-                href={social.href}
+                href="https://tiktok.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-12 h-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white/60 hover:text-primary hover:border-primary hover:bg-primary/20 hover:scale-110 transition-all duration-200"
-                aria-label={social.label}
+                className="w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white/60 hover:text-primary hover:border-primary hover:bg-primary/20 hover:scale-110 transition-all duration-200"
+                aria-label="TikTok"
               >
-                <social.icon className="w-6 h-6" />
+                <TikTokIcon className="w-5 h-5" />
               </a>
-            ))}
-            <a
-              href="https://tiktok.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-12 h-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white/60 hover:text-primary hover:border-primary hover:bg-primary/20 hover:scale-110 transition-all duration-200"
-              aria-label="TikTok"
-            >
-              <TikTokIcon className="w-6 h-6" />
-            </a>
-          </div>
-
-          {/* Navigation Links */}
-          <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2">
-            {footerLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="text-sm text-white/60 hover:text-white transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
-          </nav>
-
-          {/* Support Email */}
-          <p className="text-sm text-white/60">
-            Need support? Email:{" "}
-            <a
-              href="mailto:hello@limitless.inc"
-              className="text-primary hover:underline"
-            >
-              hello@limitless.inc
-            </a>
-          </p>
-
-          {/* Logo */}
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-sm">CE</span>
             </div>
-            <span className="text-lg font-bold tracking-tight">
-              <span className="text-white">crack</span>
-              <span className="text-primary">editing</span>
-              <span className="text-white">™</span>
-            </span>
           </div>
+        </div>
 
-          {/* Company Info */}
-          <div className="text-sm text-white/50 space-y-1">
-            <p>©2026 The Limitless Company</p>
-            <p>6600 Sunset Blvd, Los Angeles CA 90028</p>
-          </div>
+        {/* Bottom Bar - Copyright */}
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white/50">
+          <p>©2026 The Limitless Company</p>
+          <p>6600 Sunset Blvd, Los Angeles CA 90028</p>
         </div>
       </Container>
     </footer>
