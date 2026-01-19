@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ArrowRight, Eye } from "lucide-react"
+import { ArrowRight, Eye, ChevronDown } from "lucide-react"
 import { Container } from "@/components/layout"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -98,12 +98,17 @@ export function HeroSection() {
           animate="visible"
           viewport={defaultViewport}
         >
-          {/* Badge */}
+          {/* Badge with glow animation */}
           <motion.div variants={fadeInDown}>
             <Badge
               variant="secondary"
-              className="mb-6 px-4 py-2 text-sm font-medium bg-muted/50 border border-border/50"
+              className="mb-6 px-4 py-2 text-sm font-medium bg-muted/50 border border-primary/20 shadow-[0_0_20px_rgba(234,88,12,0.15)] animate-badge-glow"
             >
+              <motion.span
+                className="inline-block w-2 h-2 rounded-full bg-primary mr-2"
+                animate={{ scale: [1, 1.2, 1], opacity: [1, 0.7, 1] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              />
               <span className="text-primary font-semibold">3+ billion views</span>
               <span className="text-muted-foreground ml-1">generated for our clients</span>
             </Badge>
@@ -188,6 +193,25 @@ export function HeroSection() {
           </motion.div>
         </motion.div>
       </Container>
+
+      {/* Scroll Indicator */}
+      <motion.div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 cursor-pointer"
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.5, duration: 0.5 }}
+        onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
+      >
+        <span className="text-xs text-muted-foreground font-medium uppercase tracking-wider">
+          Scroll to explore
+        </span>
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <ChevronDown className="w-6 h-6 text-primary" />
+        </motion.div>
+      </motion.div>
     </section>
   )
 }

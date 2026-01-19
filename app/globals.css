@@ -38,6 +38,17 @@
     }
   }
 
+  @keyframes badge-glow {
+    0%, 100% {
+      box-shadow: 0 0 15px oklch(0.75 0.18 55 / 0.15);
+    }
+    50% {
+      box-shadow: 0 0 25px oklch(0.75 0.18 55 / 0.25);
+    }
+  }
+
+  --animate-badge-glow: badge-glow 3s ease-in-out infinite;
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
@@ -343,6 +354,11 @@
 
   .cta-pulse:hover {
     animation: none;
+  }
+
+  /* Badge glow animation */
+  .animate-badge-glow {
+    animation: var(--animate-badge-glow);
   }
 
   /* Custom scrollbar for modules section */
