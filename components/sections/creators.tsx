@@ -1,15 +1,14 @@
 "use client"
 
+import Image from "next/image"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { Container } from "@/components/layout"
 import { Badge } from "@/components/ui/badge"
 import { GradientText } from "@/components/ui/gradient-text"
 import { StatCard } from "@/components/ui/stat-card"
-import { SparklesCore } from "@/components/ui/sparkles"
 import { Marquee } from "@/components/ui/marquee"
-import { brandItems, LimitlessLogo } from "@/components/ui/brand-logos"
-import { PinContainer } from "@/components/ui/3d-pin"
+import { brandItems } from "@/components/ui/brand-logos"
 import {
   fadeInUp,
   slideInLeft,
@@ -18,13 +17,43 @@ import {
   defaultViewport,
 } from "@/lib/animations"
 
-const stats = [
-  { value: "15+", label: "Years Digital Marketing", attribution: "AJ Kumar" },
-  { value: "3B+", label: "Views Generated", attribution: "For Clients" },
-  { value: "10+", label: "Years Video Editing", attribution: "Josh Bill" },
-  { value: "100+", label: "Brand Deals", attribution: "Secured" },
+const creators = [
+  {
+    name: "AJ Kumar",
+    role: "Digital Marketing & Strategy",
+    image: "/images/creators/aj-kumar.png",
+    bio: "15+ years in digital marketing and content strategy. Helped creators generate millions in brand deals and build sustainable businesses.",
+    stat: { value: "15+", label: "Years Experience" },
+  },
+  {
+    name: "Josh Bill",
+    role: "Video Editing & Production",
+    image: "/images/creators/josh-bill.png",
+    bio: "10+ years of hands-on experience editing and producing high-performing social media content that's driven over 3 billion views.",
+    stat: { value: "3B+", label: "Views Generated" },
+  },
 ]
 
+const stats = [
+  { value: "15+", label: "Years Digital Marketing", attribution: "AJ Kumar", avatar: "/images/creators/aj-kumar.png" },
+  { value: "3B+", label: "Views Generated", attribution: "For Clients", avatar: null },
+  { value: "10+", label: "Years Video Editing", attribution: "Josh Bill", avatar: "/images/creators/josh-bill.png" },
+  { value: "100+", label: "Brand Deals", attribution: "Secured", avatar: null },
+]
+
+// Creator card animation
+const creatorCardVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.2,
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  }),
+}
 
 export function CreatorsSection() {
   return (
@@ -36,72 +65,75 @@ export function CreatorsSection() {
           whileInView="visible"
           viewport={defaultViewport}
         >
-          {/* Main Content */}
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-16">
-            {/* Left: Logo with 3D Pin Effect */}
-            <motion.div
-              className="flex justify-center"
-              variants={slideInLeft}
+          {/* Header */}
+          <motion.div className="text-center mb-12" variants={fadeInUp}>
+            <Badge
+              variant="secondary"
+              className="mb-4 px-4 py-2 text-sm font-medium bg-muted/50 border border-border/50"
             >
-              <div className="h-[32rem] w-full flex items-center justify-center">
-                <PinContainer
-                  title="limitless.inc"
-                  href="https://limitless.inc"
-                  containerClassName="flex items-center justify-center"
-                >
-                  {/* TLC Fingerprint Logo with Sparkles */}
-                  <div className="relative w-64 h-80 md:w-80 md:h-96 flex items-center justify-center overflow-hidden">
-                    {/* Aceternity UI: Sparkles Effect */}
-                    <div className="absolute inset-0 z-0">
-                      <SparklesCore
-                        id="creators-sparkles"
-                        background="transparent"
-                        minSize={0.4}
-                        maxSize={1.2}
-                        particleDensity={80}
-                        particleColor="#8B5CF6"
-                        className="w-full h-full"
-                      />
-                    </div>
-                    {/* TLC Fingerprint Logo */}
-                    <div className="relative z-10">
-                      <LimitlessLogo className="w-64 h-80 md:w-80 md:h-96" />
+              MEET THE CREATORS
+            </Badge>
+
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+              It&apos;s taken{" "}
+              <GradientText variant="orange">25+ combined years</GradientText>{" "}
+              to master this craft.
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Learn from industry veterans who&apos;ve built careers helping creators succeed.
+            </p>
+          </motion.div>
+
+          {/* Creator Cards */}
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-16 max-w-4xl mx-auto">
+            {creators.map((creator, index) => (
+              <motion.div
+                key={creator.name}
+                custom={index}
+                variants={creatorCardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                whileHover={{ y: -8 }}
+                transition={{ duration: 0.3 }}
+                className="relative rounded-2xl bg-card/50 border border-border/50 p-6 backdrop-blur-sm overflow-hidden group"
+              >
+                {/* Gradient overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                <div className="relative z-10">
+                  {/* Photo */}
+                  <div className="flex justify-center mb-6">
+                    <div className="relative">
+                      <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-primary/20 shadow-lg shadow-primary/10">
+                        <Image
+                          src={creator.image}
+                          alt={creator.name}
+                          width={160}
+                          height={160}
+                          className="object-cover w-full h-full"
+                        />
+                      </div>
+                      {/* Stat badge */}
+                      <div className="absolute -bottom-2 -right-2 bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-bold shadow-lg">
+                        {creator.stat.value}
+                      </div>
                     </div>
                   </div>
-                </PinContainer>
-              </div>
-            </motion.div>
 
-            {/* Right: Content */}
-            <motion.div variants={slideInRight}>
-              <Badge
-                variant="secondary"
-                className="mb-4 px-4 py-2 text-sm font-medium bg-muted/50 border border-border/50"
-              >
-                MEET THE CREATORS
-              </Badge>
+                  {/* Name & Role */}
+                  <div className="text-center mb-4">
+                    <h3 className="text-xl font-bold text-foreground">{creator.name}</h3>
+                    <p className="text-sm text-primary font-medium">{creator.role}</p>
+                  </div>
 
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
-                It&apos;s taken{" "}
-                <GradientText variant="orange">25+ combined years</GradientText>{" "}
-                to master this craft.
-              </h2>
-
-              <div className="space-y-4 text-muted-foreground">
-                <p>
-                  <span className="text-foreground font-semibold">AJ Kumar</span>{" "}
-                  brings 15+ years in digital marketing and content strategy,
-                  having helped creators generate millions in brand deals and
-                  build sustainable businesses.
-                </p>
-                <p>
-                  <span className="text-foreground font-semibold">Josh Bill</span>{" "}
-                  contributes 10+ years of hands-on experience editing and
-                  producing high-performing social media content that&apos;s driven
-                  over 3 billion views.
-                </p>
-              </div>
-            </motion.div>
+                  {/* Bio */}
+                  <p className="text-muted-foreground text-center text-sm leading-relaxed">
+                    {creator.bio}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
           </div>
 
           {/* Stats Grid */}
