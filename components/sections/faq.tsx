@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, HelpCircle, Mail } from "lucide-react"
 import { Container } from "@/components/layout"
 import { Button } from "@/components/ui/button"
 import {
@@ -99,7 +99,8 @@ const faqs = [
 ]
 
 export function FAQSection() {
-  const [openItem, setOpenItem] = useState<string | undefined>(undefined)
+  // Pre-expand first FAQ to show value immediately
+  const [openItem, setOpenItem] = useState<string | undefined>("item-0")
 
   return (
     <section className="py-20 md:py-28 section-dark">
@@ -113,6 +114,12 @@ export function FAQSection() {
         >
           {/* Section Header */}
           <motion.div className="text-center mb-12" variants={fadeInUp}>
+            {/* Visual icon element */}
+            <div className="flex justify-center mb-6">
+              <div className="w-16 h-16 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center">
+                <HelpCircle className="w-8 h-8 text-primary" />
+              </div>
+            </div>
             <h2 className="text-headline mb-4">
               frequently asked{" "}
               <GradientText variant="orange">questions</GradientText>
@@ -153,9 +160,23 @@ export function FAQSection() {
             </Accordion>
           </motion.div>
 
+          {/* Support Link */}
+          <div className="text-center mt-8">
+            <p className="text-sm flex items-center justify-center gap-2 text-[#1a1a2e]">
+              <Mail className="w-4 h-4 text-primary" />
+              <span>Can&apos;t find your answer?</span>
+              <a
+                href="mailto:hello@limitless.inc"
+                className="text-primary font-medium hover:underline inline-flex items-center gap-1"
+              >
+                Contact us
+              </a>
+            </p>
+          </div>
+
           {/* CTA */}
           <motion.div
-            className="text-center mt-12"
+            className="text-center mt-8"
             variants={fadeInUp}
             initial="hidden"
             whileInView="visible"
