@@ -118,37 +118,20 @@ export function CreatorsSection() {
                 to master this craft.
               </h2>
 
-              <p className="text-muted-foreground text-lg mb-8">
-                Learn from industry veterans who&apos;ve built careers helping creators succeed.
-              </p>
-
-              {/* Creator Mini Cards */}
-              <div className="space-y-4">
-                {creators.map((creator) => (
-                  <div
-                    key={creator.name}
-                    className="flex items-center gap-4 p-4 rounded-xl bg-card/30 border border-border/30"
-                  >
-                    <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-primary/30 flex-shrink-0">
-                      <Image
-                        src={creator.image}
-                        alt={creator.name}
-                        width={64}
-                        height={64}
-                        className="object-cover w-full h-full"
-                      />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2">
-                        <h3 className="font-semibold text-foreground">{creator.name}</h3>
-                        <span className="text-xs bg-primary/20 text-primary px-2 py-0.5 rounded-full font-medium">
-                          {creator.stat.value}
-                        </span>
-                      </div>
-                      <p className="text-sm text-primary font-medium">{creator.role}</p>
-                    </div>
-                  </div>
-                ))}
+              {/* Creator Bios - Original format */}
+              <div className="space-y-4 text-muted-foreground">
+                <p>
+                  <span className="text-foreground font-semibold">AJ Kumar</span>{" "}
+                  brings 15+ years in digital marketing and content strategy,
+                  having helped creators generate millions in brand deals and
+                  build sustainable businesses.
+                </p>
+                <p>
+                  <span className="text-foreground font-semibold">Josh Bill</span>{" "}
+                  contributes 10+ years of hands-on experience editing and
+                  producing high-performing social media content that&apos;s driven
+                  over 3 billion views.
+                </p>
               </div>
             </motion.div>
           </div>
