@@ -537,12 +537,12 @@ export function IcebergRevealC({ className }: IcebergRevealProps) {
         </motion.div>
       </div>
 
-      {/* "VIRAL VIDEO" label - prominent, overlaps with iceberg */}
+      {/* "VIRAL VIDEO" label - prominent with shimmer animation */}
       <div className="absolute top-[12%] left-1/2 -translate-x-1/2 text-center z-40">
         <span
-          className="text-3xl md:text-5xl lg:text-3xl font-black text-white tracking-widest"
+          className="text-3xl md:text-5xl lg:text-3xl font-black tracking-widest animate-text-shimmer"
           style={{
-            textShadow: '0 0 20px rgba(103, 232, 249, 0.8), 0 0 40px rgba(103, 232, 249, 0.5), 0 0 60px rgba(103, 232, 249, 0.3), 0 4px 8px rgba(0,0,0,0.5)'
+            filter: 'drop-shadow(0 0 20px rgba(103, 232, 249, 0.8)) drop-shadow(0 0 40px rgba(103, 232, 249, 0.5)) drop-shadow(0 4px 8px rgba(0,0,0,0.5))'
           }}
         >
           VIRAL VIDEO

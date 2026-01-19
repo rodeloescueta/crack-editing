@@ -37,7 +37,7 @@ const solutionItems = [
 
 export function ProblemSolutionSection() {
   return (
-    <section className="py-20 md:py-28 bg-gradient-to-b from-[#0a1628] via-[#0c2445] to-[#051525]">
+    <section className="relative py-20 md:py-28 bg-gradient-to-b from-[#0a1628] via-[#0c2445] to-[#051525]">
       <Container>
         <motion.div
           variants={staggerContainer}
@@ -87,6 +87,25 @@ export function ProblemSolutionSection() {
           </div>
         </motion.div>
       </Container>
+
+      {/* Wave transition to next section */}
+      <div className="absolute bottom-0 left-0 right-0 overflow-hidden">
+        <svg
+          className="relative block w-full h-[60px] md:h-[80px]"
+          viewBox="0 0 1200 120"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M0,60 C200,120 400,0 600,60 C800,120 1000,0 1200,60 L1200,120 L0,120 Z"
+            className="fill-[oklch(0.90_0.02_210)]"
+          />
+          <path
+            d="M0,80 C300,120 600,40 900,80 C1050,100 1150,60 1200,80 L1200,120 L0,120 Z"
+            className="fill-[oklch(0.90_0.02_210)]"
+            opacity="0.5"
+          />
+        </svg>
+      </div>
     </section>
   )
 }
