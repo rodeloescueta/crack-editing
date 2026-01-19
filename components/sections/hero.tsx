@@ -126,9 +126,32 @@ export function HeroSection() {
               videos
             </GradientText>
             <br />
-            <FlipWords words={heroFlipWords} className="text-foreground" />{" "}
-            <span className="inline-block" role="img" aria-label="eyes">
-              👀
+            <span className="relative inline-flex items-center">
+              <FlipWords words={heroFlipWords} className="text-foreground" />
+              {/* Animated Eye - positioned absolutely so it doesn't move with word transitions */}
+              <motion.span
+                className="absolute -right-12 md:-right-16 top-1/2 -translate-y-1/2 text-5xl md:text-6xl origin-center"
+                role="img"
+                aria-label="eyes"
+                animate={{
+                  y: [0, -8, 0],           // Bouncing
+                  x: [0, 3, -3, 0],        // Looking around
+                  scaleY: [1, 1, 1, 0.1, 1, 1, 1, 1], // Blinking
+                  filter: [
+                    "drop-shadow(0 0 0px rgba(234,88,12,0))",
+                    "drop-shadow(0 0 12px rgba(234,88,12,0.6))",
+                    "drop-shadow(0 0 0px rgba(234,88,12,0))",
+                  ], // Pulsing glow
+                }}
+                transition={{
+                  y: { duration: 2, repeat: Infinity, ease: "easeInOut" },
+                  x: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+                  scaleY: { duration: 4, repeat: Infinity, times: [0, 0.4, 0.45, 0.5, 0.55, 0.6, 0.8, 1] },
+                  filter: { duration: 3, repeat: Infinity, ease: "easeInOut" },
+                }}
+              >
+                👀
+              </motion.span>
             </span>
           </motion.h1>
 
