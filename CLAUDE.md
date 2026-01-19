@@ -127,3 +127,11 @@ npx shadcn@latest add [component-name]
 ```
 
 Components are configured in `components.json` with RSC enabled and path aliases set.
+
+---
+
+## Memory
+
+### Deployment Preferences
+- **Do NOT automatically push to git or deploy to Vercel** - User wants to review changes first or batch features before shipping
+- Always wait for explicit user instruction before running `git push` or `npx vercel --prod`
