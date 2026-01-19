@@ -92,13 +92,14 @@ export function WhatYouGetSection() {
 
           {/* Features Grid with Glowing Effect - Bento Layout */}
           <ul className="grid grid-cols-1 gap-4 md:grid-cols-12 md:grid-rows-3 lg:gap-4 xl:grid-rows-2">
-            {features.map((feature) => (
+            {features.map((feature, index) => (
               <GlowingCard
                 key={feature.title}
                 icon={feature.icon}
                 title={feature.title}
                 description={feature.description}
                 className={feature.area}
+                index={index}
               />
             ))}
           </ul>
