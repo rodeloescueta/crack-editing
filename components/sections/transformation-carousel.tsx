@@ -20,8 +20,8 @@ interface Transformation {
   creatorName: string
   handle: string
   avatar: string
-  before: { views: string; label: string; thumbnail: string }
-  after: { views: string; label: string; thumbnail: string }
+  before: { views: string; label: string; thumbnail: string; videoUrl?: string }
+  after: { views: string; label: string; thumbnail: string; videoUrl?: string }
   growthStats: string
 }
 
@@ -31,8 +31,8 @@ const transformations: Transformation[] = [
     creatorName: "Nikki",
     handle: "@bignikbh",
     avatar: "/images/avatars/nikki.svg",
-    before: { views: "~500 views", label: "Generic edit", thumbnail: "/images/testimonials/video-thumbnail-1.jpg" },
-    after: { views: "1.1M views", label: "Crack Edited™", thumbnail: "/images/testimonials/video-thumbnail-2.jpg" },
+    before: { views: "~500 views", label: "Generic edit", thumbnail: "/images/testimonials/video-thumbnail-1.jpg", videoUrl: "" },
+    after: { views: "1.1M views", label: "Crack Edited™", thumbnail: "/images/testimonials/video-thumbnail-2.jpg", videoUrl: "" },
     growthStats: "Grew from 6,322 to 1,000,000+ followers using crack editing™",
   },
   {
@@ -40,8 +40,8 @@ const transformations: Transformation[] = [
     creatorName: "Kathy",
     handle: "@kathyprounis",
     avatar: "/images/avatars/kathy.svg",
-    before: { views: "~1K views", label: "Generic edit", thumbnail: "/images/testimonials/video-thumbnail-3.jpg" },
-    after: { views: "482K views", label: "Crack Edited™", thumbnail: "/images/testimonials/video-thumbnail-4.jpg" },
+    before: { views: "~1K views", label: "Generic edit", thumbnail: "/images/testimonials/video-thumbnail-3.jpg", videoUrl: "" },
+    after: { views: "482K views", label: "Crack Edited™", thumbnail: "/images/testimonials/video-thumbnail-4.jpg", videoUrl: "" },
     growthStats: "Scaled to 100,000+ followers in just 7 months",
   },
   {
@@ -49,8 +49,8 @@ const transformations: Transformation[] = [
     creatorName: "Warren",
     handle: "@nontoxicdad",
     avatar: "/images/avatars/warren.svg",
-    before: { views: "~10K views", label: "Generic edit", thumbnail: "/images/testimonials/video-thumbnail-1.jpg" },
-    after: { views: "22M+ views", label: "Crack Edited™", thumbnail: "/images/testimonials/video-thumbnail-3.jpg" },
+    before: { views: "~10K views", label: "Generic edit", thumbnail: "/images/testimonials/video-thumbnail-1.jpg", videoUrl: "" },
+    after: { views: "22M+ views", label: "Crack Edited™", thumbnail: "/images/testimonials/video-thumbnail-3.jpg", videoUrl: "" },
     growthStats: "Built 1.1M+ followers over 2 years with the system",
   },
 ]
@@ -171,13 +171,29 @@ export function TransformationCarousel() {
                     label={currentTransformation.before.label}
                     views={currentTransformation.before.views}
                     thumbnail={currentTransformation.before.thumbnail}
+                    videoUrl={currentTransformation.before.videoUrl}
                   />
                 </div>
 
-                {/* Arrow - rotates on mobile */}
-                <div className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary">
-                  <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-black rotate-90 sm:rotate-0" />
-                </div>
+                {/* Arrow - larger with pulse animation */}
+                <motion.div
+                  className="flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full bg-primary shadow-lg"
+                  animate={{
+                    scale: [1, 1.1, 1],
+                    boxShadow: [
+                      "0 0 0 0 rgba(234, 88, 12, 0.4)",
+                      "0 0 0 10px rgba(234, 88, 12, 0)",
+                      "0 0 0 0 rgba(234, 88, 12, 0)"
+                    ]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  <ArrowRight className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-black rotate-90 sm:rotate-0" />
+                </motion.div>
 
                 {/* After Card */}
                 <div className="flex flex-col items-center">
@@ -189,6 +205,7 @@ export function TransformationCarousel() {
                     label={currentTransformation.after.label}
                     views={currentTransformation.after.views}
                     thumbnail={currentTransformation.after.thumbnail}
+                    videoUrl={currentTransformation.after.videoUrl}
                   />
                 </div>
               </div>

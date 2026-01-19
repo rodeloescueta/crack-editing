@@ -48,12 +48,12 @@ This document contains a comprehensive design review of all 10 sections of the C
 
 **Issues & Suggestions:**
 
-| Priority | Issue | Suggestion |
-|----------|-------|------------|
-| Medium | Static video thumbnails | Add hover effect showing a preview GIF or video snippet |
-| Low | Arrow between cards is small | Make the arrow larger with a pulse animation |
-| Medium | Stats could pop more | Animate the view counts when carousel slides in |
-| Low | Missing social proof | Add actual video embed option or link to watch |
+| Priority | Issue | Suggestion | Status |
+|----------|-------|------------|--------|
+| Medium | Static video thumbnails | Add hover effect showing a preview GIF or video snippet | ✅ Done - Hover overlay with "Watch Video" + "Coming soon" |
+| Low | Arrow between cards is small | Make the arrow larger with a pulse animation | ✅ Done - Larger arrow (w-16) with pulse glow animation |
+| Medium | Stats could pop more | Animate the view counts when carousel slides in | ✅ Done - Fade+scale animation on slide change |
+| Low | Missing social proof | Add actual video embed option or link to watch | ✅ Done - videoUrl placeholder added (ready for real links) |
 
 ---
 
