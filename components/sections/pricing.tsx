@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ArrowRight, Check } from "lucide-react"
+import { ArrowRight, Check, ShieldCheck } from "lucide-react"
 import { Container } from "@/components/layout"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -21,7 +21,6 @@ const features = [
   "Practice tools & examples",
   "Lifetime access",
   "Ongoing updates",
-  "30-day money-back guarantee",
 ]
 
 export function PricingSection() {
@@ -57,9 +56,9 @@ export function PricingSection() {
               </p>
             </motion.div>
 
-            {/* Pricing Card with 3D Effect */}
+            {/* Pricing Card with 3D Effect and Enhanced Depth */}
             <CardContainer containerClassName="py-0">
-              <CardBody className="rounded-2xl border border-border/50 bg-gradient-to-b from-card/80 to-card p-8 md:p-10 w-full max-w-2xl">
+              <CardBody className="relative rounded-2xl border-2 border-primary/30 bg-gradient-to-b from-card to-card/90 p-8 md:p-10 w-full max-w-2xl shadow-[0_0_60px_-15px_rgba(249,115,22,0.3)] before:absolute before:inset-0 before:rounded-2xl before:bg-gradient-to-br before:from-primary/10 before:via-transparent before:to-accent/10 before:pointer-events-none">
                 {/* Badge */}
                 <CardItem translateZ={50} className="w-full text-center mb-6">
                   <Badge className="bg-primary/20 text-primary border-primary/30 px-4 py-1.5">
@@ -96,15 +95,28 @@ export function PricingSection() {
                   </div>
                 </CardItem>
 
-                {/* CTA */}
-                <CardItem translateZ={70} className="w-full text-center">
+                {/* CTA - Larger and More Prominent */}
+                <CardItem translateZ={70} className="w-full text-center mb-6">
                   <Button
                     size="lg"
-                    className="w-full sm:w-auto min-h-[52px] px-10 text-base font-semibold cta-pulse"
+                    className="w-full sm:w-auto min-h-[60px] px-12 text-lg font-bold cta-pulse bg-gradient-to-r from-primary to-orange-500 hover:from-primary/90 hover:to-orange-500/90 shadow-lg shadow-primary/25"
                   >
                     enroll in crack editing™
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
+                </CardItem>
+
+                {/* Guarantee Badge */}
+                <CardItem translateZ={30} className="w-full">
+                  <div className="flex items-center justify-center gap-3 p-4 rounded-xl bg-green-500/10 border border-green-500/30">
+                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center">
+                      <ShieldCheck className="w-6 h-6 text-green-500" />
+                    </div>
+                    <div className="text-left">
+                      <p className="text-green-500 font-bold text-sm">30-Day Money-Back Guarantee</p>
+                      <p className="text-muted-foreground text-xs">Not satisfied? Get a full refund, no questions asked.</p>
+                    </div>
+                  </div>
                 </CardItem>
               </CardBody>
             </CardContainer>
