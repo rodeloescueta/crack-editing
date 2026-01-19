@@ -24,7 +24,7 @@ const cardVariants = {
     transition: {
       delay: i * 0.1,
       duration: 0.5,
-      ease: "easeOut",
+      ease: "easeOut" as const,
     },
   }),
 }
@@ -37,7 +37,7 @@ const iconVariants = {
     rotate: [0, -5, 5, 0],
     transition: {
       duration: 0.3,
-      ease: "easeInOut",
+      ease: "easeInOut" as const,
     },
   },
 }
