@@ -6,7 +6,6 @@ import { Container } from "@/components/layout"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { GradientText } from "@/components/ui/gradient-text"
-import { BackgroundRippleEffect } from "@/components/ui/background-ripple-effect"
 import { FlipWords } from "@/components/ui/flip-words"
 import {
   fadeInUp,
@@ -31,10 +30,6 @@ const trustIndicators = [
 export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#0a1628] via-[#0c2445] to-[#051525]">
-      {/* Aceternity UI: Background Ripple Effect */}
-      <div className="absolute inset-0 z-0 opacity-40">
-        <BackgroundRippleEffect rows={11} cols={30} cellSize={48} />
-      </div>
 
       {/* Background gradient overlay - sits above ripple */}
       <div className="absolute inset-0 z-[1] bg-gradient-to-b from-transparent via-transparent to-[#051525]/40 pointer-events-none" />
