@@ -103,7 +103,7 @@ export function FAQSection() {
   const [openItem, setOpenItem] = useState<string | undefined>("item-0")
 
   return (
-    <section className="py-20 md:py-28 section-dark">
+    <section className="py-20 md:py-28 bg-gradient-to-b from-[#0a1628] via-[#0c2445] to-[#051525]">
       <Container>
         <motion.div
           variants={staggerContainer}
@@ -143,16 +143,16 @@ export function FAQSection() {
                 <AccordionItem
                   key={index}
                   value={`item-${index}`}
-                  className="relative rounded-xl border border-border/50 bg-card/30 px-6 data-[state=open]:bg-card/50 data-[state=open]:border-primary/30 transition-colors duration-300"
+                  className="relative rounded-xl border border-white/10 bg-[#10131a]/50 px-6 data-[state=open]:bg-[#10131a]/80 data-[state=open]:border-primary/30 transition-colors duration-300"
                 >
                   {/* Lamp effect - only shown on open item */}
                   <AnimatePresence>
                     {openItem === `item-${index}` && <AccordionLampEffect />}
                   </AnimatePresence>
-                  <AccordionTrigger className="text-left text-base font-medium hover:no-underline py-5">
+                  <AccordionTrigger className="text-left text-base font-medium hover:no-underline py-5 text-white">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground pb-5">
+                  <AccordionContent className="text-gray-400 pb-5">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>
@@ -162,7 +162,7 @@ export function FAQSection() {
 
           {/* Support Link */}
           <div className="text-center mt-8">
-            <p className="text-sm flex items-center justify-center gap-2 text-muted-foreground">
+            <p className="text-sm flex items-center justify-center gap-2 text-gray-400">
               <Mail className="w-4 h-4 text-primary" />
               <span>Can&apos;t find your answer?</span>
               <a

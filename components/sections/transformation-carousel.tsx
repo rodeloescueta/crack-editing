@@ -154,7 +154,7 @@ export function TransformationCarousel() {
               animate="center"
               exit="exit"
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="bg-card backdrop-blur-sm rounded-2xl border border-border p-6 md:p-8"
+              className="bg-[#10131a] backdrop-blur-sm rounded-2xl border border-white/10 p-6 md:p-8"
               role="group"
               aria-roledescription="slide"
               aria-label={`${currentIndex + 1} of ${transformations.length}: ${currentTransformation.creatorName}'s transformation`}
@@ -211,8 +211,8 @@ export function TransformationCarousel() {
               </div>
 
               {/* Growth Stats */}
-              <div className="text-center border-t border-border/30 pt-6">
-                <p className="text-muted-foreground">
+              <div className="text-center border-t border-white/10 pt-6">
+                <p className="text-gray-400">
                   {currentTransformation.growthStats}
                 </p>
               </div>

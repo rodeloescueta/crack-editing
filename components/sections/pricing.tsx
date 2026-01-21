@@ -25,7 +25,7 @@ const features = [
 
 export function PricingSection() {
   return (
-    <section className="relative section-dark overflow-hidden">
+    <section className="relative bg-gradient-to-b from-[#0a1628] via-[#0c2445] to-[#051525] overflow-hidden py-20 md:py-28">
       {/* Oval/Circle container with light background */}
       <div
         className="relative mx-auto py-20 md:py-28 px-4"
