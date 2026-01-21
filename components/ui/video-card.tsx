@@ -32,9 +32,9 @@ export function VideoCard({ type, label, views, thumbnail, videoUrl, className }
         "border-2 transition-all duration-300 cursor-pointer",
         isBefore
           ? "border-red-500/50 bg-gradient-to-b from-red-500/10 to-red-900/20"
-          : "border-accent/50 bg-gradient-to-b from-accent/10 to-accent/20",
+          : "border-green-500/50 bg-gradient-to-b from-green-500/10 to-green-900/20",
         isHovered && "scale-[1.02] shadow-xl",
-        isHovered && (isBefore ? "border-red-500" : "border-accent"),
+        isHovered && (isBefore ? "border-red-500" : "border-green-500"),
         className
       )}
       onMouseEnter={() => setIsHovered(true)}
@@ -73,7 +73,7 @@ export function VideoCard({ type, label, views, thumbnail, videoUrl, className }
             key={i}
             className={cn(
               "h-[3px] flex-1 rounded-full",
-              isBefore ? "bg-red-500/60" : "bg-accent/60"
+              isBefore ? "bg-red-500/60" : "bg-green-500/60"
             )}
           />
         ))}
@@ -84,7 +84,7 @@ export function VideoCard({ type, label, views, thumbnail, videoUrl, className }
         <div
           className={cn(
             "w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center shadow-lg transition-all duration-300",
-            isBefore ? "bg-red-500" : "bg-accent",
+            isBefore ? "bg-red-500" : "bg-green-500",
             isHovered && "scale-110"
           )}
         >
@@ -108,7 +108,7 @@ export function VideoCard({ type, label, views, thumbnail, videoUrl, className }
         <div
           className={cn(
             "flex items-center gap-2 px-4 py-2 rounded-full font-semibold text-sm",
-            isBefore ? "bg-red-500 text-white" : "bg-accent text-black"
+            isBefore ? "bg-red-500 text-white" : "bg-green-500 text-white"
           )}
         >
           <ExternalLink className="w-4 h-4" />
@@ -128,7 +128,7 @@ export function VideoCard({ type, label, views, thumbnail, videoUrl, className }
               "h-full rounded-full",
               isBefore
                 ? "w-1/4 bg-red-500"
-                : "w-full bg-gradient-to-r from-accent via-purple-400 to-accent"
+                : "w-full bg-gradient-to-r from-green-500 via-green-400 to-green-500"
             )}
           />
         </div>
@@ -152,7 +152,7 @@ export function VideoCard({ type, label, views, thumbnail, videoUrl, className }
           transition={{ duration: 0.4, ease: "easeOut", delay: 0.1 }}
           className={cn(
             "text-lg font-bold",
-            isBefore ? "text-red-400" : "text-accent"
+            isBefore ? "text-red-400" : "text-green-400"
           )}
         >
           {views}

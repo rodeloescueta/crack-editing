@@ -197,7 +197,7 @@ export function TransformationCarousel() {
 
                 {/* After Card */}
                 <div className="flex flex-col items-center">
-                  <span className="px-4 py-1.5 rounded-full bg-accent/20 text-accent text-sm font-semibold mb-3">
+                  <span className="px-4 py-1.5 rounded-full bg-green-500/20 text-green-400 text-sm font-semibold mb-3">
                     AFTER
                   </span>
                   <VideoCard

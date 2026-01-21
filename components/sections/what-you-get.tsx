@@ -71,7 +71,7 @@ const features = [
 
 export function WhatYouGetSection() {
   return (
-    <section className="py-20 md:py-28 section-dark">
+    <section className="py-20 md:py-28">
       <Container>
         <motion.div
           variants={staggerContainer}
@@ -84,7 +84,7 @@ export function WhatYouGetSection() {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
               <GradientText variant="primary">what you get</GradientText>
             </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
               A complete, step-by-step system for editing videos that feel easier
               to watch and keep people watching longer.
             </p>

@@ -59,7 +59,7 @@ export function GlowingCard({
       viewport={{ once: true, margin: "-50px" }}
     >
       <motion.div
-        className="relative h-full rounded-2xl border border-border/50 p-2 group"
+        className="relative h-full rounded-2xl border border-white/10 p-2 group"
         whileHover={{ y: -4 }}
         transition={{ duration: 0.2 }}
       >
@@ -71,23 +71,23 @@ export function GlowingCard({
           inactiveZone={0.01}
           borderWidth={3}
         />
-        <div className="relative flex h-full flex-col justify-between gap-6 overflow-hidden rounded-xl bg-card/80 p-6 backdrop-blur-sm">
+        <div className="relative flex h-full flex-col justify-between gap-6 overflow-hidden rounded-xl bg-[#10131a] p-6 backdrop-blur-sm border border-white/5">
           {/* Icon - Larger with background circle */}
           <motion.div
-            className="w-14 h-14 rounded-full border border-accent/30 bg-accent/10 flex items-center justify-center"
+            className="w-14 h-14 rounded-full border border-primary/30 bg-primary/10 flex items-center justify-center"
             variants={iconVariants}
             initial="initial"
             whileHover="hover"
           >
-            <Icon className="h-7 w-7 text-accent" />
+            <Icon className="h-7 w-7 text-primary" />
           </motion.div>
 
           {/* Content */}
           <div className="space-y-2">
-            <h3 className="text-lg font-semibold text-foreground group-hover:text-accent transition-colors duration-200">
+            <h3 className="text-lg font-semibold text-white group-hover:text-primary transition-colors duration-200">
               {title}
             </h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">
+            <p className="text-sm text-gray-400 leading-relaxed">
               {description}
             </p>
           </div>

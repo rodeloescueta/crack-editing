@@ -38,19 +38,22 @@ export default function Page() {
         {/* LIGHT: Course Modules (no divider - direct transition) */}
         <CourseModulesSection />
 
-        {/* Divider: Light to Dark */}
+        {/* Divider: Light to Dark Navy */}
         <SectionDivider
           fromColor="var(--section-light)"
-          toColor="var(--section-dark)"
+          toColor="#0a1628"
           variant="curve"
           height={100}
         />
 
-        {/* DARK: Is This For Me */}
-        <ForMeSection />
+        {/* DARK SECTIONS WRAPPER - seamless background */}
+        <div className="bg-gradient-to-b from-[#0a1628] via-[#0c2445] to-[#0a1628]">
+          {/* DARK: Is This For Me */}
+          <ForMeSection />
 
-        {/* DARK: What You Get (no divider - both dark) */}
-        <WhatYouGetSection />
+          {/* DARK: What You Get */}
+          <WhatYouGetSection />
+        </div>
 
         {/* DARK: Meet The Creators (no divider - both dark) */}
         <CreatorsSection />
