@@ -46,7 +46,7 @@ const modules = [
       "Audio-visual sync techniques",
     ],
     icon: Sparkles,
-    gradient: "linear-gradient(to bottom right, #F97316, #EAB308)", // orange to yellow
+    gradient: "linear-gradient(to bottom right, #0EA5E9, #38BDF8)", // sky blue gradient
   },
   {
     moduleNumber: 3,
@@ -85,7 +85,7 @@ const modules = [
       "Patterns you can replicate",
     ],
     icon: PlayCircle,
-    gradient: "linear-gradient(to bottom right, #F59E0B, #F97316)", // amber to orange
+    gradient: "linear-gradient(to bottom right, #0284C7, #0EA5E9)", // deep sky blue gradient
   },
   {
     moduleNumber: 6,
@@ -153,7 +153,7 @@ export function CourseModulesSection() {
           <motion.div className="text-center mb-12" variants={fadeInUp}>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-[oklch(0.20_0.02_240)]">
               what&apos;s inside{" "}
-              <GradientText variant="purple">crack editing™</GradientText>
+              <GradientText variant="primary">crack editing™</GradientText>
             </h2>
             <p className="text-[oklch(0.45_0.02_240)] text-lg max-w-2xl mx-auto">
               A 5-hour self-paced training program that teaches you the complete

@@ -30,17 +30,17 @@ const trustIndicators = [
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-[oklch(0.96_0.015_210)] via-[oklch(0.94_0.02_210)] to-[oklch(0.92_0.025_210)]">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#0a1628] via-[#0c2445] to-[#051525]">
       {/* Aceternity UI: Background Ripple Effect */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 opacity-40">
         <BackgroundRippleEffect rows={11} cols={30} cellSize={48} />
       </div>
 
       {/* Background gradient overlay - sits above ripple */}
-      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-transparent via-transparent to-[oklch(0.90_0.02_210)]/20 pointer-events-none" />
+      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-transparent via-transparent to-[#051525]/40 pointer-events-none" />
 
-      {/* Subtle blue glow effect - lighter for ice-blue theme */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-[oklch(0.80_0.08_210)]/30 rounded-full blur-[150px] pointer-events-none z-[2]" />
+      {/* Subtle primary color glow effect - uses theme color */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-[var(--primary-glow-soft)] rounded-full blur-[150px] pointer-events-none z-[2]" />
 
       {/* Floating particles */}
       <div className="absolute inset-0 z-[3] overflow-hidden pointer-events-none">
@@ -102,7 +102,7 @@ export function HeroSection() {
           <motion.div variants={fadeInDown}>
             <Badge
               variant="secondary"
-              className="mb-6 px-4 py-2 text-sm font-medium bg-muted/50 border border-primary/20 shadow-[0_0_20px_rgba(234,88,12,0.15)] animate-badge-glow"
+              className="mb-6 px-4 py-2 text-sm font-medium bg-white/10 backdrop-blur-sm border border-primary/30 shadow-[0_0_20px_var(--primary-glow-soft)] animate-badge-glow"
             >
               <motion.span
                 className="inline-block w-2 h-2 rounded-full bg-primary mr-2"
@@ -110,24 +110,24 @@ export function HeroSection() {
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
               />
               <span className="text-primary font-semibold">3+ billion views</span>
-              <span className="text-muted-foreground ml-1">generated for our clients</span>
+              <span className="text-white/70 ml-1">generated for our clients</span>
             </Badge>
           </motion.div>
 
           {/* Main Headline */}
           <motion.h1
-            className="text-display mb-6"
+            className="text-display mb-6 text-white"
             variants={fadeInUp}
           >
             make your{" "}
-            <GradientText variant="orange">
+            <GradientText variant="primary">
               social media
               <br />
               videos
             </GradientText>
             <br />
             <span className="relative inline-flex items-center">
-              <FlipWords words={heroFlipWords} className="text-foreground" />
+              <FlipWords words={heroFlipWords} className="text-white" />
               {/* Animated Eye - positioned absolutely so it doesn't move with word transitions */}
               <motion.span
                 className="absolute -right-12 md:-right-16 top-1/2 -translate-y-1/2 text-5xl md:text-6xl origin-center"
@@ -138,9 +138,9 @@ export function HeroSection() {
                   x: [0, 3, -3, 0],        // Looking around
                   scaleY: [1, 1, 1, 0.1, 1, 1, 1, 1], // Blinking
                   filter: [
-                    "drop-shadow(0 0 0px rgba(234,88,12,0))",
-                    "drop-shadow(0 0 12px rgba(234,88,12,0.6))",
-                    "drop-shadow(0 0 0px rgba(234,88,12,0))",
+                    "drop-shadow(0 0 0px rgba(var(--primary-rgb),0))",
+                    "drop-shadow(0 0 12px rgba(var(--primary-rgb),0.6))",
+                    "drop-shadow(0 0 0px rgba(var(--primary-rgb),0))",
                   ], // Pulsing glow
                 }}
                 transition={{
@@ -157,7 +157,7 @@ export function HeroSection() {
 
           {/* Subtext */}
           <motion.p
-            className="text-subtitle max-w-2xl mb-8"
+            className="text-lg sm:text-xl text-white/70 max-w-2xl mb-8"
             variants={fadeInUp}
           >
             crack editing™ is an online training program that teaches a psychology-driven
@@ -197,7 +197,7 @@ export function HeroSection() {
             {trustIndicators.map((indicator, index) => (
               <div
                 key={index}
-                className="flex items-center text-small"
+                className="flex items-center text-sm text-white/60"
               >
                 <svg
                   className="w-4 h-4 mr-2 text-primary"
@@ -225,7 +225,7 @@ export function HeroSection() {
         transition={{ delay: 1.5, duration: 0.5 }}
         onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
       >
-        <span className="text-xs text-muted-foreground font-medium uppercase tracking-wider">
+        <span className="text-xs text-white/50 font-medium uppercase tracking-wider">
           Scroll to explore
         </span>
         <motion.div

@@ -47,7 +47,7 @@ export function PricingSection() {
             <motion.div className="text-center mb-12" variants={fadeInUp}>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-[oklch(0.20_0.02_240)]">
                 turn a small investment into a skill{" "}
-                <GradientText variant="orange">you can use for years</GradientText>
+                <GradientText variant="primary">you can use for years</GradientText>
               </h2>
               <p className="text-[oklch(0.45_0.02_240)] text-lg max-w-2xl mx-auto">
                 Editors who make better decisions get paid more. Win better clients,
@@ -58,7 +58,7 @@ export function PricingSection() {
 
             {/* Pricing Card with 3D Effect and Enhanced Depth */}
             <CardContainer containerClassName="py-0">
-              <CardBody className="relative rounded-2xl border-2 border-primary/30 bg-gradient-to-b from-card to-card/90 p-8 md:p-10 w-full max-w-2xl shadow-[0_0_60px_-15px_rgba(249,115,22,0.3)] before:absolute before:inset-0 before:rounded-2xl before:bg-gradient-to-br before:from-primary/10 before:via-transparent before:to-accent/10 before:pointer-events-none">
+              <CardBody className="relative rounded-2xl border-2 border-primary/30 bg-gradient-to-b from-card to-card/90 p-8 md:p-10 w-full max-w-2xl shadow-[0_0_60px_-15px_var(--primary-glow)] before:absolute before:inset-0 before:rounded-2xl before:bg-gradient-to-br before:from-primary/10 before:via-transparent before:to-accent/10 before:pointer-events-none">
                 {/* Badge */}
                 <CardItem translateZ={50} className="w-full text-center mb-6">
                   <Badge className="bg-primary/20 text-primary border-primary/30 px-4 py-1.5">
@@ -99,7 +99,7 @@ export function PricingSection() {
                 <CardItem translateZ={70} className="w-full text-center mb-6">
                   <Button
                     size="lg"
-                    className="w-full sm:w-auto min-h-[60px] px-12 text-lg font-bold cta-pulse bg-gradient-to-r from-primary to-orange-500 hover:from-primary/90 hover:to-orange-500/90 shadow-lg shadow-primary/25"
+                    className="w-full sm:w-auto min-h-[60px] px-12 text-lg font-bold cta-pulse"
                   >
                     enroll in crack editing™
                     <ArrowRight className="ml-2 h-5 w-5" />

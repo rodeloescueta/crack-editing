@@ -18,7 +18,7 @@ import {
   defaultViewport,
 } from "@/lib/animations"
 
-// Mini lamp effect for accordion items
+// Mini lamp effect for accordion items - uses primary color from theme
 function AccordionLampEffect() {
   return (
     <div className="absolute inset-x-0 -top-px overflow-visible pointer-events-none">
@@ -29,7 +29,7 @@ function AccordionLampEffect() {
         exit={{ opacity: 0, scaleX: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
         style={{ transformOrigin: "left center" }}
-        className="absolute left-6 top-0 h-px w-2/3 bg-gradient-to-r from-orange-400 via-orange-400/50 to-transparent"
+        className="absolute left-6 top-0 h-px w-2/3 bg-gradient-to-r from-primary via-primary/50 to-transparent"
       />
       {/* Bright left-aligned glow */}
       <motion.div
@@ -37,7 +37,7 @@ function AccordionLampEffect() {
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.5 }}
         transition={{ duration: 0.4, ease: "easeOut" }}
-        className="absolute -top-1 left-20 h-2 w-32 bg-orange-400 blur-md rounded-full"
+        className="absolute -top-1 left-20 h-2 w-32 bg-primary blur-md rounded-full"
       />
       {/* Wider soft glow - aligned left */}
       <motion.div
@@ -45,7 +45,7 @@ function AccordionLampEffect() {
         animate={{ opacity: 0.6 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5 }}
-        className="absolute -top-6 left-12 h-12 w-64 bg-orange-500/30 blur-2xl rounded-full"
+        className="absolute -top-6 left-12 h-12 w-64 bg-primary/30 blur-2xl rounded-full"
       />
       {/* Downward light cone - aligned left */}
       <motion.div
@@ -54,7 +54,7 @@ function AccordionLampEffect() {
         exit={{ opacity: 0, scaleY: 0 }}
         transition={{ duration: 0.4, ease: "easeOut" }}
         style={{ transformOrigin: "top center" }}
-        className="absolute top-0 left-12 w-48 h-24 bg-gradient-to-b from-orange-400/40 via-orange-400/10 to-transparent"
+        className="absolute top-0 left-12 w-48 h-24 bg-gradient-to-b from-primary/40 via-primary/10 to-transparent"
       />
     </div>
   )
@@ -122,7 +122,7 @@ export function FAQSection() {
             </div>
             <h2 className="text-headline mb-4">
               frequently asked{" "}
-              <GradientText variant="orange">questions</GradientText>
+              <GradientText variant="primary">questions</GradientText>
             </h2>
             <p className="text-subtitle max-w-2xl mx-auto">
               Everything you need to know about crack editing™ before you enroll.
@@ -143,7 +143,7 @@ export function FAQSection() {
                 <AccordionItem
                   key={index}
                   value={`item-${index}`}
-                  className="relative rounded-xl border border-border/50 bg-card/30 px-6 data-[state=open]:bg-card/50 data-[state=open]:border-orange-500/30 transition-colors duration-300"
+                  className="relative rounded-xl border border-border/50 bg-card/30 px-6 data-[state=open]:bg-card/50 data-[state=open]:border-primary/30 transition-colors duration-300"
                 >
                   {/* Lamp effect - only shown on open item */}
                   <AnimatePresence>
@@ -162,7 +162,7 @@ export function FAQSection() {
 
           {/* Support Link */}
           <div className="text-center mt-8">
-            <p className="text-sm flex items-center justify-center gap-2 text-[#1a1a2e]">
+            <p className="text-sm flex items-center justify-center gap-2 text-muted-foreground">
               <Mail className="w-4 h-4 text-primary" />
               <span>Can&apos;t find your answer?</span>
               <a

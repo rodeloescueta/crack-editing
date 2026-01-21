@@ -26,24 +26,24 @@
   /* Marquee animation variable (keyframes defined globally below) */
   --animate-marquee: marquee 30s linear infinite;
 
-  /* CTA Pulse animation for primary buttons */
+  /* CTA Pulse animation for primary buttons - uses CSS variable for theming */
   --animate-cta-pulse: cta-pulse 2s ease-in-out infinite;
 
   @keyframes cta-pulse {
     0%, 100% {
-      box-shadow: 0 0 0 0 oklch(0.75 0.18 55 / 0.4);
+      box-shadow: 0 0 0 0 var(--primary-glow, oklch(0.65 0.15 220 / 0.4));
     }
     50% {
-      box-shadow: 0 0 0 8px oklch(0.75 0.18 55 / 0);
+      box-shadow: 0 0 0 8px var(--primary-glow-transparent, oklch(0.65 0.15 220 / 0));
     }
   }
 
   @keyframes badge-glow {
     0%, 100% {
-      box-shadow: 0 0 15px oklch(0.75 0.18 55 / 0.15);
+      box-shadow: 0 0 15px var(--primary-glow-soft, oklch(0.65 0.15 220 / 0.15));
     }
     50% {
-      box-shadow: 0 0 25px oklch(0.75 0.18 55 / 0.25);
+      box-shadow: 0 0 25px var(--primary-glow-medium, oklch(0.65 0.15 220 / 0.25));
     }
   }
 
@@ -103,7 +103,8 @@
   --radius-4xl: calc(var(--radius) + 16px);
 }
 
-:root {
+:root,
+.theme-blue {
   /* Ice-blue light theme - based on iceberg tip colors */
   --background: oklch(0.96 0.015 210);           /* Light ice-blue */
   --foreground: oklch(0.15 0.03 240);            /* Dark navy text */
@@ -112,9 +113,19 @@
   --popover: oklch(0.94 0.02 210);
   --popover-foreground: oklch(0.15 0.03 240);
 
-  /* Primary - Orange for CTAs (darker for light bg contrast) */
-  --primary: oklch(0.65 0.18 55);
-  --primary-foreground: oklch(0.99 0.02 95);
+  /* Primary - Sky Blue/Cyan for CTAs */
+  --primary: oklch(0.65 0.15 220);               /* Sky blue ~#0ea5e9 */
+  --primary-foreground: oklch(0.99 0.01 210);    /* White */
+  --primary-light: oklch(0.75 0.12 220);         /* Lighter sky blue */
+  --primary-dark: oklch(0.55 0.18 220);          /* Darker sky blue */
+
+  /* Primary glow colors for animations */
+  --primary-glow: oklch(0.65 0.15 220 / 0.4);
+  --primary-glow-transparent: oklch(0.65 0.15 220 / 0);
+  --primary-glow-soft: oklch(0.65 0.15 220 / 0.15);
+  --primary-glow-medium: oklch(0.65 0.15 220 / 0.25);
+  --primary-glow-strong: oklch(0.65 0.15 220 / 0.5);
+  --primary-rgb: 14, 165, 233;                   /* For rgba() usage */
 
   /* Secondary - Muted ice-blue for secondary actions */
   --secondary: oklch(0.88 0.025 210);
@@ -124,9 +135,9 @@
   --muted: oklch(0.88 0.02 210);
   --muted-foreground: oklch(0.45 0.03 240);      /* Medium gray text */
 
-  /* Accent - Sky Blue for highlights */
-  --accent: oklch(0.65 0.15 220);
-  --accent-foreground: oklch(0.99 0.01 210);
+  /* Accent - Lighter sky blue for highlights */
+  --accent: oklch(0.70 0.12 220);
+  --accent-foreground: oklch(0.15 0.02 240);
 
   /* Destructive - Red for errors */
   --destructive: oklch(0.55 0.22 25);
@@ -134,11 +145,11 @@
   /* Borders and inputs - dark borders on light bg */
   --border: oklch(0.15 0.02 240 / 12%);
   --input: oklch(0.90 0.02 210);
-  --ring: oklch(0.65 0.18 55);
+  --ring: oklch(0.65 0.15 220);
 
   /* Chart colors */
-  --chart-1: oklch(0.65 0.18 55);
-  --chart-2: oklch(0.65 0.15 220);
+  --chart-1: oklch(0.65 0.15 220);
+  --chart-2: oklch(0.70 0.12 200);
   --chart-3: oklch(0.55 0.15 200);
   --chart-4: oklch(0.60 0.12 150);
   --chart-5: oklch(0.50 0.10 100);
@@ -148,22 +159,22 @@
   /* Sidebar */
   --sidebar: oklch(0.94 0.02 210);
   --sidebar-foreground: oklch(0.15 0.03 240);
-  --sidebar-primary: oklch(0.65 0.18 55);
-  --sidebar-primary-foreground: oklch(0.99 0.02 95);
-  --sidebar-accent: oklch(0.65 0.15 220);
-  --sidebar-accent-foreground: oklch(0.99 0.01 210);
+  --sidebar-primary: oklch(0.65 0.15 220);
+  --sidebar-primary-foreground: oklch(0.99 0.01 210);
+  --sidebar-accent: oklch(0.70 0.12 220);
+  --sidebar-accent-foreground: oklch(0.15 0.02 240);
   --sidebar-border: oklch(0.15 0.02 240 / 10%);
-  --sidebar-ring: oklch(0.65 0.18 55);
+  --sidebar-ring: oklch(0.65 0.15 220);
 
-  /* Custom: Orange gradient stops */
-  --gradient-orange-from: oklch(0.70 0.18 50);
-  --gradient-orange-to: oklch(0.60 0.20 60);
+  /* Custom: Primary gradient stops (blue theme) */
+  --gradient-primary-from: oklch(0.70 0.15 220);
+  --gradient-primary-to: oklch(0.60 0.18 210);
 
   /* Custom: Light blue gradient stops */
   --gradient-blue-from: oklch(0.70 0.15 220);
   --gradient-blue-to: oklch(0.60 0.18 210);
 
-  /* Custom: Purple gradient stops */
+  /* Custom: Purple gradient stops (kept for decorative elements) */
   --gradient-purple-from: oklch(0.55 0.25 290);
   --gradient-purple-to: oklch(0.45 0.28 270);
 
@@ -174,6 +185,43 @@
   /* Light section text colors */
   --light-section-text: oklch(0.20 0.02 240);
   --light-section-muted: oklch(0.45 0.02 240);
+}
+
+/* Purple/Fuchsia theme - activated via ?theme=purple */
+.theme-purple {
+  /* Primary - Fuchsia/Magenta for CTAs */
+  --primary: oklch(0.65 0.25 320);               /* Fuchsia ~#d946ef */
+  --primary-foreground: oklch(0.99 0.01 320);    /* White */
+  --primary-light: oklch(0.75 0.22 320);         /* Lighter fuchsia */
+  --primary-dark: oklch(0.55 0.28 320);          /* Darker fuchsia */
+
+  /* Primary glow colors for animations */
+  --primary-glow: oklch(0.65 0.25 320 / 0.4);
+  --primary-glow-transparent: oklch(0.65 0.25 320 / 0);
+  --primary-glow-soft: oklch(0.65 0.25 320 / 0.15);
+  --primary-glow-medium: oklch(0.65 0.25 320 / 0.25);
+  --primary-glow-strong: oklch(0.65 0.25 320 / 0.5);
+  --primary-rgb: 217, 70, 239;                   /* For rgba() usage */
+
+  /* Accent - Lighter fuchsia for highlights */
+  --accent: oklch(0.70 0.20 320);
+  --accent-foreground: oklch(0.15 0.02 320);
+
+  /* Ring color */
+  --ring: oklch(0.65 0.25 320);
+
+  /* Chart colors */
+  --chart-1: oklch(0.65 0.25 320);
+  --chart-2: oklch(0.70 0.20 300);
+
+  /* Sidebar */
+  --sidebar-primary: oklch(0.65 0.25 320);
+  --sidebar-accent: oklch(0.70 0.20 320);
+  --sidebar-ring: oklch(0.65 0.25 320);
+
+  /* Custom: Primary gradient stops (purple theme) */
+  --gradient-primary-from: oklch(0.70 0.25 320);
+  --gradient-primary-to: oklch(0.60 0.28 300);
 }
 
 .dark {
@@ -189,9 +237,19 @@
   --popover: oklch(0.12 0.025 240);
   --popover-foreground: oklch(0.98 0.01 240);
 
-  /* Primary - Orange for CTAs (pops on dark bg) */
-  --primary: oklch(0.75 0.18 55);
-  --primary-foreground: oklch(0.15 0.03 55);
+  /* Primary - Sky Blue/Cyan for CTAs (pops on dark bg) */
+  --primary: oklch(0.75 0.15 220);
+  --primary-foreground: oklch(0.15 0.03 220);
+  --primary-light: oklch(0.80 0.12 220);
+  --primary-dark: oklch(0.65 0.18 220);
+
+  /* Primary glow colors for animations (dark mode) */
+  --primary-glow: oklch(0.75 0.15 220 / 0.4);
+  --primary-glow-transparent: oklch(0.75 0.15 220 / 0);
+  --primary-glow-soft: oklch(0.75 0.15 220 / 0.15);
+  --primary-glow-medium: oklch(0.75 0.15 220 / 0.25);
+  --primary-glow-strong: oklch(0.75 0.15 220 / 0.5);
+  --primary-rgb: 56, 189, 248;
 
   /* Secondary - Muted for secondary actions */
   --secondary: oklch(0.18 0.025 240);
@@ -201,7 +259,7 @@
   --muted: oklch(0.15 0.02 240);
   --muted-foreground: oklch(0.65 0.02 240);
 
-  /* Accent - Sky Blue for highlights (Snowball uses purple, we use light blue) */
+  /* Accent - Sky Blue for highlights */
   --accent: oklch(0.75 0.15 220);
   --accent-foreground: oklch(0.15 0.02 240);
 
@@ -211,11 +269,11 @@
   /* Borders and inputs */
   --border: oklch(1 0 0 / 12%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.75 0.18 55);
+  --ring: oklch(0.75 0.15 220);
 
   /* Chart colors */
-  --chart-1: oklch(0.75 0.18 55);
-  --chart-2: oklch(0.75 0.15 220);
+  --chart-1: oklch(0.75 0.15 220);
+  --chart-2: oklch(0.80 0.12 200);
   --chart-3: oklch(0.65 0.15 200);
   --chart-4: oklch(0.70 0.12 150);
   --chart-5: oklch(0.60 0.10 100);
@@ -223,18 +281,18 @@
   /* Sidebar */
   --sidebar: oklch(0.10 0.02 240);
   --sidebar-foreground: oklch(0.98 0.01 240);
-  --sidebar-primary: oklch(0.75 0.18 55);
-  --sidebar-primary-foreground: oklch(0.15 0.03 55);
+  --sidebar-primary: oklch(0.75 0.15 220);
+  --sidebar-primary-foreground: oklch(0.15 0.03 220);
   --sidebar-accent: oklch(0.75 0.15 220);
   --sidebar-accent-foreground: oklch(0.15 0.02 240);
   --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.75 0.18 55);
+  --sidebar-ring: oklch(0.75 0.15 220);
 
-  /* Custom: Orange gradient stops */
-  --gradient-orange-from: oklch(0.78 0.18 50);
-  --gradient-orange-to: oklch(0.70 0.20 60);
+  /* Custom: Primary gradient stops (blue theme - dark mode) */
+  --gradient-primary-from: oklch(0.78 0.15 220);
+  --gradient-primary-to: oklch(0.68 0.18 210);
 
-  /* Custom: Light blue gradient stops (replacing purple) */
+  /* Custom: Light blue gradient stops */
   --gradient-blue-from: oklch(0.78 0.15 220);
   --gradient-blue-to: oklch(0.68 0.18 210);
 
@@ -249,6 +307,28 @@
   /* Light section text colors (for use in ice-blue sections) */
   --light-section-text: oklch(0.20 0.02 240);
   --light-section-muted: oklch(0.45 0.02 240);
+}
+
+/* Dark mode with purple theme */
+.dark.theme-purple,
+.dark .theme-purple {
+  --primary: oklch(0.75 0.25 320);
+  --primary-foreground: oklch(0.15 0.03 320);
+  --primary-light: oklch(0.80 0.22 320);
+  --primary-dark: oklch(0.65 0.28 320);
+
+  --primary-glow: oklch(0.75 0.25 320 / 0.4);
+  --primary-glow-transparent: oklch(0.75 0.25 320 / 0);
+  --primary-glow-soft: oklch(0.75 0.25 320 / 0.15);
+  --primary-glow-medium: oklch(0.75 0.25 320 / 0.25);
+  --primary-glow-strong: oklch(0.75 0.25 320 / 0.5);
+  --primary-rgb: 232, 121, 249;
+
+  --accent: oklch(0.75 0.20 320);
+  --ring: oklch(0.75 0.25 320);
+
+  --gradient-primary-from: oklch(0.78 0.25 320);
+  --gradient-primary-to: oklch(0.68 0.28 300);
 }
 
 @layer base {
@@ -317,12 +397,22 @@
 
 /* Typography utilities */
 @layer utilities {
+  /* Primary gradient - uses theme colors (blue or purple based on theme) */
+  .text-gradient-primary {
+    @apply bg-gradient-to-r from-[var(--gradient-primary-from)] to-[var(--gradient-primary-to)] bg-clip-text text-transparent;
+  }
+
+  /* Alias for backwards compatibility - now uses primary gradient */
   .text-gradient-orange {
-    @apply bg-gradient-to-r from-[var(--gradient-orange-from)] to-[var(--gradient-orange-to)] bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-[var(--gradient-primary-from)] to-[var(--gradient-primary-to)] bg-clip-text text-transparent;
   }
 
   .text-gradient-purple {
     @apply bg-gradient-to-r from-[var(--gradient-purple-from)] to-[var(--gradient-purple-to)] bg-clip-text text-transparent;
+  }
+
+  .text-gradient-blue {
+    @apply bg-gradient-to-r from-[var(--gradient-blue-from)] to-[var(--gradient-blue-to)] bg-clip-text text-transparent;
   }
 
   /* Heading sizes - responsive */

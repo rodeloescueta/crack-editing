@@ -105,8 +105,8 @@ export function TransformationCarousel() {
                 variants={fadeInUp}
               >
                 can you go from{" "}
-                <GradientText variant="orange">THIS</GradientText> to{" "}
-                <GradientText variant="orange">THIS</GradientText>?
+                <GradientText variant="primary">THIS</GradientText> to{" "}
+                <GradientText variant="primary">THIS</GradientText>?
               </motion.h2>
 
               {/* Subtext - dark text for light section */}
@@ -181,9 +181,9 @@ export function TransformationCarousel() {
                   animate={{
                     scale: [1, 1.1, 1],
                     boxShadow: [
-                      "0 0 0 0 rgba(234, 88, 12, 0.4)",
-                      "0 0 0 10px rgba(234, 88, 12, 0)",
-                      "0 0 0 0 rgba(234, 88, 12, 0)"
+                      "0 0 0 0 var(--primary-glow)",
+                      "0 0 0 10px var(--primary-glow-transparent)",
+                      "0 0 0 0 var(--primary-glow)"
                     ]
                   }}
                   transition={{
@@ -192,7 +192,7 @@ export function TransformationCarousel() {
                     ease: "easeInOut"
                   }}
                 >
-                  <ArrowRight className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-black rotate-90 sm:rotate-0" />
+                  <ArrowRight className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white rotate-90 sm:rotate-0" />
                 </motion.div>
 
                 {/* After Card */}
@@ -235,7 +235,7 @@ export function TransformationCarousel() {
                 <div
                   className={`relative rounded-full overflow-hidden transition-all duration-300 ease-out ${
                     index === currentIndex
-                      ? "w-12 h-12 ring-2 ring-primary ring-offset-2 ring-offset-card shadow-[0_0_15px_oklch(0.75_0.18_55/0.4)]"
+                      ? "w-12 h-12 ring-2 ring-primary ring-offset-2 ring-offset-card shadow-[0_0_15px_var(--primary-glow)]"
                       : "w-9 h-9 hover:scale-105"
                   }`}
                 >

@@ -114,7 +114,7 @@ export function CreatorsSection() {
 
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
                 It&apos;s taken{" "}
-                <GradientText variant="orange">25+ combined years</GradientText>{" "}
+                <GradientText variant="primary">25+ combined years</GradientText>{" "}
                 to master this craft.
               </h2>
 

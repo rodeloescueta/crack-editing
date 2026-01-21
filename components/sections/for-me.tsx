@@ -50,7 +50,7 @@ export function ForMeSection() {
           <motion.div className="text-center mb-12" variants={fadeInUp}>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
               is this course{" "}
-              <GradientText variant="purple">for me?</GradientText>
+              <GradientText variant="primary">for me?</GradientText>
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
               This course isn&apos;t for everyone. Here&apos;s how to know if

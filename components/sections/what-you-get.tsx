@@ -82,7 +82,7 @@ export function WhatYouGetSection() {
           {/* Header */}
           <motion.div className="text-center mb-16" variants={fadeInUp}>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-              <GradientText variant="purple">what you get</GradientText>
+              <GradientText variant="primary">what you get</GradientText>
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
               A complete, step-by-step system for editing videos that feel easier

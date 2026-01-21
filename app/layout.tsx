@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Figtree } from "next/font/google";
+import { ThemeProvider } from "./providers/theme-provider";
 import "./globals.css";
 
 const figtree = Figtree({subsets:['latin'],variable:'--font-sans'});
@@ -30,7 +31,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen overflow-x-hidden`}
       >
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );
