@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 import { useMotionValueEvent, useScroll, useTransform } from "motion/react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
-import { Play } from "lucide-react";
+import { Play, Pause } from "lucide-react";
 
 export const StickyScroll = ({
   content,
@@ -18,8 +18,10 @@ export const StickyScroll = ({
 }) => {
   const [activeCard, setActiveCard] = React.useState(0);
   const [progress, setProgress] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
+  const animationRef = useRef<number | null>(null);
   const { scrollYProgress } = useScroll({
     container: ref,
     offset: ["start start", "end end"],
@@ -42,9 +44,104 @@ export const StickyScroll = ({
     setActiveCard(closestBreakpointIndex);
   });
 
+  // Stop auto-scroll function
+  const stopAutoScroll = useCallback(() => {
+    if (animationRef.current) {
+      cancelAnimationFrame(animationRef.current);
+      animationRef.current = null;
+    }
+    setIsPlaying(false);
+  }, []);
+
+  // Start auto-scroll function
+  const startAutoScroll = useCallback(() => {
+    // Use DOM query to get the scroll container (avoids conflict with Framer Motion's useScroll)
+    const container = document.querySelector('.scrollbar-hide') as HTMLDivElement | null;
+    if (!container) return;
+
+    const scrollSpeed = 0.5; // pixels per frame (subpixel for smooth scrolling)
+    let accumulatedScroll = 0; // Accumulator for subpixel scrolling
+
+    const animate = () => {
+      const container = document.querySelector('.scrollbar-hide') as HTMLDivElement | null;
+      if (!container) return;
+
+      const maxScroll = container.scrollHeight - container.clientHeight;
+      const currentScroll = container.scrollTop;
+
+      if (currentScroll >= maxScroll - 1) {
+        setIsPlaying(false);
+        animationRef.current = null;
+        return;
+      }
+
+      // Accumulate subpixel scroll and apply when >= 1
+      accumulatedScroll += scrollSpeed;
+      if (accumulatedScroll >= 1) {
+        const pixelsToScroll = Math.floor(accumulatedScroll);
+        container.scrollTop += pixelsToScroll;
+        accumulatedScroll -= pixelsToScroll;
+      }
+
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    animationRef.current = requestAnimationFrame(animate);
+  }, []);
+
+  // Detect user scroll interaction to stop auto-scroll
+  useEffect(() => {
+    const container = ref.current;
+    if (!container) return;
+
+    const handleUserInteraction = () => {
+      if (isPlaying) {
+        stopAutoScroll();
+      }
+    };
+
+    container.addEventListener('wheel', handleUserInteraction);
+    container.addEventListener('touchstart', handleUserInteraction);
+
+    return () => {
+      container.removeEventListener('wheel', handleUserInteraction);
+      container.removeEventListener('touchstart', handleUserInteraction);
+    };
+  }, [isPlaying, stopAutoScroll]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, []);
+
+  // Toggle play/pause handler
+  const handlePlayPause = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation(); // Don't trigger progress bar click
+
+    if (isPlaying) {
+      stopAutoScroll();
+    } else {
+      setIsPlaying(true);
+      startAutoScroll();
+    }
+  }, [isPlaying, startAutoScroll, stopAutoScroll]);
+
   // Handle click on progress bar to jump to position
   const handleProgressClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    // Ignore clicks on the play/pause button
+    const target = e.target as HTMLElement;
+    if (target.closest('button')) return;
+
     if (!ref.current || !progressBarRef.current) return;
+
+    // Stop auto-scroll if playing
+    if (isPlaying) {
+      stopAutoScroll();
+    }
 
     const rect = progressBarRef.current.getBoundingClientRect();
     const clickX = e.clientX - rect.left;
@@ -55,7 +152,7 @@ export const StickyScroll = ({
       top: percentage * maxScroll,
       behavior: "smooth",
     });
-  }, []);
+  }, [isPlaying, stopAutoScroll]);
 
   const backgroundColors = [
     "#E8F4F8", // ice-blue light
@@ -82,9 +179,12 @@ export const StickyScroll = ({
         animate={{
           backgroundColor: backgroundColors[activeCard % backgroundColors.length],
         }}
-        className="relative flex h-[22rem] justify-center gap-6 overflow-y-auto rounded-t-2xl p-6 lg:p-8 scrollbar-hide"
-        ref={ref}
+        className="relative rounded-t-2xl"
       >
+        <div
+          ref={ref}
+          className="flex h-[22rem] justify-center gap-6 overflow-y-auto p-6 lg:p-8 scrollbar-hide"
+        >
         <div className="relative flex items-start">
           <div className="max-w-md lg:max-w-lg">
             {content.map((item, index) => (
@@ -125,6 +225,7 @@ export const StickyScroll = ({
         >
           {content[activeCard].content ?? null}
         </div>
+        </div>
       </motion.div>
 
       {/* YouTube-style Progress Bar */}
@@ -134,20 +235,19 @@ export const StickyScroll = ({
           className="relative flex items-center gap-3 cursor-pointer group"
           onClick={handleProgressClick}
         >
-          {/* Play Button */}
-          <motion.div
-            className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-br from-[oklch(0.65_0.20_280)] to-[oklch(0.55_0.25_260)] flex items-center justify-center shadow-sm"
-            animate={{
-              scale: [1, 1.05, 1],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
+          {/* Play/Pause Button */}
+          <motion.button
+            onClick={handlePlayPause}
+            className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-br from-[oklch(0.65_0.20_280)] to-[oklch(0.55_0.25_260)] flex items-center justify-center shadow-sm hover:shadow-md transition-shadow"
+            animate={isPlaying ? {} : { scale: [1, 1.05, 1] }}
+            transition={isPlaying ? {} : { duration: 2, repeat: Infinity, ease: "easeInOut" }}
           >
-            <Play className="w-3 h-3 text-white fill-white ml-0.5" />
-          </motion.div>
+            {isPlaying ? (
+              <Pause className="w-3 h-3 text-white fill-white" />
+            ) : (
+              <Play className="w-3 h-3 text-white fill-white ml-0.5" />
+            )}
+          </motion.button>
 
           {/* Progress Track */}
           <div className="flex-1 relative h-2 bg-[oklch(0.88_0.02_240)] rounded-full overflow-hidden">
