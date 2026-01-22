@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { GradientText } from "@/components/ui/gradient-text"
 import { FlipWords } from "@/components/ui/flip-words"
+import { BackgroundVideoCard, heroVideoCards } from "@/components/ui/background-video-card"
 import {
   fadeInUp,
   fadeInDown,
@@ -30,6 +31,23 @@ const trustIndicators = [
 export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#0a1628] via-[#0c2445] to-[#051525]">
+
+      {/* Background video cards - lowest layer */}
+      <div className="absolute inset-0 z-[0] overflow-hidden pointer-events-none">
+        {heroVideoCards.map((card, index) => (
+          <BackgroundVideoCard
+            key={index}
+            src={card.src}
+            position={card.position}
+            size={card.size}
+            opacity={card.opacity}
+            rotation={card.rotation}
+            delay={card.delay}
+            hideOnMobile={card.hideOnMobile}
+            hideOnTablet={card.hideOnTablet}
+          />
+        ))}
+      </div>
 
       {/* Background gradient overlay - sits above ripple */}
       <div className="absolute inset-0 z-[1] bg-gradient-to-b from-transparent via-transparent to-[#051525]/40 pointer-events-none" />
