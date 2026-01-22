@@ -1,8 +1,9 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
-import { useMotionValueEvent, useScroll } from "motion/react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
+import { useMotionValueEvent, useScroll, useTransform } from "motion/react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
+import { Play } from "lucide-react";
 
 export const StickyScroll = ({
   content,
@@ -16,16 +17,17 @@ export const StickyScroll = ({
   contentClassName?: string;
 }) => {
   const [activeCard, setActiveCard] = React.useState(0);
-  const ref = useRef<any>(null);
+  const [progress, setProgress] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const progressBarRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
-    // uncomment line 22 and comment line 23 if you DONT want the overflow container and want to have it change on the entire page scroll
-    // target: ref
     container: ref,
-    offset: ["start start", "end start"],
+    offset: ["start start", "end end"],
   });
   const cardLength = content.length;
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    setProgress(latest);
     const cardsBreakpoints = content.map((_, index) => index / cardLength);
     const closestBreakpointIndex = cardsBreakpoints.reduce(
       (acc, breakpoint, index) => {
@@ -39,6 +41,21 @@ export const StickyScroll = ({
     );
     setActiveCard(closestBreakpointIndex);
   });
+
+  // Handle click on progress bar to jump to position
+  const handleProgressClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (!ref.current || !progressBarRef.current) return;
+
+    const rect = progressBarRef.current.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const percentage = Math.max(0, Math.min(1, clickX / rect.width));
+
+    const maxScroll = ref.current.scrollHeight - ref.current.clientHeight;
+    ref.current.scrollTo({
+      top: percentage * maxScroll,
+      behavior: "smooth",
+    });
+  }, []);
 
   const backgroundColors = [
     "#E8F4F8", // ice-blue light
@@ -60,12 +77,12 @@ export const StickyScroll = ({
   }, [activeCard]);
 
   return (
-    <div className="mx-auto max-w-4xl rounded-2xl border border-border/50 bg-white/80 shadow-lg backdrop-blur-sm">
+    <div className="mx-auto max-w-4xl rounded-2xl border border-border/50 bg-white/80 shadow-lg backdrop-blur-sm overflow-hidden">
       <motion.div
         animate={{
           backgroundColor: backgroundColors[activeCard % backgroundColors.length],
         }}
-        className="relative flex h-[22rem] justify-center gap-6 overflow-y-auto rounded-2xl p-6 lg:p-8 scrollbar-modules"
+        className="relative flex h-[22rem] justify-center gap-6 overflow-y-auto rounded-t-2xl p-6 lg:p-8 scrollbar-hide"
         ref={ref}
       >
         <div className="relative flex items-start">
@@ -109,6 +126,51 @@ export const StickyScroll = ({
           {content[activeCard].content ?? null}
         </div>
       </motion.div>
+
+      {/* YouTube-style Progress Bar */}
+      <div className="relative px-4 py-3 bg-[oklch(0.97_0.01_240)] border-t border-[oklch(0.90_0.02_240)]">
+        <div
+          ref={progressBarRef}
+          className="relative flex items-center gap-3 cursor-pointer group"
+          onClick={handleProgressClick}
+        >
+          {/* Play Button */}
+          <motion.div
+            className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-br from-[oklch(0.65_0.20_280)] to-[oklch(0.55_0.25_260)] flex items-center justify-center shadow-sm"
+            animate={{
+              scale: [1, 1.05, 1],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
+            <Play className="w-3 h-3 text-white fill-white ml-0.5" />
+          </motion.div>
+
+          {/* Progress Track */}
+          <div className="flex-1 relative h-2 bg-[oklch(0.88_0.02_240)] rounded-full overflow-hidden">
+            {/* Progress Fill */}
+            <motion.div
+              className="absolute left-0 top-0 h-full rounded-full bg-gradient-to-r from-[oklch(0.60_0.20_280)] via-[oklch(0.55_0.22_270)] to-[oklch(0.50_0.24_260)]"
+              style={{ width: `${progress * 100}%` }}
+              transition={{ duration: 0.1 }}
+            />
+
+            {/* Playhead */}
+            <motion.div
+              className="absolute top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-white shadow-md border-2 border-[oklch(0.55_0.22_270)] opacity-0 group-hover:opacity-100 transition-opacity"
+              style={{ left: `calc(${progress * 100}% - 6px)` }}
+            />
+          </div>
+
+          {/* Module indicator */}
+          <div className="flex-shrink-0 text-xs font-medium text-[oklch(0.45_0.02_240)] tabular-nums">
+            {activeCard + 1}/{cardLength}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

@@ -550,4 +550,14 @@
   .scrollbar-modules::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(to bottom, oklch(0.65 0.24 290), oklch(0.55 0.27 270));
   }
+
+  /* Hide scrollbar completely (for YouTube-style progress bar) */
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
 }
