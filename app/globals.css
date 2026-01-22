@@ -4,6 +4,33 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Hide native scrollbar for custom scrollbar - HIGH PRIORITY (outside layers) */
+@media (min-width: 768px) {
+  html,
+  body {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    background: transparent !important;
+  }
+
+  html::-webkit-scrollbar-track,
+  body::-webkit-scrollbar-track {
+    background: transparent !important;
+  }
+
+  html::-webkit-scrollbar-thumb,
+  body::-webkit-scrollbar-thumb {
+    background: transparent !important;
+  }
+}
+
 @theme inline {
   /* Aceternity UI: Background Ripple Effect animation */
   --animate-cell-ripple: cell-ripple var(--duration, 200ms) ease-out none var(--delay, 0ms);
@@ -357,27 +384,45 @@
     @apply focus:top-4 transition-all;
   }
 
-  /* Scrollbar styling */
-  html {
-    overflow-y: scroll;
+  /* Hide native scrollbar for custom scrollbar (desktop only) */
+  @media (min-width: 768px) {
+    html,
+    html body {
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE/Edge */
+    }
+
+    html::-webkit-scrollbar,
+    html body::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Edge */
+      width: 0;
+      height: 0;
+    }
   }
 
-  /* Custom scrollbar styling for light theme */
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
+  /* Keep native scrollbar on mobile for better UX */
+  @media (max-width: 767px) {
+    html {
+      overflow-y: scroll;
+      scrollbar-width: thin;
+    }
 
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
+    html::-webkit-scrollbar {
+      width: 6px;
+    }
 
-  ::-webkit-scrollbar-thumb {
-    background: oklch(0.75 0.02 210);
-    border-radius: 4px;
-  }
+    html::-webkit-scrollbar-track {
+      background: transparent;
+    }
 
-  ::-webkit-scrollbar-thumb:hover {
-    background: oklch(0.65 0.03 210);
+    html::-webkit-scrollbar-thumb {
+      background: oklch(0.75 0.02 210);
+      border-radius: 3px;
+    }
+
+    html::-webkit-scrollbar-thumb:hover {
+      background: oklch(0.65 0.03 210);
+    }
   }
 
   body {
