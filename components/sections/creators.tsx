@@ -36,9 +36,9 @@ const creators = [
 ]
 
 const stats = [
-  { value: "15+", label: "Years Digital Marketing", attribution: "AJ Kumar", avatar: "/images/creators/aj-kumar.png" },
+  { value: "15+", label: "Years Digital Marketing", attribution: "AJ Kumar", avatar: null },
   { value: "3B+", label: "Views Generated", attribution: "For Clients", avatar: null },
-  { value: "10+", label: "Years Video Editing", attribution: "Josh Bill", avatar: "/images/creators/josh-bill.png" },
+  { value: "10+", label: "Years Video Editing", attribution: "Josh Bill", avatar: null },
   { value: "100+", label: "Brand Deals", attribution: "Secured", avatar: null },
 ]
 
