@@ -81,7 +81,7 @@ export function CreatorsSection() {
                   containerClassName="flex items-center justify-center"
                 >
                   {/* TLC Fingerprint Logo with Sparkles */}
-                  <div className="relative w-64 h-80 md:w-80 md:h-96 flex items-center justify-center overflow-hidden">
+                  <div className="relative w-80 h-96 md:w-[22rem] md:h-[26rem] flex items-center justify-center overflow-hidden">
                     {/* Aceternity UI: Sparkles Effect */}
                     <div className="absolute inset-0 z-0">
                       <SparklesCore
@@ -96,7 +96,7 @@ export function CreatorsSection() {
                     </div>
                     {/* TLC Fingerprint Logo */}
                     <div className="relative z-10">
-                      <LimitlessLogo className="w-64 h-80 md:w-80 md:h-96" />
+                      <LimitlessLogo className="w-80 h-96 md:w-[22rem] md:h-[26rem]" />
                     </div>
                   </div>
                 </PinContainer>

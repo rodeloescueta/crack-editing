@@ -1,68 +1,18 @@
+import Image from "next/image"
 import { cn } from "@/lib/utils"
 
-// Limitless Company - TLC Fingerprint logo
+// Limitless Company - TLC Fingerprint logo (Neon Sign version)
 export function LimitlessLogo({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 80 100" className={cn("w-24 h-28", className)}>
-      {/* Fingerprint curves - outer */}
-      <path
-        d="M15 85 Q5 70 5 50 Q5 20 40 10 Q75 20 75 50 Q75 70 65 85"
-        fill="none"
-        stroke="#9CA3AF"
-        strokeWidth="2.5"
-        strokeLinecap="round"
+    <div className={cn("relative w-24 h-28", className)}>
+      <Image
+        src="/assets/TLC Logo (Neon Sign).png"
+        alt="The Limitless Company"
+        fill
+        className="object-contain"
+        priority
       />
-      <path
-        d="M20 80 Q12 68 12 50 Q12 25 40 17 Q68 25 68 50 Q68 68 60 80"
-        fill="none"
-        stroke="#9CA3AF"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-      />
-      <path
-        d="M25 75 Q18 65 18 50 Q18 30 40 24 Q62 30 62 50 Q62 65 55 75"
-        fill="none"
-        stroke="#9CA3AF"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-      />
-      {/* Inner curves */}
-      <path
-        d="M30 70 Q24 62 24 50 Q24 35 40 30 Q56 35 56 50 Q56 62 50 70"
-        fill="none"
-        stroke="#9CA3AF"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-      />
-      <path
-        d="M35 65 Q30 58 30 50 Q30 40 40 36 Q50 40 50 50 Q50 58 45 65"
-        fill="none"
-        stroke="#9CA3AF"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-      />
-      {/* Center curves */}
-      <path
-        d="M38 60 Q36 55 36 50 Q36 44 40 42 Q44 44 44 50 Q44 55 42 60"
-        fill="none"
-        stroke="#9CA3AF"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-      />
-      {/* TLC text overlay */}
-      <text
-        x="40"
-        y="55"
-        fontFamily="Georgia, serif"
-        fontSize="18"
-        fontWeight="600"
-        fill="#374151"
-        textAnchor="middle"
-        fontStyle="italic"
-      >
-        TLC
-      </text>
-    </svg>
+    </div>
   )
 }
 
