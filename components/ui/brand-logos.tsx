@@ -1,12 +1,12 @@
 import Image from "next/image"
 import { cn } from "@/lib/utils"
 
-// Limitless Company - TLC Fingerprint logo (Neon Sign version)
+// Limitless Company - TLC Fingerprint logo (Black thumbprint)
 export function LimitlessLogo({ className }: { className?: string }) {
   return (
     <div className={cn("relative w-24 h-28", className)}>
       <Image
-        src="/assets/TLC Logo (Neon Sign).png"
+        src="/assets/tlc-thumbprint.png"
         alt="The Limitless Company"
         fill
         className="object-contain"
