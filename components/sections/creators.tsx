@@ -1,6 +1,5 @@
 "use client"
 
-import Image from "next/image"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { Container } from "@/components/layout"
@@ -118,19 +117,10 @@ export function CreatorsSection() {
                 to master this craft.
               </h2>
 
-              {/* Creator Bio Cards with Avatars */}
+              {/* Creator Bio Cards */}
               <div className="space-y-4">
                 {/* AJ Kumar */}
-                <div className="flex items-start gap-4 p-4 rounded-xl bg-card/30 border border-border/30">
-                  <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-primary/30 flex-shrink-0">
-                    <Image
-                      src="/images/creators/aj-kumar.png"
-                      alt="AJ Kumar"
-                      width={56}
-                      height={56}
-                      className="object-cover w-full h-full"
-                    />
-                  </div>
+                <div className="p-4 rounded-xl bg-card/30 border border-border/30">
                   <p className="text-muted-foreground">
                     <span className="text-foreground font-semibold">AJ Kumar</span>{" "}
                     brings 15+ years in digital marketing and content strategy,
@@ -140,16 +130,7 @@ export function CreatorsSection() {
                 </div>
 
                 {/* Josh Bill */}
-                <div className="flex items-start gap-4 p-4 rounded-xl bg-card/30 border border-border/30">
-                  <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-primary/30 flex-shrink-0">
-                    <Image
-                      src="/images/creators/josh-bill.png"
-                      alt="Josh Bill"
-                      width={56}
-                      height={56}
-                      className="object-cover w-full h-full"
-                    />
-                  </div>
+                <div className="p-4 rounded-xl bg-card/30 border border-border/30">
                   <p className="text-muted-foreground">
                     <span className="text-foreground font-semibold">Josh Bill</span>{" "}
                     contributes 10+ years of hands-on experience editing and
