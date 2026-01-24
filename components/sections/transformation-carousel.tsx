@@ -20,6 +20,7 @@ interface Transformation {
   creatorName: string
   handle: string
   avatar: string
+  statsImage: string
   before: { views: string; label: string; thumbnail: string; videoUrl?: string }
   after: { views: string; label: string; thumbnail: string; videoUrl?: string }
   growthStats: string
@@ -30,7 +31,8 @@ const transformations: Transformation[] = [
     id: "1",
     creatorName: "Nikki",
     handle: "@bignikbh",
-    avatar: "/images/avatars/nikki.svg",
+    avatar: "/assets/client-profile/nikki2.png",
+    statsImage: "/assets/client-profile/nikki1.png",
     before: { views: "~500 views", label: "Generic edit", thumbnail: "/images/testimonials/video-thumbnail-1.jpg", videoUrl: "" },
     after: { views: "1.1M views", label: "Crack Edited™", thumbnail: "/images/testimonials/video-thumbnail-2.jpg", videoUrl: "" },
     growthStats: "Grew from 6,322 to 1,000,000+ followers using crack editing™",
@@ -39,7 +41,8 @@ const transformations: Transformation[] = [
     id: "2",
     creatorName: "Kathy",
     handle: "@kathyprounis",
-    avatar: "/images/avatars/kathy.svg",
+    avatar: "/assets/client-profile/kathy2.png",
+    statsImage: "/assets/client-profile/kathy1.png",
     before: { views: "~1K views", label: "Generic edit", thumbnail: "/images/testimonials/video-thumbnail-3.jpg", videoUrl: "" },
     after: { views: "482K views", label: "Crack Edited™", thumbnail: "/images/testimonials/video-thumbnail-4.jpg", videoUrl: "" },
     growthStats: "Scaled to 100,000+ followers in just 7 months",
@@ -48,10 +51,41 @@ const transformations: Transformation[] = [
     id: "3",
     creatorName: "Warren",
     handle: "@nontoxicdad",
-    avatar: "/images/avatars/warren.svg",
+    avatar: "/assets/client-profile/nontoxicdad2.png",
+    statsImage: "/assets/client-profile/nontoxicdad1.png",
     before: { views: "~10K views", label: "Generic edit", thumbnail: "/images/testimonials/video-thumbnail-1.jpg", videoUrl: "" },
     after: { views: "22M+ views", label: "Crack Edited™", thumbnail: "/images/testimonials/video-thumbnail-3.jpg", videoUrl: "" },
     growthStats: "Built 1.1M+ followers over 2 years with the system",
+  },
+  {
+    id: "4",
+    creatorName: "Ashley",
+    handle: "@ash_smash33",
+    avatar: "/assets/client-profile/ashley2.png",
+    statsImage: "/assets/client-profile/ashley1.png",
+    before: { views: "~2K views", label: "Generic edit", thumbnail: "/images/testimonials/video-thumbnail-1.jpg", videoUrl: "" },
+    after: { views: "500K+ views", label: "Crack Edited™", thumbnail: "/images/testimonials/video-thumbnail-2.jpg", videoUrl: "" },
+    growthStats: "Built 66K+ engaged followers with crack editing™",
+  },
+  {
+    id: "5",
+    creatorName: "Jonathan",
+    handle: "@foodgod",
+    avatar: "/assets/client-profile/foodgod2.png",
+    statsImage: "/assets/client-profile/foodgod1.png",
+    before: { views: "~50K views", label: "Generic edit", thumbnail: "/images/testimonials/video-thumbnail-3.jpg", videoUrl: "" },
+    after: { views: "10M+ views", label: "Crack Edited™", thumbnail: "/images/testimonials/video-thumbnail-4.jpg", videoUrl: "" },
+    growthStats: "Scaled to 3.7M followers with the system",
+  },
+  {
+    id: "6",
+    creatorName: "Neil",
+    handle: "@neilpatel",
+    avatar: "/assets/client-profile/neil2.png",
+    statsImage: "/assets/client-profile/neil1.png",
+    before: { views: "~5K views", label: "Generic edit", thumbnail: "/images/testimonials/video-thumbnail-1.jpg", videoUrl: "" },
+    after: { views: "2M+ views", label: "Crack Edited™", thumbnail: "/images/testimonials/video-thumbnail-3.jpg", videoUrl: "" },
+    growthStats: "Grew to 646K+ followers as a marketing expert",
   },
 ]
 
@@ -70,6 +104,111 @@ const slideVariants = {
   }),
 }
 
+// Profile Avatar with hover stats popup
+interface ProfileAvatarProps {
+  transformation: Transformation
+  isActive: boolean
+  onClick: () => void
+}
+
+function ProfileAvatar({ transformation, isActive, onClick }: ProfileAvatarProps) {
+  const [isHovered, setIsHovered] = useState(false)
+
+  return (
+    <button
+      onClick={onClick}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className={`relative flex flex-col items-center gap-2 transition-all duration-300 ease-out ${
+        isActive ? "opacity-100" : "opacity-50 hover:opacity-70"
+      }`}
+      aria-label={`Go to ${transformation.creatorName}'s transformation`}
+    >
+      {/* Stats Popup - Desktop only */}
+      <AnimatePresence>
+        {isHovered && (
+          <motion.div
+            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 10, scale: 0.95 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 z-50 hidden sm:block"
+          >
+            <div className="relative w-[220px] rounded-xl overflow-hidden shadow-2xl border border-white/20 bg-card">
+              <Image
+                src={transformation.statsImage}
+                alt={`${transformation.creatorName}'s social media stats`}
+                width={220}
+                height={400}
+                className="w-full h-auto object-cover"
+              />
+              {/* Arrow pointer */}
+              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 rotate-45 bg-card border-r border-b border-white/20" />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Avatar */}
+      <div
+        className={`relative rounded-full overflow-hidden transition-all duration-300 ease-out ${
+          isActive
+            ? "w-11 h-11 sm:w-12 sm:h-12 ring-2 ring-primary ring-offset-2 ring-offset-card shadow-[0_0_15px_var(--primary-glow)]"
+            : "w-8 h-8 sm:w-9 sm:h-9 hover:scale-105"
+        }`}
+      >
+        <Image
+          src={transformation.avatar}
+          alt={transformation.creatorName}
+          fill
+          className="object-cover"
+        />
+      </div>
+
+      {/* Name and handle */}
+      <div className="text-center">
+        <p
+          className={`font-semibold leading-tight transition-all duration-300 ${
+            isActive
+              ? "text-foreground text-xs sm:text-sm"
+              : "text-muted-foreground text-[10px] sm:text-xs"
+          }`}
+        >
+          {transformation.creatorName}
+        </p>
+        <p
+          className={`leading-tight transition-all duration-300 ${
+            isActive
+              ? "text-primary text-[10px] sm:text-xs"
+              : "text-muted-foreground/70 text-[8px] sm:text-[10px]"
+          }`}
+        >
+          {transformation.handle}
+        </p>
+      </div>
+    </button>
+  )
+}
+
+// Helper to get 5 profiles with active item centered (hide the furthest one)
+function getVisibleProfiles(activeIndex: number, items: Transformation[]) {
+  const total = items.length
+  const visibleCount = 5
+  const centerPosition = Math.floor(visibleCount / 2) // position 2 (0-indexed) = 3rd item
+
+  // Create array of indices centered around active
+  const visibleIndices: number[] = []
+  for (let i = -centerPosition; i <= centerPosition; i++) {
+    const index = (activeIndex + i + total) % total
+    visibleIndices.push(index)
+  }
+
+  return visibleIndices.map(originalIndex => ({
+    item: items[originalIndex],
+    originalIndex
+  }))
+}
+
 export function TransformationCarousel() {
   const [[currentIndex, direction], setCurrentIndex] = useState([0, 0])
 
@@ -86,6 +225,7 @@ export function TransformationCarousel() {
   }
 
   const currentTransformation = transformations[currentIndex]
+  const visibleProfiles = getVisibleProfiles(currentIndex, transformations)
 
   return (
     <section className="py-20 md:py-28 overflow-hidden section-light">
@@ -170,7 +310,6 @@ export function TransformationCarousel() {
                     type="before"
                     label={currentTransformation.before.label}
                     views={currentTransformation.before.views}
-                    thumbnail={currentTransformation.before.thumbnail}
                     videoUrl={currentTransformation.before.videoUrl}
                   />
                 </div>
@@ -204,7 +343,6 @@ export function TransformationCarousel() {
                     type="after"
                     label={currentTransformation.after.label}
                     views={currentTransformation.after.views}
-                    thumbnail={currentTransformation.after.thumbnail}
                     videoUrl={currentTransformation.after.videoUrl}
                   />
                 </div>
@@ -219,50 +357,15 @@ export function TransformationCarousel() {
             </motion.div>
           </AnimatePresence>
 
-          {/* Profile Navigation */}
-          <div className="flex justify-center items-end gap-6 sm:gap-8 mt-6">
-            {transformations.map((transformation, index) => (
-              <button
-                key={index}
-                onClick={() => goToSlide(index)}
-                className={`flex flex-col items-center gap-2 transition-all duration-300 ease-out ${
-                  index === currentIndex
-                    ? "opacity-100"
-                    : "opacity-50 hover:opacity-70"
-                }`}
-                aria-label={`Go to ${transformation.creatorName}'s transformation`}
-              >
-                <div
-                  className={`relative rounded-full overflow-hidden transition-all duration-300 ease-out ${
-                    index === currentIndex
-                      ? "w-12 h-12 ring-2 ring-primary ring-offset-2 ring-offset-card shadow-[0_0_15px_var(--primary-glow)]"
-                      : "w-9 h-9 hover:scale-105"
-                  }`}
-                >
-                  <Image
-                    src={transformation.avatar}
-                    alt={transformation.creatorName}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="text-center">
-                  <p className={`font-semibold leading-tight transition-all duration-300 ${
-                    index === currentIndex
-                      ? "text-foreground text-sm"
-                      : "text-muted-foreground text-xs"
-                  }`}>
-                    {transformation.creatorName}
-                  </p>
-                  <p className={`leading-tight transition-all duration-300 ${
-                    index === currentIndex
-                      ? "text-primary text-xs"
-                      : "text-muted-foreground/70 text-[10px]"
-                  }`}>
-                    {transformation.handle}
-                  </p>
-                </div>
-              </button>
+          {/* Profile Navigation - Active profile centered (5 visible) */}
+          <div className="flex justify-center items-end gap-3 sm:gap-4 md:gap-6 mt-6 px-4">
+            {visibleProfiles.map(({ item, originalIndex }) => (
+              <ProfileAvatar
+                key={item.id}
+                transformation={item}
+                isActive={originalIndex === currentIndex}
+                onClick={() => goToSlide(originalIndex)}
+              />
             ))}
           </div>
 
