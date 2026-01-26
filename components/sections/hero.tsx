@@ -187,7 +187,7 @@ export function HeroSection() {
           >
             <Button
               size="lg"
-              className="min-h-[48px] px-8 text-base font-semibold cta-pulse"
+              className="min-h-[48px] px-8 text-base font-semibold"
             >
               enroll in crack editing™
               <ArrowRight className="ml-2 h-5 w-5" />

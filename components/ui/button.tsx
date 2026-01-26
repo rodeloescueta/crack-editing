@@ -9,22 +9,36 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        // Glass morphism primary button with backdrop blur and glow
+        // Glass button with ambient shimmer animation
         default: [
           "relative overflow-hidden",
-          "bg-primary/85 backdrop-blur-md",
+          "bg-primary backdrop-blur-md",
           "text-primary-foreground font-semibold",
           "border border-primary/30",
-          "shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_4px_20px_var(--primary-glow)]",
-          "hover:bg-primary/95 hover:scale-[1.02]",
-          "hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_8px_30px_var(--primary-glow-strong)]",
-          "hover:border-primary/50",
+          // Hover states
+          "hover:bg-primary/90 hover:scale-[1.02]",
           "active:scale-[0.98]",
-          // Shine effect
-          "before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent",
-          "before:translate-x-[-200%] hover:before:translate-x-[200%] before:transition-transform before:duration-700",
+          // Ambient shimmer - continuous slow light sweep (stronger for solid bg)
+          "before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/40 before:to-transparent",
+          "before:animate-[button-shimmer_5s_ease-in-out_infinite]",
         ].join(" "),
-        outline: "border-white/20 bg-white/5 text-white/90 hover:bg-white/10 hover:text-white hover:border-white/30 dark:bg-input/30 dark:border-input dark:hover:bg-input/50 aria-expanded:bg-muted aria-expanded:text-foreground shadow-xs hover:scale-[1.01] backdrop-blur-sm",
+        // Glass outline button with ambient shimmer
+        outline: [
+          "relative overflow-hidden",
+          "bg-white/5 backdrop-blur-md",
+          "text-white/90",
+          "border border-white/20",
+          // Hover states
+          "hover:bg-white/10 hover:text-white hover:scale-[1.01]",
+          "hover:border-white/30",
+          "active:scale-[0.98]",
+          // Dark mode adjustments
+          "dark:bg-input/20 dark:border-input/50 dark:hover:bg-input/40",
+          "aria-expanded:bg-muted aria-expanded:text-foreground",
+          // Ambient shimmer - continuous slow light sweep
+          "before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/15 before:to-transparent",
+          "before:animate-[button-shimmer_5s_ease-in-out_infinite]",
+        ].join(" "),
         secondary: "bg-secondary/60 text-secondary-foreground hover:bg-secondary/80 aria-expanded:bg-secondary aria-expanded:text-secondary-foreground hover:scale-[1.01]",
         ghost: "hover:bg-muted hover:text-foreground dark:hover:bg-muted/50 aria-expanded:bg-muted aria-expanded:text-foreground",
         destructive: "bg-destructive/10 hover:bg-destructive/20 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/20 text-destructive focus-visible:border-destructive/40 dark:hover:bg-destructive/30",

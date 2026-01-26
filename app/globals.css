@@ -88,6 +88,18 @@
 
   --animate-text-shimmer: text-shimmer 3s linear infinite;
 
+  /* Button ambient shimmer - slow continuous light sweep */
+  @keyframes button-shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  --animate-button-shimmer: button-shimmer 8s ease-in-out infinite;
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);

@@ -99,7 +99,7 @@ export function PricingSection() {
                 <CardItem translateZ={70} className="w-full text-center mb-6">
                   <Button
                     size="lg"
-                    className="w-full sm:w-auto min-h-[60px] px-12 text-lg font-bold cta-pulse"
+                    className="w-full sm:w-auto min-h-[60px] px-12 text-lg font-bold"
                   >
                     enroll in crack editing™
                     <ArrowRight className="ml-2 h-5 w-5" />
