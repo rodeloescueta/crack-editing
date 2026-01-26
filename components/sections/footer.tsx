@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import { Instagram, Twitter, Youtube, Send, CheckCircle } from "lucide-react"
 import { Container } from "@/components/layout"
 import { Button } from "@/components/ui/button"
@@ -63,15 +64,14 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 mb-12">
           {/* Left Column - Logo & Company Info */}
           <div className="flex flex-col items-center md:items-start">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-base">CE</span>
-              </div>
-              <span className="text-xl font-bold tracking-tight">
-                <span className="text-white">crack</span>
-                <span className="text-primary">editing</span>
-                <span className="text-white">™</span>
-              </span>
+            <div className="mb-4">
+              <Image
+                src="/assets/tlc-logo-white.png"
+                alt="The Limitless Company"
+                width={240}
+                height={80}
+                className="h-20 w-auto"
+              />
             </div>
             <p className="text-sm text-white/50 text-center md:text-left">
               A psychology-driven editing system for attention, emotion, and retention.
