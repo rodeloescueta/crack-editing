@@ -9,8 +9,11 @@ interface HeroVideoProps {
   className?: string
 }
 
+// Cloudinary video URL (temporary - replace with production video)
+const DEFAULT_VIDEO_URL = "https://res.cloudinary.com/dpeonf20f/video/upload/temp-compressed_iurtpw.mp4"
+
 export function HeroVideo({
-  src = "/videos/hero-promo.mp4",
+  src = DEFAULT_VIDEO_URL,
   className
 }: HeroVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
