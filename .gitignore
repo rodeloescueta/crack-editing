@@ -43,3 +43,6 @@ next-env.d.ts
 # project specific
 /temp
 /.playwright-mcp
+
+# Large video files
+public/videos/*.mp4
