@@ -38,14 +38,13 @@ interface BrandItem {
 }
 
 export const brandItems: BrandItem[] = [
-  { name: "HATCH", logo: <ClientLogo src="/assets/client-logo/1.png" alt="HATCH" /> },
-  { name: "C&G", logo: <ClientLogo src="/assets/client-logo/2.png" alt="C&G" /> },
-  { name: "Foodgod", logo: <ClientLogo src="/assets/client-logo/3.png" alt="Foodgod" /> },
-  { name: "NP Digital", logo: <ClientLogo src="/assets/client-logo/5.png" alt="NP Digital" /> },
-  { name: "Neil Patel", logo: <ClientLogo src="/assets/client-logo/6.png" alt="Neil Patel" /> },
-  { name: "The Nikki Haskell Show", logo: <ClientLogo src="/assets/client-logo/7.png" alt="The Nikki Haskell Show" /> },
-  { name: "Non Obvious Company", logo: <ClientLogo src="/assets/client-logo/8.png" alt="Non Obvious Company" /> },
-  { name: "ConnectedEC", logo: <ClientLogo src="/assets/client-logo/9.png" alt="ConnectedEC" /> },
-  { name: "Sparkle S", logo: <ClientLogo src="/assets/client-logo/10.png" alt="Sparkle S" /> },
-  { name: "Dirty Genes Podcast", logo: <ClientLogo src="/assets/client-logo/11.png" alt="Dirty Genes Podcast" /> },
+  { name: "Bravo", logo: <ClientLogo src="/assets/brands/1.png" alt="Bravo" /> },
+  { name: "Intuit", logo: <ClientLogo src="/assets/brands/2.png" alt="Intuit" /> },
+  { name: "Absolut Vodka", logo: <ClientLogo src="/assets/brands/3.png" alt="Absolut Vodka" /> },
+  { name: "Anastasia Beverly Hills", logo: <ClientLogo src="/assets/brands/4.png" alt="Anastasia Beverly Hills" /> },
+  { name: "HSN", logo: <ClientLogo src="/assets/brands/5.png" alt="HSN" /> },
+  { name: "Adobe", logo: <ClientLogo src="/assets/brands/6.png" alt="Adobe" /> },
+  { name: "Core Power", logo: <ClientLogo src="/assets/brands/7.png" alt="Core Power" /> },
+  { name: "Google", logo: <ClientLogo src="/assets/brands/8.png" alt="Google" /> },
+  { name: "Mailchimp", logo: <ClientLogo src="/assets/brands/9.png" alt="Mailchimp" /> },
 ]
