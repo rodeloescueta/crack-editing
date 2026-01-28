@@ -73,14 +73,14 @@ export function CreatorsSection() {
               className="flex justify-center"
               variants={slideInLeft}
             >
-              <div className="h-[32rem] w-full flex items-center justify-center">
+              <div className="h-[22rem] w-full flex items-center justify-center">
                 <PinContainer
                   title="limitless.inc"
                   href="https://limitless.inc"
                   containerClassName="flex items-center justify-center"
                 >
-                  {/* TLC Fingerprint Logo with Sparkles */}
-                  <div className="relative w-80 h-96 md:w-[22rem] md:h-[26rem] flex items-center justify-center overflow-hidden">
+                  {/* TLC Full Logo with Sparkles */}
+                  <div className="relative w-80 h-48 md:w-[28rem] md:h-56 flex items-center justify-center overflow-hidden">
                     {/* Aceternity UI: Sparkles Effect */}
                     <div className="absolute inset-0 z-0">
                       <SparklesCore
@@ -93,9 +93,9 @@ export function CreatorsSection() {
                         className="w-full h-full"
                       />
                     </div>
-                    {/* TLC Fingerprint Logo */}
+                    {/* The Limitless Company Full Logo */}
                     <div className="relative z-10">
-                      <LimitlessLogo className="w-80 h-96 md:w-[22rem] md:h-[26rem]" />
+                      <LimitlessLogo className="w-80 h-48 md:w-[28rem] md:h-56" />
                     </div>
                   </div>
                 </PinContainer>
