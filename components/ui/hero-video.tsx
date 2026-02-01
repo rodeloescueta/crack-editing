@@ -9,8 +9,8 @@ interface HeroVideoProps {
   className?: string
 }
 
-// Cloudinary video URL (temporary - replace with production video)
-const DEFAULT_VIDEO_URL = "https://res.cloudinary.com/dpeonf20f/video/upload/temp-compressed_iurtpw.mp4"
+// Production VSL video (12min, compressed to 57MB)
+const DEFAULT_VIDEO_URL = "https://res.cloudinary.com/dpeonf20f/video/upload/v1769980877/VSL-compressed_bf17o0.mp4"
 
 export function HeroVideo({
   src = DEFAULT_VIDEO_URL,
