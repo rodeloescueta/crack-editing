@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import Image from "next/image"
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 import { Container } from "@/components/layout"
 import { Button } from "@/components/ui/button"
@@ -20,7 +19,8 @@ interface Transformation {
   creatorName: string
   handle: string
   avatar: string
-  statsImage: string
+  avatarPosition?: string // CSS object-position value to center face
+  followers: string
   before: { views: string; label: string; thumbnail: string; videoUrl?: string }
   after: { views: string; label: string; thumbnail: string; videoUrl?: string }
   growthStats: string
@@ -29,60 +29,66 @@ interface Transformation {
 const transformations: Transformation[] = [
   {
     id: "1",
-    creatorName: "Nikki",
+    creatorName: "Nikki Haskell",
     handle: "@bignikbh",
     avatar: "/assets/client-profile/nikki2.png",
-    statsImage: "/assets/client-profile/nikki1.png",
+    avatarPosition: "center 40%",
+    followers: "648K",
     before: { views: "~500 views", label: "Generic edit", thumbnail: "/images/testimonials/video-thumbnail-1.jpg", videoUrl: "" },
     after: { views: "1.1M views", label: "Crack Edited™", thumbnail: "/images/testimonials/video-thumbnail-2.jpg", videoUrl: "" },
     growthStats: "Grew from 6,322 to 1,000,000+ followers using crack editing™",
   },
   {
     id: "2",
-    creatorName: "Kathy",
+    creatorName: "Kathy Prounis",
     handle: "@kathyprounis",
     avatar: "/assets/client-profile/kathy2.png",
-    statsImage: "/assets/client-profile/kathy1.png",
+    avatarPosition: "center 35%",
+    followers: "109K",
     before: { views: "~1K views", label: "Generic edit", thumbnail: "/images/testimonials/video-thumbnail-3.jpg", videoUrl: "" },
     after: { views: "482K views", label: "Crack Edited™", thumbnail: "/images/testimonials/video-thumbnail-4.jpg", videoUrl: "" },
     growthStats: "Scaled to 100,000+ followers in just 7 months",
   },
   {
     id: "3",
-    creatorName: "Warren",
+    creatorName: "Warren Phillips",
     handle: "@nontoxicdad",
     avatar: "/assets/client-profile/nontoxicdad2.png",
-    statsImage: "/assets/client-profile/nontoxicdad1.png",
+    avatarPosition: "center 30%",
+    followers: "1.2M",
     before: { views: "~10K views", label: "Generic edit", thumbnail: "/images/testimonials/video-thumbnail-1.jpg", videoUrl: "" },
     after: { views: "22M+ views", label: "Crack Edited™", thumbnail: "/images/testimonials/video-thumbnail-3.jpg", videoUrl: "" },
     growthStats: "Built 1.1M+ followers over 2 years with the system",
   },
   {
     id: "4",
-    creatorName: "Ashley",
+    creatorName: "Ashley Hatch",
     handle: "@ash_smash33",
     avatar: "/assets/client-profile/ashley2.png",
-    statsImage: "/assets/client-profile/ashley1.png",
+    avatarPosition: "center 25%",
+    followers: "66.4K",
     before: { views: "~2K views", label: "Generic edit", thumbnail: "/images/testimonials/video-thumbnail-1.jpg", videoUrl: "" },
     after: { views: "500K+ views", label: "Crack Edited™", thumbnail: "/images/testimonials/video-thumbnail-2.jpg", videoUrl: "" },
     growthStats: "Built 66K+ engaged followers with crack editing™",
   },
   {
     id: "5",
-    creatorName: "Jonathan",
+    creatorName: "Jonathan Cheban",
     handle: "@foodgod",
     avatar: "/assets/client-profile/foodgod2.png",
-    statsImage: "/assets/client-profile/foodgod1.png",
+    avatarPosition: "center 60%",
+    followers: "3.7M",
     before: { views: "~50K views", label: "Generic edit", thumbnail: "/images/testimonials/video-thumbnail-3.jpg", videoUrl: "" },
     after: { views: "10M+ views", label: "Crack Edited™", thumbnail: "/images/testimonials/video-thumbnail-4.jpg", videoUrl: "" },
     growthStats: "Scaled to 3.7M followers with the system",
   },
   {
     id: "6",
-    creatorName: "Neil",
+    creatorName: "Neil Patel",
     handle: "@neilpatel",
     avatar: "/assets/client-profile/neil2.png",
-    statsImage: "/assets/client-profile/neil1.png",
+    avatarPosition: "center 40%",
+    followers: "646K",
     before: { views: "~5K views", label: "Generic edit", thumbnail: "/images/testimonials/video-thumbnail-1.jpg", videoUrl: "" },
     after: { views: "2M+ views", label: "Crack Edited™", thumbnail: "/images/testimonials/video-thumbnail-3.jpg", videoUrl: "" },
     growthStats: "Grew to 646K+ followers as a marketing expert",
@@ -111,20 +117,42 @@ interface ProfileAvatarProps {
   onClick: () => void
 }
 
+// Verification badge icon component
+function VerifiedBadge() {
+  return (
+    <svg
+      className="w-4 h-4 ml-1 flex-shrink-0"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle cx="12" cy="12" r="10" fill="#1DA1F2" />
+      <path
+        d="M9 12l2 2 4-4"
+        stroke="white"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
 function ProfileAvatar({ transformation, isActive, onClick }: ProfileAvatarProps) {
   const [isHovered, setIsHovered] = useState(false)
+
+  // Get first name for display below avatar
+  const firstName = transformation.creatorName.split(' ')[0]
 
   return (
     <button
       onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`relative flex flex-col items-center gap-2 transition-all duration-300 ease-out ${
-        isActive ? "opacity-100" : "opacity-50 hover:opacity-70"
-      }`}
+      className="relative flex flex-col items-center gap-2 transition-all duration-300 ease-out"
       aria-label={`Go to ${transformation.creatorName}'s transformation`}
     >
-      {/* Stats Popup - Desktop only */}
+      {/* Profile Card Popup - Desktop only - always fully visible */}
       <AnimatePresence>
         {isHovered && (
           <motion.div
@@ -132,41 +160,71 @@ function ProfileAvatar({ transformation, isActive, onClick }: ProfileAvatarProps
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 z-50 hidden sm:block"
+            className="absolute bottom-full mb-4 left-1/2 -translate-x-1/2 z-50 hidden sm:block pointer-events-none"
           >
-            <div className="relative w-[220px] rounded-xl overflow-hidden shadow-2xl border border-white/20 bg-card">
-              <Image
-                src={transformation.statsImage}
-                alt={`${transformation.creatorName}'s social media stats`}
-                width={220}
-                height={400}
-                className="w-full h-auto object-cover"
-              />
+            <div className="relative rounded-2xl shadow-2xl bg-white px-5 py-4 min-w-[260px]">
+              <div className="flex items-center gap-4">
+                {/* Profile Picture with Instagram-style gradient ring */}
+                <div className="relative w-16 h-16 rounded-full flex-shrink-0 p-[3px] bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600">
+                  <div className="w-full h-full rounded-full overflow-hidden bg-white p-[2px]">
+                    <div className="w-full h-full rounded-full overflow-hidden">
+                      <img
+                        src={transformation.avatar}
+                        alt={transformation.creatorName}
+                        className="w-full h-full object-cover"
+                        style={{
+                          objectPosition: transformation.avatarPosition || 'center',
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Profile Info */}
+                <div className="flex flex-col min-w-0">
+                  <span className="flex items-center font-bold text-gray-900 text-base leading-tight">
+                    {transformation.handle}
+                    <VerifiedBadge />
+                  </span>
+                  <span className="text-gray-500 text-sm leading-tight mt-0.5">
+                    {transformation.creatorName}
+                  </span>
+                  <span className="text-gray-900 text-sm font-semibold mt-1">
+                    {transformation.followers} <span className="font-normal text-gray-500">followers</span>
+                  </span>
+                </div>
+              </div>
+
               {/* Arrow pointer */}
-              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 rotate-45 bg-card border-r border-b border-white/20" />
+              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 rotate-45 bg-white" />
             </div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Avatar */}
+      {/* Avatar - opacity applied here, not on parent */}
       <div
         className={`relative rounded-full overflow-hidden transition-all duration-300 ease-out ${
           isActive
-            ? "w-11 h-11 sm:w-12 sm:h-12 ring-2 ring-primary ring-offset-2 ring-offset-card shadow-[0_0_15px_var(--primary-glow)]"
-            : "w-8 h-8 sm:w-9 sm:h-9 hover:scale-105"
+            ? "w-14 h-14 sm:w-16 sm:h-16 ring-2 ring-primary ring-offset-2 ring-offset-card shadow-[0_0_15px_var(--primary-glow)] opacity-100"
+            : "w-10 h-10 sm:w-11 sm:h-11 hover:scale-105 opacity-50 hover:opacity-70"
         }`}
       >
-        <Image
+        <img
           src={transformation.avatar}
           alt={transformation.creatorName}
-          fill
-          className="object-cover"
+          className="absolute w-[100%] h-[100%] object-cover rounded-full"
+          style={{
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            objectPosition: transformation.avatarPosition || 'center',
+          }}
         />
       </div>
 
-      {/* Name and handle */}
-      <div className="text-center">
+      {/* Name and handle - opacity applied here */}
+      <div className={`text-center transition-all duration-300 ${isActive ? "opacity-100" : "opacity-50 hover:opacity-70"}`}>
         <p
           className={`font-semibold leading-tight transition-all duration-300 ${
             isActive
@@ -174,7 +232,7 @@ function ProfileAvatar({ transformation, isActive, onClick }: ProfileAvatarProps
               : "text-muted-foreground text-[10px] sm:text-xs"
           }`}
         >
-          {transformation.creatorName}
+          {firstName}
         </p>
         <p
           className={`leading-tight transition-all duration-300 ${
