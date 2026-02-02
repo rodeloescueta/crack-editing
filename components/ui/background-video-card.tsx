@@ -124,9 +124,9 @@ export function BackgroundVideoCard({
 // Pre-configured video cards for the hero section
 // Spread across the entire hero area, including behind content
 export const heroVideoCards = [
-  // Top-left area
+  // Top-left area - Neil Patel
   {
-    src: "/videos/hero/hero-bg-1.mp4",
+    src: "https://res.cloudinary.com/dpeonf20f/video/upload/v1770011674/neil-patel_gkstvg.mp4",
     position: { top: "5%", left: "8%" },
     size: "md" as const,
     opacity: 0.2,
@@ -135,9 +135,9 @@ export const heroVideoCards = [
     hideOnMobile: false,
     hideOnTablet: false,
   },
-  // Top-center-right (behind headline area)
+  // Top-center-right (behind headline area) - Kathy Prounis
   {
-    src: "/videos/hero/hero-bg-2.mp4",
+    src: "https://res.cloudinary.com/dpeonf20f/video/upload/v1770011676/kathy-prounis_n25zwm.mp4",
     position: { top: "8%", left: "35%" },
     size: "sm" as const,
     opacity: 0.12,
@@ -146,9 +146,9 @@ export const heroVideoCards = [
     hideOnMobile: true,
     hideOnTablet: false,
   },
-  // Top-right area
+  // Top-right area - Ashley Hatch
   {
-    src: "/videos/hero/hero-bg-3.mp4",
+    src: "https://res.cloudinary.com/dpeonf20f/video/upload/v1770011674/ashley-hatch_mttfiq.mp4",
     position: { top: "15%", right: "10%" },
     size: "lg" as const,
     opacity: 0.18,
@@ -157,9 +157,9 @@ export const heroVideoCards = [
     hideOnMobile: true,
     hideOnTablet: false,
   },
-  // Center-left (beside content)
+  // Center-left (beside content) - Nikki Haskell
   {
-    src: "/videos/hero/hero-bg-4.mp4",
+    src: "https://res.cloudinary.com/dpeonf20f/video/upload/v1770011674/nikki-haskell_nzoukp.mp4",
     position: { top: "40%", left: "3%" },
     size: "sm" as const,
     opacity: 0.15,
@@ -168,9 +168,9 @@ export const heroVideoCards = [
     hideOnMobile: true,
     hideOnTablet: true,
   },
-  // Bottom-right area (visible on mobile too)
+  // Bottom-right area - Nontoxic Dad
   {
-    src: "/videos/hero/hero-bg-5.mp4",
+    src: "https://res.cloudinary.com/dpeonf20f/video/upload/v1770011675/nontoxic-dad_vmk0mi.mp4",
     position: { bottom: "8%", right: "5%" },
     size: "sm" as const,
     opacity: 0.18,
@@ -178,5 +178,27 @@ export const heroVideoCards = [
     delay: 0.8,
     hideOnMobile: false,
     hideOnTablet: false,
+  },
+  // Bottom-left area - Jamie Shapiro (NEW)
+  {
+    src: "https://res.cloudinary.com/dpeonf20f/video/upload/v1770011674/jamie-shapiro_fkoz7l.mp4",
+    position: { bottom: "15%", left: "5%" },
+    size: "sm" as const,
+    opacity: 0.15,
+    rotation: 6,
+    delay: 1.0,
+    hideOnMobile: true,
+    hideOnTablet: true,
+  },
+  // Center-right area - Foodgod (NEW)
+  {
+    src: "https://res.cloudinary.com/dpeonf20f/video/upload/v1770011674/foodgod_cp7fzg.mp4",
+    position: { top: "45%", right: "3%" },
+    size: "sm" as const,
+    opacity: 0.15,
+    rotation: -5,
+    delay: 1.2,
+    hideOnMobile: true,
+    hideOnTablet: true,
   },
 ]
