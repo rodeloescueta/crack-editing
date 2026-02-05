@@ -3,7 +3,6 @@
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { Container } from "@/components/layout"
-import { Badge } from "@/components/ui/badge"
 import { GradientText } from "@/components/ui/gradient-text"
 import { StatCard } from "@/components/ui/stat-card"
 import { SparklesCore } from "@/components/ui/sparkles"
@@ -18,43 +17,12 @@ import {
   defaultViewport,
 } from "@/lib/animations"
 
-const creators = [
-  {
-    name: "AJ Kumar",
-    role: "Digital Marketing & Strategy",
-    image: "/images/creators/aj-kumar.png",
-    bio: "15+ years in digital marketing and content strategy. Helped creators generate millions in brand deals and build sustainable businesses.",
-    stat: { value: "15+", label: "Years Experience" },
-  },
-  {
-    name: "Josh Bill",
-    role: "Video Editing & Production",
-    image: "/images/creators/josh-bill.png",
-    bio: "10+ years of hands-on experience editing and producing high-performing social media content that's driven over 3 billion views.",
-    stat: { value: "3B+", label: "Views Generated" },
-  },
-]
-
 const stats = [
   { value: "15+", label: "Years Digital Marketing", attribution: "AJ Kumar", avatar: null },
   { value: "3B+", label: "Views Generated", attribution: "For Clients", avatar: null },
   { value: "10+", label: "Years Video Editing", attribution: "Josh Bill", avatar: null },
   { value: "100+", label: "Brand Deals", attribution: "Secured", avatar: null },
 ]
-
-// Creator card animation
-const creatorCardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.2,
-      duration: 0.5,
-      ease: "easeOut",
-    },
-  }),
-}
 
 export function CreatorsSection() {
   return (
@@ -104,41 +72,15 @@ export function CreatorsSection() {
 
             {/* Right: Content */}
             <motion.div variants={slideInRight}>
-              <Badge
-                variant="secondary"
-                className="mb-4 px-4 py-2 text-sm font-medium bg-muted/50 border border-border/50"
-              >
-                MEET THE CREATORS
-              </Badge>
-
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
-                It&apos;s taken{" "}
-                <GradientText variant="primary">25+ combined years</GradientText>{" "}
-                to master this craft.
+                <GradientText variant="primary">15 years</GradientText>{" "}
+                of translating expertise into content that connects.
               </h2>
 
-              {/* Creator Bio Cards */}
-              <div className="space-y-4">
-                {/* AJ Kumar */}
-                <div className="p-4 rounded-xl bg-card/30 border border-border/30">
-                  <p className="text-muted-foreground">
-                    <span className="text-foreground font-semibold">AJ Kumar</span>{" "}
-                    brings 15+ years in digital marketing and content strategy,
-                    having helped creators generate millions in brand deals and
-                    build sustainable businesses.
-                  </p>
-                </div>
-
-                {/* Josh Bill */}
-                <div className="p-4 rounded-xl bg-card/30 border border-border/30">
-                  <p className="text-muted-foreground">
-                    <span className="text-foreground font-semibold">Josh Bill</span>{" "}
-                    contributes 10+ years of hands-on experience editing and
-                    producing high-performing social media content that&apos;s driven
-                    over 3 billion views.
-                  </p>
-                </div>
-              </div>
+              {/* Company Story */}
+              <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
+                Fifteen years ago, The Limitless Company began by working alongside thought leaders to help build media companies in their businesses. As attention shifted and social media became the dominant medium, that same work evolved into a new discipline: distilling deep expertise and institutional knowledge into content built for modern consumption. In part, this translation has been made possible through the strategies developed within Crack Editing, a proprietary editing system shaped by years of testing, psychological insight, and performance data allowing complex ideas to be expressed with precision, clarity, and authority at scale.
+              </p>
             </motion.div>
           </div>
 
