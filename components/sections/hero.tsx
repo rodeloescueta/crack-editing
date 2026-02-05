@@ -113,7 +113,7 @@ export function HeroSection() {
           viewport={defaultViewport}
         >
           {/* Badge with glow animation */}
-          <motion.div variants={fadeInDown}>
+          <motion.div variants={fadeInDown} className="mt-6 sm:mt-8">
             <Badge
               variant="secondary"
               className="mb-6 px-4 py-2 text-sm font-medium bg-white/10 backdrop-blur-sm border border-primary/30 shadow-[0_0_20px_var(--primary-glow-soft)] animate-badge-glow"
@@ -210,7 +210,7 @@ export function HeroSection() {
 
           {/* Trust Indicators */}
           <motion.div
-            className="flex flex-wrap justify-center gap-x-6 gap-y-2"
+            className="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-6 sm:mb-8"
             variants={fadeInUp}
           >
             {trustIndicators.map((indicator, index) => (
