@@ -2,7 +2,7 @@ import {
   HeroSection,
   TransformationCarousel,
   ProblemSolutionSection,
-  CourseModulesSection,
+  MacbookShowcaseSection,
   ForMeSection,
   WhatYouGetSection,
   CreatorsSection,
@@ -35,8 +35,8 @@ export default function Page() {
         {/* DARK: Problem vs Solution (iceberg gradient) */}
         <ProblemSolutionSection />
 
-        {/* LIGHT: Course Modules (no divider - direct transition) */}
-        <CourseModulesSection />
+        {/* LIGHT: MacBook Showcase (no divider - direct transition) */}
+        <MacbookShowcaseSection />
 
         {/* Divider: Light to Dark Navy */}
         <SectionDivider

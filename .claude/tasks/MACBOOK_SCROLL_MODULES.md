@@ -1,224 +1,67 @@
 # "What's Inside Crack Editing™" - MacBook Scroll Section
 
 ## Summary
-Replace the current StickyScroll-based course modules section with a **combined MacBook + StickyScroll experience**. The StickyScroll modules will display **inside the MacBook screen**, using the MacBook as a visual frame/window.
+Replace the StickyScroll-based course modules section with a **MacBook Scroll showcase**. Taking an incremental approach: Phase 1 gets the laptop frame working with a sample image, Phase 2 will swap in actual course module content.
 
-## Design Reference
-- **Title**: "what's inside crack editing™" (gradient on "crack editing™")
-- **Subtitle**: "A 5-hour self-paced training program that teaches you the complete system for creating addictive content."
-- **Visual**: MacBook laptop with StickyScroll modules displayed inside the screen
-- **CTA**: "enroll in crack editing™" button below
+## Phase 1: MacBook Frame with Sample Image ✅ COMPLETED
 
-## Concept
+### What was done:
 
-```
-┌─────────────────────────────────────┐
-│         MacBook Frame               │
-│  ┌───────────────────────────────┐  │
-│  │                               │  │
-│  │   StickyScroll Modules        │  │  ← Modules scroll INSIDE
-│  │   (6 modules within screen)   │  │     the MacBook screen
-│  │                               │  │
-│  └───────────────────────────────┘  │
-│  ┌─────────────────────────────────┐│
-│  │        Keyboard                 ││
-│  └─────────────────────────────────┘│
-└─────────────────────────────────────┘
-```
+1. **`components/ui/macbook-scroll.tsx`** (CREATED)
+   - Manually ported from Aceternity UI Svelte source (registry was down)
+   - Full MacBook component with: lid 3D rotation animation, keyboard with all keys, trackpad, speaker grids
+   - Scroll-driven animation via Framer Motion `useScroll` + `useTransform`
+   - Props: `src` (screen image), `title`, `badge`, `showGradient`
+   - Responsive scaling: `scale-[0.35]` mobile, `sm:scale-50`, `md:scale-100`
 
----
+2. **`components/sections/macbook-showcase.tsx`** (CREATED)
+   - Wraps `MacbookScroll` with `src="/images/hero/gradient-abstract.jpg"` as placeholder
+   - Title: "what's inside crack editing™" (with `GradientText`)
+   - `overflow-hidden` on section to prevent horizontal scroll
+   - Light background (`section-light`) matching surrounding sections
 
-## Implementation Plan
+3. **`components/sections/index.ts`** (MODIFIED)
+   - Added `MacbookShowcaseSection` export
 
-### Step 1: Install Aceternity MacBook Scroll Component ✅ DONE
+4. **`app/page.tsx`** (MODIFIED)
+   - Replaced `CourseModulesSection` with `MacbookShowcaseSection`
+   - `CourseModulesSection` left untouched for Phase 2
 
-```bash
-npx shadcn@latest add @aceternity/macbook-scroll
-```
-
-Component installed at: `components/ui/macbook-scroll.tsx`
-
-Dependencies installed: `@tabler/icons-react` (already available)
-
-### Step 2: Modify MacBook Component to Accept Children
-
-**File**: `components/ui/macbook-scroll.tsx`
-
-The current component only accepts `src` (image) for screen content:
-
-```tsx
-<img
-  src={src as string}
-  className="absolute inset-0 h-full w-full rounded-lg object-cover"
-/>
-```
-
-**Modification needed**: Add a `children` prop to render React components inside the screen area instead of (or in addition to) an image.
-
-```tsx
-export const MacbookScroll = ({
-  src,
-  children,  // NEW: Accept children for screen content
-  showGradient,
-  title,
-  badge,
-}: {
-  src?: string;
-  children?: React.ReactNode;  // NEW
-  showGradient?: boolean;
-  title?: string | React.ReactNode;
-  badge?: React.ReactNode;
-}) => {
-  // ... existing code
-}
-```
-
-Update the `Lid` component to render children when provided:
-
-```tsx
-// In the Lid component, replace img with:
-{children ? (
-  <div className="absolute inset-0 h-full w-full rounded-lg overflow-hidden">
-    {children}
-  </div>
-) : (
-  <img
-    src={src as string}
-    alt="screen content"
-    className="absolute inset-0 h-full w-full rounded-lg object-cover object-left-top"
-  />
-)}
-```
-
-### Step 3: Update Course Modules Section
-
-**File**: `components/sections/course-modules.tsx`
-
-Combine MacbookScroll with StickyScroll:
-
-```tsx
-import { MacbookScroll } from "@/components/ui/macbook-scroll"
-import { StickyScroll } from "@/components/ui/sticky-scroll-reveal"
-
-export function CourseModulesSection() {
-  return (
-    <div className="w-full overflow-hidden section-light">
-      <MacbookScroll
-        title={
-          <div className="text-center">
-            <h2 className="...">
-              what's inside <GradientText>crack editing™</GradientText>
-            </h2>
-            <p className="...">
-              A 5-hour self-paced training program...
-            </p>
-          </div>
-        }
-        showGradient={false}
-      >
-        {/* StickyScroll inside MacBook screen */}
-        <StickyScroll
-          content={stickyContent}
-          contentClassName="rounded-xl"
-        />
-      </MacbookScroll>
-
-      {/* CTA Button below */}
-      <div className="text-center py-12">
-        <Button size="lg">
-          enroll in crack editing™
-          <ArrowRight className="ml-2 h-5 w-5" />
-        </Button>
-      </div>
-    </div>
-  )
-}
-```
-
-### Step 4: Coordinate Scroll Behaviors
-
-**Challenge**: Both MacBook and StickyScroll use scroll-based animations.
-
-**Potential solutions**:
-1. **Sequential scroll spaces**: MacBook animation completes first, then StickyScroll takes over
-2. **Shared scroll progress**: Pass scroll progress from MacBook to StickyScroll
-3. **Fixed MacBook frame**: After MacBook opens, it stays fixed while StickyScroll scrolls inside
-
-Need to experiment to find the best UX.
-
-### Step 5: Adjust StickyScroll for Constrained Area
-
-The StickyScroll may need adjustments to work within the MacBook screen dimensions:
-- Adjust heights/widths to fit screen area
-- Modify sticky positioning to work within the container
-- Scale content appropriately
-
-### Step 6: Mobile Responsiveness
-
-Consider mobile behavior:
-- MacBook scaling: `scale-[0.35]` mobile, `scale-50` sm, `scale-100` md+
-- May need alternative layout on mobile (skip MacBook, show modules directly?)
+### Verification Results:
+- ✅ Desktop (1280px): MacBook renders correctly, lid opens on scroll, sample image visible
+- ✅ Tablet (640px): Properly scaled, centered, functional
+- ✅ Mobile (320px): Scaled down via transform, no horizontal overflow
+- ✅ No horizontal scrollbar on any viewport
+- ✅ Sections above/below unaffected
+- ✅ Build passes with no type errors
 
 ---
 
-## Files to Modify
+## Phase 2: StickyScroll Inside MacBook Screen ✅ COMPLETED
 
-| File | Action | Description |
-|------|--------|-------------|
-| `components/ui/macbook-scroll.tsx` | MODIFY | Add `children` prop for screen content |
-| `components/sections/course-modules.tsx` | MODIFY | Combine MacbookScroll + StickyScroll |
-| `components/ui/sticky-scroll-reveal.tsx` | POSSIBLY MODIFY | Adjust for constrained container |
+### What was done:
 
----
+1. **`components/ui/macbook-scroll.tsx`** (MODIFIED)
+   - Added `children` prop to `MacbookScroll` and `Lid` components
+   - Lid renders `children` inside screen area when provided, falls back to `src` image
+   - Children rendered in `absolute inset-0 overflow-hidden rounded-lg` container
 
-## Technical Challenges
+2. **`components/sections/macbook-showcase.tsx`** (MODIFIED)
+   - Moved module data (6 modules), `ModuleContentCard`, and `stickyContent` array directly into this file
+   - Passes `StickyScroll` component as children to `MacbookScroll`
+   - Removed CTA button (page has multiple "enroll" CTAs already)
+   - Enabled `showGradient` for bottom fade effect
 
-1. **Scroll coordination**: Two scroll-based animations need to work together
-2. **Container constraints**: StickyScroll needs to work inside MacBook screen bounds
-3. **Animation timing**: When does MacBook animation end and StickyScroll begin?
-4. **Mobile experience**: May need fallback for small screens
+### Key Technical Insight:
+- StickyScroll uses `useScroll({ container: ref })` (internal overflow scroll)
+- MacBook uses `useScroll({ target: ref })` (page scroll)
+- These two scroll contexts don't conflict - they operate independently
 
----
-
-## Verification
-
-1. Run `npm run dev`
-2. Navigate to "What's Inside Crack Editing™" section
-3. Verify MacBook displays and opens on scroll
-4. Verify StickyScroll modules appear inside the MacBook screen
-5. Test scrolling through all 6 modules within the MacBook frame
-6. Test responsive behavior at different breakpoints
-7. Click CTA button to verify it works
-
----
-
-## Status: ✅ COMPLETED
-
-- [x] Component installed (`npx shadcn@latest add @aceternity/macbook-scroll`)
-- [x] Dependencies available (`@tabler/icons-react`)
-- [x] Plan updated with combined approach
-- [x] Modified `macbook-scroll.tsx` to accept `children` prop
-- [x] Updated `course-modules.tsx` with MacbookScroll + StickyScroll
-- [x] Tested scroll animation behavior
-- [x] Verified visual appearance
-
-## Implementation Summary
-
-### Changes Made:
-
-1. **`components/ui/macbook-scroll.tsx`**:
-   - Added `children` prop to `MacbookScroll` component
-   - Added `children` prop to `Lid` component
-   - Modified Lid to render `children` inside the screen area when provided
-
-2. **`components/sections/course-modules.tsx`**:
-   - Replaced `StickyScroll` wrapper with `MacbookScroll`
-   - Moved title/subtitle into MacbookScroll's `title` prop
-   - StickyScroll now renders inside the MacBook screen
-
-### Animation Behavior:
-- Initial view: MacBook with closed lid, StickyScroll visible in screen area
-- On scroll: MacBook "opens" (3D rotation animation), screen content scales up
-- Continued scroll: MacBook animates away (translates up)
-- Users can interact with the StickyScroll (scroll through 6 modules)
-- CTA button appears below the MacBook section
+### Verification Results:
+- ✅ Desktop (1280px): MacBook renders with live StickyScroll content, lid animation works, Module 1 visible with purple gradient card, play button, progress bar (1/6)
+- ✅ Transition: Clean transition from MacBook section to "Is this course for me?" via curve divider
+- ✅ MacBook section overflow: `overflow-hidden` working correctly (scrollWidth === offsetWidth)
+- ✅ Mobile (375px): Content scales down, readable, no overflow from MacBook section
+- ✅ Desktop: No horizontal overflow (1280 === 1280)
+- ✅ Build passes with no type errors
+- ⚠️ Pre-existing mobile overflow from Hero (583px), Creators (430px), Pricing (378px) sections - not caused by our changes

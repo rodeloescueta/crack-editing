@@ -8,6 +8,7 @@ import { Play, Pause } from "lucide-react";
 export const StickyScroll = ({
   content,
   contentClassName,
+  compact = false,
 }: {
   content: {
     title: string;
@@ -15,6 +16,7 @@ export const StickyScroll = ({
     content?: React.ReactNode | any;
   }[];
   contentClassName?: string;
+  compact?: boolean;
 }) => {
   const [activeCard, setActiveCard] = React.useState(0);
   const [progress, setProgress] = useState(0);
@@ -174,21 +176,34 @@ export const StickyScroll = ({
   }, [activeCard]);
 
   return (
-    <div className="mx-auto max-w-4xl rounded-2xl border border-border/50 bg-white/80 shadow-lg backdrop-blur-sm overflow-hidden">
+    <div className={cn(
+      "overflow-hidden",
+      compact
+        ? "h-full w-full flex flex-col"
+        : "mx-auto max-w-4xl rounded-2xl border border-border/50 bg-white/80 shadow-lg backdrop-blur-sm"
+    )}>
       <motion.div
         animate={{
           backgroundColor: backgroundColors[activeCard % backgroundColors.length],
         }}
-        className="relative rounded-t-2xl"
+        className={cn(
+          "relative",
+          compact ? "flex-1 min-h-0" : "rounded-t-2xl"
+        )}
       >
         <div
           ref={ref}
-          className="flex h-[22rem] justify-center gap-6 overflow-y-auto p-6 lg:p-8 scrollbar-hide"
+          className={cn(
+            "flex justify-center overflow-y-auto scrollbar-hide",
+            compact
+              ? "h-full gap-4 p-3 sm:p-4"
+              : "h-[22rem] gap-6 p-6 lg:p-8"
+          )}
         >
         <div className="relative flex items-start">
-          <div className="max-w-md lg:max-w-lg">
+          <div className={compact ? "max-w-[14rem] sm:max-w-xs" : "max-w-md lg:max-w-lg"}>
             {content.map((item, index) => (
-              <div key={item.title + index} className="my-14 first:mt-4">
+              <div key={item.title + index} className={compact ? "my-6 first:mt-1" : "my-14 first:mt-4"}>
                 <motion.h2
                   initial={{
                     opacity: 0,
@@ -196,7 +211,10 @@ export const StickyScroll = ({
                   animate={{
                     opacity: activeCard === index ? 1 : 0.3,
                   }}
-                  className="text-xl lg:text-2xl font-bold text-[oklch(0.15_0.03_240)]"
+                  className={cn(
+                    "font-bold text-[oklch(0.15_0.03_240)]",
+                    compact ? "text-sm sm:text-base" : "text-xl lg:text-2xl"
+                  )}
                 >
                   {item.title}
                 </motion.h2>
@@ -207,19 +225,27 @@ export const StickyScroll = ({
                   animate={{
                     opacity: activeCard === index ? 1 : 0.3,
                   }}
-                  className="text-sm lg:text-base mt-6 max-w-sm text-[oklch(0.35_0.02_240)] whitespace-pre-line"
+                  className={cn(
+                    "text-[oklch(0.35_0.02_240)] whitespace-pre-line",
+                    compact
+                      ? "text-[10px] sm:text-xs mt-2 max-w-[13rem] sm:max-w-xs leading-relaxed"
+                      : "text-sm lg:text-base mt-6 max-w-sm"
+                  )}
                 >
                   {item.description}
                 </motion.p>
               </div>
             ))}
-            <div className="h-24" />
+            <div className={compact ? "h-12" : "h-24"} />
           </div>
         </div>
         <div
           style={{ background: backgroundGradient }}
           className={cn(
-            "sticky top-6 hidden h-48 w-64 lg:h-56 lg:w-72 shrink-0 overflow-hidden rounded-xl shadow-md lg:block",
+            "sticky shrink-0 overflow-hidden shadow-md",
+            compact
+              ? "top-3 hidden md:block h-32 w-36 sm:h-40 sm:w-44 rounded-lg"
+              : "top-6 hidden lg:block h-48 w-64 lg:h-56 lg:w-72 rounded-xl",
             contentClassName,
           )}
         >
@@ -229,28 +255,40 @@ export const StickyScroll = ({
       </motion.div>
 
       {/* YouTube-style Progress Bar */}
-      <div className="relative px-4 py-3 bg-[oklch(0.97_0.01_240)] border-t border-[oklch(0.90_0.02_240)]">
+      <div className={cn(
+        "relative bg-[oklch(0.97_0.01_240)] border-t border-[oklch(0.90_0.02_240)]",
+        compact ? "px-3 py-1.5" : "px-4 py-3"
+      )}>
         <div
           ref={progressBarRef}
-          className="relative flex items-center gap-3 cursor-pointer group"
+          className={cn(
+            "relative flex items-center cursor-pointer group",
+            compact ? "gap-2" : "gap-3"
+          )}
           onClick={handleProgressClick}
         >
           {/* Play/Pause Button */}
           <motion.button
             onClick={handlePlayPause}
-            className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-br from-[oklch(0.65_0.20_280)] to-[oklch(0.55_0.25_260)] flex items-center justify-center shadow-sm hover:shadow-md transition-shadow"
+            className={cn(
+              "flex-shrink-0 rounded-full bg-gradient-to-br from-[oklch(0.65_0.20_280)] to-[oklch(0.55_0.25_260)] flex items-center justify-center shadow-sm hover:shadow-md transition-shadow",
+              compact ? "w-5 h-5" : "w-6 h-6"
+            )}
             animate={isPlaying ? {} : { scale: [1, 1.05, 1] }}
             transition={isPlaying ? {} : { duration: 2, repeat: Infinity, ease: "easeInOut" }}
           >
             {isPlaying ? (
-              <Pause className="w-3 h-3 text-white fill-white" />
+              <Pause className={cn("text-white fill-white", compact ? "w-2 h-2" : "w-3 h-3")} />
             ) : (
-              <Play className="w-3 h-3 text-white fill-white ml-0.5" />
+              <Play className={cn("text-white fill-white ml-0.5", compact ? "w-2 h-2" : "w-3 h-3")} />
             )}
           </motion.button>
 
           {/* Progress Track */}
-          <div className="flex-1 relative h-2 bg-[oklch(0.88_0.02_240)] rounded-full overflow-hidden">
+          <div className={cn(
+            "flex-1 relative bg-[oklch(0.88_0.02_240)] rounded-full overflow-hidden",
+            compact ? "h-1.5" : "h-2"
+          )}>
             {/* Progress Fill */}
             <motion.div
               className="absolute left-0 top-0 h-full rounded-full bg-gradient-to-r from-[oklch(0.60_0.20_280)] via-[oklch(0.55_0.22_270)] to-[oklch(0.50_0.24_260)]"
@@ -260,13 +298,19 @@ export const StickyScroll = ({
 
             {/* Playhead */}
             <motion.div
-              className="absolute top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-white shadow-md border-2 border-[oklch(0.55_0.22_270)] opacity-0 group-hover:opacity-100 transition-opacity"
-              style={{ left: `calc(${progress * 100}% - 6px)` }}
+              className={cn(
+                "absolute top-1/2 -translate-y-1/2 rounded-full bg-white shadow-md border-2 border-[oklch(0.55_0.22_270)] opacity-0 group-hover:opacity-100 transition-opacity",
+                compact ? "w-2.5 h-2.5" : "w-3 h-3"
+              )}
+              style={{ left: `calc(${progress * 100}% - ${compact ? 5 : 6}px)` }}
             />
           </div>
 
           {/* Module indicator */}
-          <div className="flex-shrink-0 text-xs font-medium text-[oklch(0.45_0.02_240)] tabular-nums">
+          <div className={cn(
+            "flex-shrink-0 font-medium text-[oklch(0.45_0.02_240)] tabular-nums",
+            compact ? "text-[10px]" : "text-xs"
+          )}>
             {activeCard + 1}/{cardLength}
           </div>
         </div>
