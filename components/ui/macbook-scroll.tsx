@@ -34,7 +34,7 @@ export function MacbookScroll({
   badge,
 }: {
   src?: string
-  children?: React.ReactNode
+  children?: ((scrollProgress: MotionValue<number>) => React.ReactNode) | React.ReactNode
   showGradient?: boolean
   title?: string | React.ReactNode
   badge?: React.ReactNode
@@ -95,12 +95,13 @@ export function MacbookScroll({
         scaleY={scaleY}
         rotate={rotate}
         translate={translate}
+        scrollYProgress={scrollYProgress}
       >
         {children}
       </Lid>
 
       {/* Base area */}
-      <div className="relative -z-10 h-[22rem] w-[32rem] overflow-hidden rounded-2xl bg-gray-200 dark:bg-[#272729]">
+      <div className="relative -z-10 h-[22rem] w-[40rem] overflow-hidden rounded-2xl bg-gray-200 dark:bg-[#272729]">
         {/* Above-keyboard bar */}
         <div className="relative h-10 w-full">
           <div className="absolute inset-x-0 mx-auto h-4 w-[80%] bg-[#050505]" />
@@ -140,14 +141,17 @@ function Lid({
   translate,
   src,
   children,
+  scrollYProgress,
 }: {
   scaleX: MotionValue<number>
   scaleY: MotionValue<number>
   rotate: MotionValue<number>
   translate: MotionValue<number>
   src?: string
-  children?: React.ReactNode
+  children?: ((scrollProgress: MotionValue<number>) => React.ReactNode) | React.ReactNode
+  scrollYProgress: MotionValue<number>
 }) {
+  const resolvedChildren = typeof children === "function" ? children(scrollYProgress) : children
   return (
     <div className="relative [perspective:800px]">
       {/* Closed lid (back) */}
@@ -158,7 +162,7 @@ function Lid({
           transformOrigin: "bottom",
           transformStyle: "preserve-3d",
         }}
-        className="relative h-[12rem] w-[32rem] rounded-2xl bg-[#010101] p-2"
+        className="relative h-[10rem] w-[40rem] rounded-2xl bg-[#010101] p-2"
       >
         <div
           style={{ boxShadow: "0px 2px 0px 2px var(--neutral-900) inset" }}
@@ -197,12 +201,12 @@ function Lid({
           transformStyle: "preserve-3d",
           transformOrigin: "top",
         }}
-        className="absolute inset-0 h-96 w-[32rem] rounded-2xl bg-gradient-to-b from-[#7a7a80] via-[#48484a] to-[#1d1d1f] p-[5px]"
+        className="absolute inset-0 h-80 w-[40rem] rounded-2xl bg-gradient-to-b from-[#7a7a80] via-[#48484a] to-[#1d1d1f] p-[5px]"
       >
         <div className="absolute inset-0 rounded-lg bg-[#272729]" />
-        {children ? (
+        {resolvedChildren ? (
           <div className="absolute inset-[4px] h-[calc(100%-8px)] w-[calc(100%-8px)] overflow-hidden rounded-lg ring-1 ring-white/15">
-            {children}
+            {resolvedChildren}
           </div>
         ) : src ? (
           <img

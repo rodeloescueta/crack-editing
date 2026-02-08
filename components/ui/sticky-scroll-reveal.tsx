@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState, useCallback } from "react";
-import { useMotionValueEvent, useScroll, useTransform } from "motion/react";
+import { type MotionValue, useMotionValueEvent, useScroll, useTransform } from "motion/react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 import { Play, Pause } from "lucide-react";
@@ -9,6 +9,8 @@ export const StickyScroll = ({
   content,
   contentClassName,
   compact = false,
+  scrollProgress,
+  scrollRange = [0.35, 0.85],
 }: {
   content: {
     title: string;
@@ -17,7 +19,10 @@ export const StickyScroll = ({
   }[];
   contentClassName?: string;
   compact?: boolean;
+  scrollProgress?: MotionValue<number>;
+  scrollRange?: [number, number];
 }) => {
+  const isScrollDriven = !!scrollProgress;
   const [activeCard, setActiveCard] = React.useState(0);
   const [progress, setProgress] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -31,12 +36,36 @@ export const StickyScroll = ({
   const cardLength = content.length;
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (isScrollDriven) return; // Skip internal scroll tracking when externally driven
     setProgress(latest);
     const cardsBreakpoints = content.map((_, index) => index / cardLength);
     const closestBreakpointIndex = cardsBreakpoints.reduce(
       (acc, breakpoint, index) => {
         const distance = Math.abs(latest - breakpoint);
         if (distance < Math.abs(latest - cardsBreakpoints[acc])) {
+          return index;
+        }
+        return acc;
+      },
+      0,
+    );
+    setActiveCard(closestBreakpointIndex);
+  });
+
+  // External scroll-driven mode: map page scroll progress to internal scrollTop
+  useMotionValueEvent(scrollProgress ?? scrollYProgress, "change", (latest) => {
+    if (!isScrollDriven || !ref.current) return;
+    const [start, end] = scrollRange;
+    const mapped = Math.max(0, Math.min(1, (latest - start) / (end - start)));
+    const maxScroll = ref.current.scrollHeight - ref.current.clientHeight;
+    ref.current.scrollTop = mapped * maxScroll;
+    // Update progress and activeCard directly
+    setProgress(mapped);
+    const cardsBreakpoints = content.map((_, index) => index / cardLength);
+    const closestBreakpointIndex = cardsBreakpoints.reduce(
+      (acc, breakpoint, index) => {
+        const distance = Math.abs(mapped - breakpoint);
+        if (distance < Math.abs(mapped - cardsBreakpoints[acc])) {
           return index;
         }
         return acc;
@@ -194,7 +223,8 @@ export const StickyScroll = ({
         <div
           ref={ref}
           className={cn(
-            "flex justify-center overflow-y-auto scrollbar-hide",
+            "flex justify-center scrollbar-hide",
+            isScrollDriven ? "overflow-hidden" : "overflow-y-auto",
             compact
               ? "h-full gap-4 p-3 sm:p-4"
               : "h-[22rem] gap-6 p-6 lg:p-8"
@@ -262,27 +292,30 @@ export const StickyScroll = ({
         <div
           ref={progressBarRef}
           className={cn(
-            "relative flex items-center cursor-pointer group",
+            "relative flex items-center group",
+            isScrollDriven ? "cursor-default" : "cursor-pointer",
             compact ? "gap-2" : "gap-3"
           )}
-          onClick={handleProgressClick}
+          onClick={isScrollDriven ? undefined : handleProgressClick}
         >
-          {/* Play/Pause Button */}
-          <motion.button
-            onClick={handlePlayPause}
-            className={cn(
-              "flex-shrink-0 rounded-full bg-gradient-to-br from-[oklch(0.65_0.20_280)] to-[oklch(0.55_0.25_260)] flex items-center justify-center shadow-sm hover:shadow-md transition-shadow",
-              compact ? "w-5 h-5" : "w-6 h-6"
-            )}
-            animate={isPlaying ? {} : { scale: [1, 1.05, 1] }}
-            transition={isPlaying ? {} : { duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          >
-            {isPlaying ? (
-              <Pause className={cn("text-white fill-white", compact ? "w-2 h-2" : "w-3 h-3")} />
-            ) : (
-              <Play className={cn("text-white fill-white ml-0.5", compact ? "w-2 h-2" : "w-3 h-3")} />
-            )}
-          </motion.button>
+          {/* Play/Pause Button - hidden in scroll-driven mode */}
+          {!isScrollDriven && (
+            <motion.button
+              onClick={handlePlayPause}
+              className={cn(
+                "flex-shrink-0 rounded-full bg-gradient-to-br from-[oklch(0.65_0.20_280)] to-[oklch(0.55_0.25_260)] flex items-center justify-center shadow-sm hover:shadow-md transition-shadow",
+                compact ? "w-5 h-5" : "w-6 h-6"
+              )}
+              animate={isPlaying ? {} : { scale: [1, 1.05, 1] }}
+              transition={isPlaying ? {} : { duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            >
+              {isPlaying ? (
+                <Pause className={cn("text-white fill-white", compact ? "w-2 h-2" : "w-3 h-3")} />
+              ) : (
+                <Play className={cn("text-white fill-white ml-0.5", compact ? "w-2 h-2" : "w-3 h-3")} />
+              )}
+            </motion.button>
+          )}
 
           {/* Progress Track */}
           <div className={cn(

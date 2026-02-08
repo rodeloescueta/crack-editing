@@ -10,6 +10,7 @@ import {
   ArrowRight,
   type LucideIcon,
 } from "lucide-react"
+import type { MotionValue } from "framer-motion"
 import { MacbookScroll } from "@/components/ui/macbook-scroll"
 import { GradientText } from "@/components/ui/gradient-text"
 import { StickyScroll } from "@/components/ui/sticky-scroll-reveal"
@@ -172,7 +173,15 @@ export function MacbookShowcaseSection() {
             </div>
           }
         >
-          <StickyScroll content={stickyContent} contentClassName="rounded-lg" compact />
+          {(scrollProgress: MotionValue<number>) => (
+            <StickyScroll
+              content={stickyContent}
+              contentClassName="rounded-lg"
+              compact
+              scrollProgress={scrollProgress}
+              scrollRange={[0.35, 0.85]}
+            />
+          )}
         </MacbookScroll>
       </div>
     </section>
