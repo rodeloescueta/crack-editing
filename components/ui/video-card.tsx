@@ -2,9 +2,10 @@
 
 import { useState } from "react"
 import Image from "next/image"
-import { Play, ExternalLink } from "lucide-react"
+import { Play } from "lucide-react"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
+import { VideoModal } from "@/components/ui/video-modal"
 
 interface VideoCardProps {
   type: "before" | "after"
@@ -13,19 +14,23 @@ interface VideoCardProps {
   thumbnail?: string
   videoUrl?: string
   className?: string
+  creatorName?: string
+  creatorHandle?: string
 }
 
-export function VideoCard({ type, label, views, thumbnail, videoUrl, className }: VideoCardProps) {
+export function VideoCard({ type, label, views, thumbnail, videoUrl, className, creatorName, creatorHandle }: VideoCardProps) {
   const isBefore = type === "before"
   const [isHovered, setIsHovered] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false)
 
   const handleClick = () => {
     if (videoUrl) {
-      window.open(videoUrl, '_blank', 'noopener,noreferrer')
+      setModalOpen(true)
     }
   }
 
   return (
+    <>
     <div
       className={cn(
         "relative rounded-xl overflow-hidden aspect-[9/16] w-[200px] sm:w-[240px] md:w-[280px]",
@@ -111,7 +116,7 @@ export function VideoCard({ type, label, views, thumbnail, videoUrl, className }
             isBefore ? "bg-red-500 text-white" : "bg-green-500 text-white"
           )}
         >
-          <ExternalLink className="w-4 h-4" />
+          <Play className="w-4 h-4" fill="currentColor" />
           <span>Watch Video</span>
         </div>
         {!videoUrl && (
@@ -161,5 +166,20 @@ export function VideoCard({ type, label, views, thumbnail, videoUrl, className }
 
       {/* Label Badge - BEFORE/AFTER is now handled outside in parent */}
     </div>
+
+    {/* Video Modal */}
+    {videoUrl && (
+      <VideoModal
+        open={modalOpen}
+        onOpenChange={setModalOpen}
+        videoUrl={videoUrl}
+        title={`${isBefore ? "Before" : "After"} - ${label}`}
+        type={type}
+        creatorName={creatorName}
+        creatorHandle={creatorHandle}
+        views={views}
+      />
+    )}
+    </>
   )
 }

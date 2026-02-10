@@ -34,8 +34,8 @@ const transformations: Transformation[] = [
     avatar: "/assets/client-profile/nikki2.png",
     avatarPosition: "center 40%",
     followers: "648K",
-    before: { views: "~500 views", label: "Generic edit", thumbnail: "/images/testimonials/video-thumbnail-1.jpg", videoUrl: "" },
-    after: { views: "1.1M views", label: "Crack Edited™", thumbnail: "/images/testimonials/video-thumbnail-2.jpg", videoUrl: "" },
+    before: { views: "~500 views", label: "Generic edit", thumbnail: "/images/testimonials/video-thumbnail-1.jpg", videoUrl: "https://res.cloudinary.com/dpeonf20f/video/upload/v1770743280/Nikki_Before_x4cpt3.mp4" },
+    after: { views: "1.1M views", label: "Crack Edited™", thumbnail: "/images/testimonials/video-thumbnail-2.jpg", videoUrl: "https://res.cloudinary.com/dpeonf20f/video/upload/v1770743276/Nikki_After_yjwvas.mp4" },
     growthStats: "Grew from 6,322 to 1,000,000+ followers using crack editing™",
   },
   {
@@ -45,8 +45,8 @@ const transformations: Transformation[] = [
     avatar: "/assets/client-profile/kathy2.png",
     avatarPosition: "center 35%",
     followers: "109K",
-    before: { views: "~1K views", label: "Generic edit", thumbnail: "/images/testimonials/video-thumbnail-3.jpg", videoUrl: "" },
-    after: { views: "482K views", label: "Crack Edited™", thumbnail: "/images/testimonials/video-thumbnail-4.jpg", videoUrl: "" },
+    before: { views: "~1K views", label: "Generic edit", thumbnail: "/images/testimonials/video-thumbnail-3.jpg", videoUrl: "https://res.cloudinary.com/dpeonf20f/video/upload/v1770743279/Kathy_Before_sczqjw.mp4" },
+    after: { views: "482K views", label: "Crack Edited™", thumbnail: "/images/testimonials/video-thumbnail-4.jpg", videoUrl: "https://res.cloudinary.com/dpeonf20f/video/upload/v1770743288/Kathy_After_mjtciy.mp4" },
     growthStats: "Scaled to 100,000+ followers in just 7 months",
   },
   {
@@ -56,8 +56,8 @@ const transformations: Transformation[] = [
     avatar: "/assets/client-profile/nontoxicdad2.png",
     avatarPosition: "center 30%",
     followers: "1.2M",
-    before: { views: "~10K views", label: "Generic edit", thumbnail: "/images/testimonials/video-thumbnail-1.jpg", videoUrl: "" },
-    after: { views: "22M+ views", label: "Crack Edited™", thumbnail: "/images/testimonials/video-thumbnail-3.jpg", videoUrl: "" },
+    before: { views: "~10K views", label: "Generic edit", thumbnail: "/images/testimonials/video-thumbnail-1.jpg", videoUrl: "https://res.cloudinary.com/dpeonf20f/video/upload/v1770743283/Nontoxic_Dad_Before_ljbd2c.mp4" },
+    after: { views: "22M+ views", label: "Crack Edited™", thumbnail: "/images/testimonials/video-thumbnail-3.jpg", videoUrl: "https://res.cloudinary.com/dpeonf20f/video/upload/v1770743277/Nontoxic_Dad_After_pnzz8n.mp4" },
     growthStats: "Built 1.1M+ followers over 2 years with the system",
   },
   {
@@ -67,8 +67,8 @@ const transformations: Transformation[] = [
     avatar: "/assets/client-profile/ashley2.png",
     avatarPosition: "center 25%",
     followers: "66.4K",
-    before: { views: "~2K views", label: "Generic edit", thumbnail: "/images/testimonials/video-thumbnail-1.jpg", videoUrl: "" },
-    after: { views: "500K+ views", label: "Crack Edited™", thumbnail: "/images/testimonials/video-thumbnail-2.jpg", videoUrl: "" },
+    before: { views: "~2K views", label: "Generic edit", thumbnail: "/images/testimonials/video-thumbnail-1.jpg", videoUrl: "https://res.cloudinary.com/dpeonf20f/video/upload/v1770743274/Ashley_Before_csvaaj.mp4" },
+    after: { views: "500K+ views", label: "Crack Edited™", thumbnail: "/images/testimonials/video-thumbnail-2.jpg", videoUrl: "https://res.cloudinary.com/dpeonf20f/video/upload/v1770743283/Ashley_After_nou8u3.mp4" },
     growthStats: "Built 66K+ engaged followers with crack editing™",
   },
   {
@@ -78,8 +78,8 @@ const transformations: Transformation[] = [
     avatar: "/assets/client-profile/foodgod2.png",
     avatarPosition: "center 60%",
     followers: "3.7M",
-    before: { views: "~50K views", label: "Generic edit", thumbnail: "/images/testimonials/video-thumbnail-3.jpg", videoUrl: "" },
-    after: { views: "10M+ views", label: "Crack Edited™", thumbnail: "/images/testimonials/video-thumbnail-4.jpg", videoUrl: "" },
+    before: { views: "~50K views", label: "Generic edit", thumbnail: "/images/testimonials/video-thumbnail-3.jpg", videoUrl: "https://res.cloudinary.com/dpeonf20f/video/upload/v1770743272/Foodgod_Before_l0s2ao.mp4" },
+    after: { views: "10M+ views", label: "Crack Edited™", thumbnail: "/images/testimonials/video-thumbnail-4.jpg", videoUrl: "https://res.cloudinary.com/dpeonf20f/video/upload/v1770743279/Foodgod_After_v0ftst.mp4" },
     growthStats: "Scaled to 3.7M followers with the system",
   },
   {
@@ -89,8 +89,8 @@ const transformations: Transformation[] = [
     avatar: "/assets/client-profile/neil2.png",
     avatarPosition: "center 40%",
     followers: "646K",
-    before: { views: "~5K views", label: "Generic edit", thumbnail: "/images/testimonials/video-thumbnail-1.jpg", videoUrl: "" },
-    after: { views: "2M+ views", label: "Crack Edited™", thumbnail: "/images/testimonials/video-thumbnail-3.jpg", videoUrl: "" },
+    before: { views: "~5K views", label: "Generic edit", thumbnail: "/images/testimonials/video-thumbnail-1.jpg", videoUrl: "https://res.cloudinary.com/dpeonf20f/video/upload/v1770743276/Neil_Before_xu2ytg.mp4" },
+    after: { views: "2M+ views", label: "Crack Edited™", thumbnail: "/images/testimonials/video-thumbnail-3.jpg", videoUrl: "https://res.cloudinary.com/dpeonf20f/video/upload/v1770743290/Neil_After_ycskdz.mp4" },
     growthStats: "Grew to 646K+ followers as a marketing expert",
   },
 ]
@@ -369,6 +369,8 @@ export function TransformationCarousel() {
                     label={currentTransformation.before.label}
                     views={currentTransformation.before.views}
                     videoUrl={currentTransformation.before.videoUrl}
+                    creatorName={currentTransformation.creatorName}
+                    creatorHandle={currentTransformation.handle}
                   />
                 </div>
 
@@ -402,6 +404,8 @@ export function TransformationCarousel() {
                     label={currentTransformation.after.label}
                     views={currentTransformation.after.views}
                     videoUrl={currentTransformation.after.videoUrl}
+                    creatorName={currentTransformation.creatorName}
+                    creatorHandle={currentTransformation.handle}
                   />
                 </div>
               </div>
