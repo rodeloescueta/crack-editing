@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { Container } from "@/components/layout"
 import { GradientText } from "@/components/ui/gradient-text"
-import { StatCard } from "@/components/ui/stat-card"
+
 import { SparklesCore } from "@/components/ui/sparkles"
 import { Marquee } from "@/components/ui/marquee"
 import { brandItems, LimitlessLogo } from "@/components/ui/brand-logos"
@@ -17,12 +17,6 @@ import {
   defaultViewport,
 } from "@/lib/animations"
 
-const stats = [
-  { value: "15+", label: "Years Digital Marketing", attribution: "AJ Kumar", avatar: null },
-  { value: "3B+", label: "Views Generated", attribution: "For Clients", avatar: null },
-  { value: "10+", label: "Years Video Editing", attribution: "Josh Bill", avatar: null },
-  { value: "100+", label: "Brand Deals", attribution: "Secured", avatar: null },
-]
 
 export function CreatorsSection() {
   return (
@@ -83,16 +77,6 @@ export function CreatorsSection() {
               </p>
             </motion.div>
           </div>
-
-          {/* Stats Grid */}
-          <motion.div
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12"
-            variants={fadeInUp}
-          >
-            {stats.map((stat) => (
-              <StatCard key={stat.label} {...stat} />
-            ))}
-          </motion.div>
 
           {/* Brand Logos - Marquee */}
           <motion.div variants={fadeInUp}>
