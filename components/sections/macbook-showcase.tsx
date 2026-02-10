@@ -179,7 +179,7 @@ export function MacbookShowcaseSection() {
               contentClassName="rounded-lg"
               compact
               scrollProgress={scrollProgress}
-              scrollRange={[0.35, 0.85]}
+              scrollRange={[0.3, 0.7]}
             />
           )}
         </MacbookScroll>
